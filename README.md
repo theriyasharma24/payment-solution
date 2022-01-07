@@ -6,6 +6,29 @@ Learning and executing MERN app
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Steps to follow to execute the code at your machine
+
+Open command prompt, go to the directory where you wish to place the project and then run the following commands:
+>- git init
+>- git clone https://github.com/sbhaya/mern-responsive-app.git
+>- cd mern-responsive-app
+>- cd client
+>- yarn install
+>- cd ..
+>- yarn install
+>- yarn run dev
+
+## To add new updates to the code
+
+Always create a new branch and work on it. Follow the below steps:
+>- git pull 
+>- git checkout -b <new_branch_name>
+
+## To push new updates to the repository
+>- git add .
+>- git commit -m "Add/Remove/Fix/Update <feature description>"
+>- git push -u origin <current_branch_name>
+
 ## Available Scripts
 
 In the project directory, you can run:
