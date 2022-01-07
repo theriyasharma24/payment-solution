@@ -12,9 +12,9 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "engines": {
-    "node": "14.x",
+    "node": "17.x",
     "yarn": "1.x",
-    "npm": "6.x"
+    "npm": "8.x"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
     "bcryptjs": "^2.4.3",
     "config": "^3.3.0",
     "express": "^4.17.1",
+    "express-rate-limit": "^6.0.5",
     "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.5"
