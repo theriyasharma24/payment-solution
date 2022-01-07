@@ -26,7 +26,7 @@ Always create a new branch and work on it. Follow the below steps:
 
 ## To push new updates to the repository
 >- git add .
->- git commit -m "Add/Remove/Fix/Update <feature description>"
+>- git commit -m "Add/Remove/Fix/Update feature_description"
 >- git push -u origin <current_branch_name>
 
 ## Available Scripts
