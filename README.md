@@ -18,6 +18,9 @@ Open command prompt, go to the directory where you wish to place the project and
 >- yarn install
 >- yarn run dev
 
+## Ask for Mongo URI 
+Ask Sabhya Saini on slack for the Mongo URI config file.
+
 ## To add new updates to the code
 
 Always create a new branch and work on it. Follow the below steps:
