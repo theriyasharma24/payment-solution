@@ -3,7 +3,9 @@ node_modules/
 /client/build
 /config/default.json
 
-
+.yarn/
+.env
+.yarnrc.yml
 .DS_Store
 /client/.env
 /client/.env.local

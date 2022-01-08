@@ -7,6 +7,7 @@
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.0",
     "@types/react": "^17.0.36",
     "axios": "^0.21.1",
@@ -29,9 +30,9 @@
     "eject": "react-scripts eject"
   },
   "engines": {
-    "node": "14.x",
+    "node": "16.x",
     "yarn": "1.x",
-    "npm": "6.x"
+    "npm": "8.x"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -50,6 +51,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "chokidar": "^3.4.0"
   },
   "proxy": "http://127.0.0.1:5000/"
 }
