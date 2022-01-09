@@ -13,8 +13,10 @@ Open command prompt, go to the directory where you wish to place the project and
 >- git clone https://github.com/sbhaya/mern-responsive-app.git
 >- cd mern-responsive-app
 >- cd client
+>- yarn set version berry
 >- yarn install
 >- cd ..
+>- yarn set version berry
 >- yarn install
 >- yarn run dev
 
