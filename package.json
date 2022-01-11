@@ -4,7 +4,7 @@
   "description": "TFI APP",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node --max_old_space_size=4096 server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
@@ -13,7 +13,7 @@
   },
   "engines": {
     "node": "16.x",
-    "yarn": "1.x",
+    "yarn": "3.x",
     "npm": "8.x"
   },
   "keywords": [],
@@ -22,11 +22,12 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.0",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "express-rate-limit": "^6.0.5",
-    "express-validator": "^6.4.0",
+    "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.5"
+    "mongoose": "^5.13.5",
+    "react-scripts": "4.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
