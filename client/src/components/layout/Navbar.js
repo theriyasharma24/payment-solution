@@ -9,7 +9,7 @@ import Register from "@mui/icons-material/AppRegistration";
 import Shop from "@mui/icons-material/AddBusiness";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -42,11 +42,11 @@ const Navbar = ({ icon }) => {
   const { isAuthenticated, logout, user, loadUser } = authContext;
   const [anchorElNav, setAnchorElNav] = useState(null);
 
-  let history = useHistory();
-
+  let history = useNavigate();
+  let navigate = useNavigate();
   const onLogout = () => {
     logout();
-    history.push({ pathname: "/login" });
+    navigate({ pathname: "/login" });
   };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

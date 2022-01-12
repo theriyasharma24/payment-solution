@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import SubmitButton from "../containers/SubmitButton";
 import styled from "styled-components";
 import breakpoints from "../../essentials/screensize";
+import { useNavigate } from "react-router-dom";
 
 const ActionButton = styled(SubmitButton)`
   && {
@@ -44,17 +45,18 @@ const LoginContainer = styled.div`
   }
 `;
 const Login = (props) => {
+  let navigate = useNavigate();
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;
   const { login, error, clearErrors, isAuthenticated } = authContext;
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/");
+      navigate("/");
     } else {
-      props.history.push("/login");
+      navigate("/login");
     }
     if (error === "Invalid Credentials") {
       setAlert(error, "danger");
