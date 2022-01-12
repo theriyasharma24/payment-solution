@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
@@ -32,9 +33,9 @@ const App = () => {
             <Container>
               <Alerts />
               <Routes>
-                <Route exact path="/" component={Home} />{" "}
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
+                <Route exact path="/" element={<Home />} />{" "}
+                <Route exact path="/register" element={<Register />} />
+                <Route exact path="/login" element={<Login />} />
               </Routes>
             </Container>
           </Fragment>

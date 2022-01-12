@@ -43,10 +43,10 @@ const Navbar = ({ icon }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   let history = useNavigate();
-
+  let navigate = useNavigate();
   const onLogout = () => {
     logout();
-    history.push({ pathname: "/login" });
+    navigate({ pathname: "/login" });
   };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
