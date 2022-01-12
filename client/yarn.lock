@@ -4730,6 +4730,7 @@ __metadata:
   resolution: "client@workspace:."
   dependencies:
     "@babel/core": ^7.16.0
+    "@babel/plugin-proposal-private-property-in-object": ^7.16.7
     "@emotion/react": ^11.6.0
     "@emotion/styled": ^11.6.0
     "@material-ui/core": ^4.12.3
@@ -4738,9 +4739,12 @@ __metadata:
     "@types/react": ^17.0.36
     axios: ^0.21.1
     emailjs-com: ^3.2.0
+    eslint-config-react: ^1.1.7
+    prop-types: ^15.8.1
     react: ^17.0.2
     react-dom: ^17.0.2
     react-is: ^17.0.2
+    react-refresh: ^0.11.0
     react-router-dom: ^5.1.2
     react-scripts: 4.0.0
     react-transition-group: ^4.3.0
@@ -6393,6 +6397,13 @@ __metadata:
     eslint-plugin-testing-library:
       optional: true
   checksum: b265852455b1c10e9c5f0cebe199306fffc7f8e1b6548fcb0bccdc4415c288dfee8ab10717122a32275b91130dfb482dcbbc87d2fb79d8728d4c2bfa889f0915
+  languageName: node
+  linkType: hard
+
+"eslint-config-react@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "eslint-config-react@npm:1.1.7"
+  checksum: 15d3d7f78e720c225ac983fb6985825b561941f1c930116c96f8ab8600eb65db603f5ef200a10fabd51f8ef564c107e8eb0d3f69609bfdedfb50290227249a70
   languageName: node
   linkType: hard
 
@@ -12244,7 +12255,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -12528,6 +12539,13 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+  languageName: node
+  linkType: hard
+
+"react-refresh@npm:^0.11.0":
+  version: 0.11.0
+  resolution: "react-refresh@npm:0.11.0"
+  checksum: 112178a05b1e0ffeaf5d9fb4e56b4410a34a73adeb04dbf13abdc50d9ac9df2ada83e81485156cca0b3fa296aa3612751b3d6cd13be4464642a43679b819cbc7
   languageName: node
   linkType: hard
 
