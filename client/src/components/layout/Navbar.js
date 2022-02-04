@@ -5,6 +5,7 @@ import AuthContext from "../../context/auth/authContext";
 import Login from "@mui/icons-material/ExitToApp";
 import Logout from "@mui/icons-material/Logout";
 import Home from "@mui/icons-material/Home";
+import DescriptionIcon from '@mui/icons-material/Description';
 import Register from "@mui/icons-material/AppRegistration";
 import Shop from "@mui/icons-material/AddBusiness";
 import Box from "@mui/material/Box";
@@ -65,6 +66,16 @@ const Navbar = ({ icon }) => {
           <AccountCircle />
         </IconButton>
       </Link>
+      <IconButton
+       size="large"
+        aria-label="Notes"
+        style={{ color: "grey" }}
+      >
+        <DescriptionIcon/>
+        <Typography variant="body2" align="center">
+          Notes
+        </Typography>
+      </IconButton>
       <IconButton
         size="large"
         onClick={onLogout}
