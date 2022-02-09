@@ -70,22 +70,17 @@ const AgentDescription = () => {
           justifyContent="center"
         >
           <Grid item xs={4} md={3} m={1} style={{ backgroundColor: "#484545" }}>
-            <Typography variant="button" component="h2">
+            <Typography variant="button" component="h2" pb={2}>
               Client's List
             </Typography>
           </Grid>
           <Grid item xs={4} md={3} m={1} style={{ backgroundColor: "#484545" }}>
-            <Typography
-              variant="button"
-              component="h2"
-              alignSelf="center"
-              pb={2}
-            >
+            <Typography variant="button" component="h2" pb={2}>
               Payment's Transaction
             </Typography>
           </Grid>
           <Grid item xs={4} md={3} m={1} style={{ backgroundColor: "#484545" }}>
-            <Typography variant="button" component="h2">
+            <Typography variant="button" component="h2" pb={2}>
               Reminders
             </Typography>
           </Grid>
