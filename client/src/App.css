@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 :root {
   --color-yellow: #fae638;
   --color--pink: #ff4a8b;
@@ -47,7 +48,11 @@ h1 {
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace, "Roboto", sans-serif, "Gochi Hand", cursive;
+    monospace, "Roboto", sans-serif, "Gochi Hand", cursive, "Poppins",
+    sans-serif;
+}
+.poppins {
+  font-family: "Poppins", sans-serif;
 }
 .gochi {
   font-family: "Gochi Hand", cursive;

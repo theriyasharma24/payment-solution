@@ -5,10 +5,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-</style>
-
+import colors from "../../essentials/colors";
 import AuthContext from "../../context/auth/authContext";
 
 const AgentDescription = () => {
@@ -18,13 +15,28 @@ const AgentDescription = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={12} m={2} style={{textAlign:'center'}}>
-        <Typography variant="h3"  style={{ backgroundColor: "#95D554" }}>
-             Agent Information
-            </Typography>
+        <Grid item xs={12} md={12} m={2} style={{ textAlign: "center" }}>
+          <Typography
+            variant="h3"
+            style={{ backgroundColor: "#95D554", fontFamily: "Poppins" }}
+          >
+            Agent Information
+          </Typography>
         </Grid>
 
-        <Grid container spacing={1} p={2} m={2} alignItems='center' justifyContent='center' style={{ backgroundColor: "#FF6D41" , font-family: 'Poppins', sans-serif} }>
+        <Grid
+          container
+          spacing={1}
+          p={2}
+          m={2}
+          className="poppins"
+          alignItems="center"
+          justifyContent="center"
+          style={{
+            backgroundColor: `${colors.green}`,
+            fontFamily: "Poppins",
+          }}
+        >
           <Grid item xs={4} md={5} m={1}>
             <img
               src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__480.jpg"
@@ -32,7 +44,7 @@ const AgentDescription = () => {
             ></img>
           </Grid>
           <Grid item xs={8} md={5} style={{ backgroundColor: "#FF6D41" }} p={2}>
-            <Typography variant="h5" component="h2">
+            <Typography align="left" variant="h5" component="h2">
               Name:
             </Typography>
 
@@ -50,14 +62,25 @@ const AgentDescription = () => {
           </Grid>
         </Grid>
 
-        <Grid container spacing={3} m={2} alignItems='center' justifyContent='center'>
+        <Grid
+          container
+          spacing={3}
+          m={2}
+          alignItems="center"
+          justifyContent="center"
+        >
           <Grid item xs={4} md={3} m={1} style={{ backgroundColor: "#484545" }}>
             <Typography variant="button" component="h2">
               Client's List
             </Typography>
           </Grid>
           <Grid item xs={4} md={3} m={1} style={{ backgroundColor: "#484545" }}>
-            <Typography variant="button" component="h2">
+            <Typography
+              variant="button"
+              component="h2"
+              alignSelf="center"
+              pb={2}
+            >
               Payment's Transaction
             </Typography>
           </Grid>
