@@ -12,6 +12,7 @@ const colors = {
   blue: "#D4FEFF",
   green: "#AAFFD3",
   peach: "#FFD9AA",
+  cyan: "#00EE5F",
 };
 
 export default colors;

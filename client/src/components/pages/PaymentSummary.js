@@ -10,6 +10,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Typography } from "@mui/material";
+import colors from "../../essentials/colors";
 
 const PaymentSummary = () => {
   function createData(dop, name, amount, status) {
@@ -36,10 +37,13 @@ const PaymentSummary = () => {
             xs={12}
             md={4}
           >
-            <p>Net Income</p>
-            <p>₹ 10000/-</p>
-            <p>2 clients</p>
+            <Paper elevation={3} style={{ padding: 15 }}>
+              <p>Net Income</p>
+              <p>₹ 10000/-</p>
+              <p>2 clients</p>
+            </Paper>
           </Grid>
+
           <Grid
             item
             style={{ backgroundColor: "pink", textAlign: "center" }}
