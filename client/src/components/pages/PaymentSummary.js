@@ -10,7 +10,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import colors from "../../essentials/colors";
 
+const NetIncome = styled(Paper)`
+  .MuiPaper-root {
+    border: 2px solid ${colors.cyan};
+  }
+`;
 const PaymentSummary = () => {
   function createData(dop, name, amount, status) {
     return { dop, name, amount, status };
