@@ -9,6 +9,7 @@ import AuthState from "./context/auth/AuthState";
 import AlertState from "./context/alert/AlertState";
 // import PrivateRoute from "./components/routing/PrivateRoute";
 import Home from "./components/pages/Home";
+import AgentDescription from "./components/pages/AgentDescription";
 
 import "./App.css";
 
@@ -36,6 +37,7 @@ const App = () => {
                 <Route exact path="/" element={<Home />} />{" "}
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/login" element={<Login />} />
+                <Route exact path="/agentdescription" element={<AgentDescription />} />
               </Routes>
             </Container>
           </Fragment>
