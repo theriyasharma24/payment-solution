@@ -13,6 +13,10 @@ const colors = {
   green: "#AAFFD3",
   peach: "#FFD9AA",
   cyan: "#00EE5F",
+  purple: "#B658FF",
+  darkgreen: "#6CA382",
+  darkred: "#B82525",
+  lightblue: "#37979D",
 };
 
 export default colors;

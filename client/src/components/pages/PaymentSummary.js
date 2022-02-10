@@ -12,11 +12,47 @@ import TableRow from "@mui/material/TableRow";
 import { Typography } from "@mui/material";
 import colors from "../../essentials/colors";
 
-const NetIncome = styled(Paper)`
-  .MuiPaper-root {
-    border: 2px solid black;
+const PaymentTableCell = styled(TableCell)`
+  && {
+    font-weight: 900;
+    background: rgba(149, 213, 84);
+    font-size: 18px;
   }
 `;
+const PaymentBodyTableCell = styled(TableCell)`
+  && {
+    font-weight: 300;
+    background: rgba(149, 213, 84, 0.5);
+    font-size: 18px;
+  }
+`;
+
+const NetIncome = styled(Paper)`
+  && {
+    border: 4px solid ${colors.purple};
+    background: rgba(182, 88, 255, 0.4);
+    border-radius: 10px;
+    box-shadow: 4px 5px 5px ${colors.grey};
+  }
+`;
+const AmountPaid = styled(Paper)`
+  && {
+    border: 4px solid ${colors.darkgreen};
+    background: rgba(0, 128, 0, 0.3);
+    border-radius: 10px;
+    box-shadow: 4px 5px 5px ${colors.grey};
+  }
+`;
+
+const AmountPending = styled(Paper)`
+  && {
+    border: 4px solid ${colors.darkred};
+    background: rgba(182, 37, 37, 0.4);
+    border-radius: 10px;
+    box-shadow: 4px 5px 5px ${colors.grey};
+  }
+`;
+
 const PaymentSummary = () => {
   function createData(dop, name, amount, status) {
     return { dop, name, amount, status };
@@ -36,38 +72,27 @@ const PaymentSummary = () => {
               Overview
             </Typography>
           </Grid>
-          <Grid
-            item
-            style={{ backgroundColor: "lightblue", textAlign: "center" }}
-            xs={12}
-            md={4}
-          >
-            <Paper elevation={3} style={{ padding: 15 }}>
+          <Grid item style={{ textAlign: "center" }} xs={12} md={4}>
+            <NetIncome elevation={3} style={{ padding: 15 }}>
               <p>Net Income</p>
               <p>₹ 10000/-</p>
               <p>2 clients</p>
-            </Paper>
+            </NetIncome>
           </Grid>
 
-          <Grid
-            item
-            style={{ backgroundColor: "pink", textAlign: "center" }}
-            xs={12}
-            md={4}
-          >
-            <p>Paid</p>
-            <p>₹ 10000/-</p>
-            <p>2 clients</p>
+          <Grid item style={{ textAlign: "center" }} xs={12} md={4}>
+            <AmountPaid elevation={3} style={{ padding: 15 }}>
+              <p>Amount Paid</p>
+              <p>₹ 10000/-</p>
+              <p>2 clients</p>
+            </AmountPaid>
           </Grid>
-          <Grid
-            item
-            style={{ backgroundColor: "lightgreen", textAlign: "center" }}
-            xs={12}
-            md={4}
-          >
-            <p>Amount Pending</p>
-            <p>₹ 10000/-</p>
-            <p>2 clients</p>
+          <Grid item style={{ textAlign: "center" }} xs={12} md={4}>
+            <AmountPending elevation={9} style={{ padding: 15 }}>
+              <p>Amount Pending</p>
+              <p>₹ 10000/-</p>
+              <p>2 clients</p>
+            </AmountPending>
           </Grid>
         </Grid>
       </Box>
@@ -81,10 +106,10 @@ const PaymentSummary = () => {
         <Table sx={{ minWidth: 200 }} size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Date of Payment</TableCell>
-              <TableCell align="left">Client Name</TableCell>
-              <TableCell align="left">Amount</TableCell>
-              <TableCell align="right">Payment Status</TableCell>
+              <PaymentTableCell>Date of Payment</PaymentTableCell>
+              <PaymentTableCell align="left">Client Name</PaymentTableCell>
+              <PaymentTableCell align="left">Amount</PaymentTableCell>
+              <PaymentTableCell align="right">Payment Status</PaymentTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -93,10 +118,19 @@ const PaymentSummary = () => {
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell scope="row">{row.dop}</TableCell>
-                <TableCell align="left">{row.name}</TableCell>
-                <TableCell align="left">₹{row.amount}/-</TableCell>
-                <TableCell align="right"> {row.status}</TableCell>
+                <PaymentBodyTableCell scope="row">
+                  {row.dop}
+                </PaymentBodyTableCell>
+                <PaymentBodyTableCell align="left">
+                  {row.name}
+                </PaymentBodyTableCell>
+                <PaymentBodyTableCell align="left">
+                  ₹{row.amount}/-
+                </PaymentBodyTableCell>
+                <PaymentBodyTableCell align="right">
+                  {" "}
+                  {row.status}
+                </PaymentBodyTableCell>
               </TableRow>
             ))}
           </TableBody>
