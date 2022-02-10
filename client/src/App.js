@@ -10,6 +10,7 @@ import AlertState from "./context/alert/AlertState";
 // import PrivateRoute from "./components/routing/PrivateRoute";
 import Home from "./components/pages/Home";
 import PaymentSummary from "./components/pages/PaymentSummary";
+import AgentDescription from "./components/pages/AgentDescription";
 
 import "./App.css";
 
@@ -41,6 +42,11 @@ const App = () => {
                   exact
                   path="/paymentsummary"
                   element={<PaymentSummary />}
+                />
+                <Route
+                  exact
+                  path="/agentdescription"
+                  element={<AgentDescription />}
                 />
               </Routes>
             </Container>

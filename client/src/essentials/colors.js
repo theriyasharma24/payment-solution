@@ -17,6 +17,13 @@ const colors = {
   darkgreen: "#6CA382",
   darkred: "#B82525",
   lightblue: "#37979D",
+  lightgreen: "#95D554",
+  orange: "#FF6D41",
+  purple: "#B658FF",
+  lightblue: "#37979D",
+  dayblack: "#484545",
+  neutral: "#C5A388",
+  tealgreen: "#00EE5F",
   primary: "#95D554",
 };
 
