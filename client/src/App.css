@@ -27,6 +27,18 @@ h1 {
   font-weight: 900;
 }
 
+.greenprimary{
+  background-color: #95D554 ;
+}
+
+.black{
+  background-color: #484545;
+}
+
+.orange{
+  background-color: #FF6D41;
+}
+
 .pink {
   color: var(--color-pink);
 }
