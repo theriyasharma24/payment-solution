@@ -18,7 +18,7 @@ import styled from "styled-components";
 import breakpoints from "./essentials/screensize";
 
 const Container = styled.div`
-  padding: 8vw 52px 18px 52px;
+  padding: 8vw 52px 18px 0px;
   justify-content: center;
   @media (max-width: ${breakpoints.sm}px) {
     padding: 24vw 52px 18px 52px;
