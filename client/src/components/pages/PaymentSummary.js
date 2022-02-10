@@ -22,7 +22,7 @@ const PaymentTableCell = styled(TableCell)`
 const PaymentBodyTableCell = styled(TableCell)`
   && {
     font-weight: 300;
-    background: rgba(149, 213, 84, 0.5);
+    // background: rgba(149, 213, 84, 0.5);
     font-size: 18px;
   }
 `;
@@ -30,15 +30,17 @@ const PaymentBodyTableCell = styled(TableCell)`
 const NetIncome = styled(Paper)`
   && {
     border: 4px solid ${colors.purple};
-    background: rgba(182, 88, 255, 0.4);
+    // background: rgba(182, 88, 255, 0.4);
+    color: ${colors.purple};
     border-radius: 10px;
     box-shadow: 4px 5px 5px ${colors.grey};
   }
 `;
 const AmountPaid = styled(Paper)`
   && {
-    border: 4px solid ${colors.darkgreen};
-    background: rgba(0, 128, 0, 0.3);
+    border: 4px solid ${colors.primary};
+    color: ${colors.primary};
+    // background: rgba(0, 128, 0, 0.3);
     border-radius: 10px;
     box-shadow: 4px 5px 5px ${colors.grey};
   }
@@ -47,7 +49,7 @@ const AmountPaid = styled(Paper)`
 const AmountPending = styled(Paper)`
   && {
     border: 4px solid ${colors.darkred};
-    background: rgba(182, 37, 37, 0.4);
+    color: ${colors.darkred};
     border-radius: 10px;
     box-shadow: 4px 5px 5px ${colors.grey};
   }
@@ -68,29 +70,39 @@ const PaymentSummary = () => {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={24} md={0}>
-            <Typography variant="h3" component="h2">
-              Overview
-            </Typography>
+            <Typography variant="h4">Overview</Typography>
           </Grid>
           <Grid item style={{ textAlign: "center" }} xs={12} md={4}>
             <NetIncome elevation={3} style={{ padding: 15 }}>
-              <p>Net Income</p>
-              <p>₹ 10000/-</p>
+              <h3>
+                <b>Net Income</b>
+              </h3>
+              <p>
+                <b>₹ 10000/-</b>
+              </p>
               <p>2 clients</p>
             </NetIncome>
           </Grid>
 
           <Grid item style={{ textAlign: "center" }} xs={12} md={4}>
             <AmountPaid elevation={3} style={{ padding: 15 }}>
-              <p>Amount Paid</p>
-              <p>₹ 10000/-</p>
+              <h3>
+                <b>Amount Paid</b>
+              </h3>
+              <p>
+                <b>₹ 10000/-</b>
+              </p>
               <p>2 clients</p>
             </AmountPaid>
           </Grid>
           <Grid item style={{ textAlign: "center" }} xs={12} md={4}>
-            <AmountPending elevation={9} style={{ padding: 15 }}>
-              <p>Amount Pending</p>
-              <p>₹ 10000/-</p>
+            <AmountPending elevation={2} style={{ padding: 15 }}>
+              <h3>
+                <b>Amount Pending</b>
+              </h3>
+              <p>
+                <b>₹ 10000/-</b>
+              </p>
               <p>2 clients</p>
             </AmountPending>
           </Grid>
@@ -98,9 +110,7 @@ const PaymentSummary = () => {
       </Box>
 
       <br></br>
-      <Typography variant="h3" component="h2">
-        Earning History
-      </Typography>
+      <Typography variant="h4">Earning History</Typography>
       <br></br>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 200 }} size="small">

@@ -17,6 +17,7 @@ const colors = {
   darkgreen: "#6CA382",
   darkred: "#B82525",
   lightblue: "#37979D",
+  primary: "#95D554",
 };
 
 export default colors;
