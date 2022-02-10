@@ -1,5 +1,4 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -11,6 +10,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Typography } from "@mui/material";
 import colors from "../../essentials/colors";
+import styled from "styled-components";
+
+const Container = styled.div`
+  padding-left: 2rem;
+`;
 
 const PaymentTableCell = styled(TableCell)`
   && {
@@ -66,7 +70,7 @@ const PaymentSummary = () => {
     createData("03-01-2022 | 8:00 PM", "Riya Sharma", 1000, "Paid"),
   ];
   return (
-    <>
+    <Container>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={24} md={0}>
@@ -146,7 +150,7 @@ const PaymentSummary = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </Container>
   );
 };
 export default PaymentSummary;
