@@ -88,7 +88,7 @@ const Login = (props) => {
 
   return (
     <>
-      {window.dataLayer?.push({ event: "login" })}
+      {/* {window.dataLayer?.push({ event: "login" })} */}
       <LoginContainer>
         <div className="dark h1">
           ACCOUNT
