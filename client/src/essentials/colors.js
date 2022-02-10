@@ -12,6 +12,14 @@ const colors = {
   blue: "#D4FEFF",
   green: "#AAFFD3",
   peach: "#FFD9AA",
+  lightgreen: "#95D554",
+  orange: "#FF6D41",
+  purple: "#B658FF",
+  lightblue: "#37979D",
+  dayblack: "#484545",
+  neutral: "#C5A388",
+  tealgreen: "#00EE5F",
+  primary: "#95D554",
 };
 
 export default colors;
