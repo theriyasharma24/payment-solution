@@ -16,6 +16,9 @@ import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 //importing image
 import agent from "../../assets/agents.jpeg";
+import DescriptionIcon from "@mui/icons-material/Description";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import SnoozeIcon from "@mui/icons-material/Snooze";
 
 const LabelButton = styled(Button)`
   && {
@@ -34,8 +37,8 @@ const AgentDescription = () => {
         </Grid>
       </Grid>
 
-      <Grid container pl={5} pr={5}>
-        <Grid item md={5}>
+      <Grid container pl={5} pr={5} col={12} justifyContent="space-around">
+        <Grid item xs={12} md={3} mb={2}>
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               component="img"
@@ -58,35 +61,35 @@ const AgentDescription = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={8} md={7}>
+        <Grid item xs={12} md={8}>
           <Grid
             container
             justifyContent="space-aroud"
             alignItems="center"
             spacing={1}
           >
-            <Grid item xs={8} md={3}>
+            <Grid item xs={6} md={3}>
               <h3>Name: </h3>
             </Grid>
-            <Grid item xs={8} md={9}>
+            <Grid item xs={6} md={9}>
               Akshta
             </Grid>
-            <Grid item xs={8} md={3}>
+            <Grid item xs={6} md={3}>
               <h3>Address: </h3>
             </Grid>
-            <Grid item xs={8} md={9}>
-              R-456 A, Gaziabad, Uttar Pradesh
+            <Grid item xs={6} md={9}>
+              R-456 A, Ghaziabad, Uttar Pradesh
             </Grid>
-            <Grid item xs={8} md={3}>
+            <Grid item xs={6} md={3}>
               <h3>Pan No. : </h3>
             </Grid>
-            <Grid item xs={8} md={9}>
+            <Grid item xs={6} md={9}>
               AFJYT1354
             </Grid>
-            <Grid item xs={8} md={3}>
+            <Grid item xs={6} md={3}>
               <h3>Contact No. : </h3>
             </Grid>
-            <Grid item xs={8} md={9}>
+            <Grid item xs={6} md={9}>
               +91 4566856231
             </Grid>
           </Grid>
@@ -96,20 +99,21 @@ const AgentDescription = () => {
       <Grid
         container
         spacing={1}
-        mt={6}
+        mt={2}
         alignItems="center"
         justifyContent="space-around"
       >
         <Grid item xs={12} md={3}>
-          <LabelButton fullWidth="true" variant="text">
+          <LabelButton fullWidth="true">
             <Typography color="white" p={4}>
-              Client's List
+              <DescriptionIcon /> Client's List
             </Typography>
           </LabelButton>
         </Grid>
         <Grid item xs={12} md={3}>
           <LabelButton fullWidth="true">
-            <Typography color="white" p={4}>
+            <Typography color="white" p={3}>
+              <ReceiptIcon />
               Payment Transactions
             </Typography>
           </LabelButton>
@@ -117,7 +121,7 @@ const AgentDescription = () => {
         <Grid item xs={12} md={3}>
           <LabelButton fullWidth="true">
             <Typography color="white" p={4}>
-              Reminders
+              <SnoozeIcon /> Reminders
             </Typography>
           </LabelButton>
         </Grid>
