@@ -10,6 +10,7 @@ import AlertState from "./context/alert/AlertState";
 // import PrivateRoute from "./components/routing/PrivateRoute";
 import Home from "./components/pages/Home";
 import PaymentSummary from "./components/pages/PaymentSummary";
+import Notification from "./components/pages/Notification";
 import AgentDescription from "./components/pages/AgentDescription";
 
 import "./App.css";
@@ -18,7 +19,7 @@ import styled from "styled-components";
 import breakpoints from "./essentials/screensize";
 
 const Container = styled.div`
-  padding: 8vw 52px 18px 52px;
+  padding: 8vw 52px 18px 0px;
   justify-content: center;
   @media (max-width: ${breakpoints.sm}px) {
     padding: 24vw 52px 18px 52px;
@@ -38,11 +39,15 @@ const App = () => {
                 <Route exact path="/" element={<Home />} />{" "}
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/login" element={<Login />} />
+<<<<<<< HEAD
                 <Route
                   exact
                   path="/paymentsummary"
                   element={<PaymentSummary />}
                 />
+=======
+                <Route exact path="/notification" element={<Notification />} />
+>>>>>>> master
                 <Route
                   exact
                   path="/agentdescription"
