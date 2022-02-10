@@ -39,15 +39,12 @@ const App = () => {
                 <Route exact path="/" element={<Home />} />{" "}
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/login" element={<Login />} />
-<<<<<<< HEAD
                 <Route
                   exact
                   path="/paymentsummary"
                   element={<PaymentSummary />}
                 />
-=======
                 <Route exact path="/notification" element={<Notification />} />
->>>>>>> master
                 <Route
                   exact
                   path="/agentdescription"
