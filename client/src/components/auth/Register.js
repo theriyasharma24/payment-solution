@@ -11,6 +11,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 //importing image
 import Logo from "../../assets/theperception_whitelogo.svg";
 import { LOGOUT } from '../../context/types';
@@ -105,7 +107,7 @@ const Register = (props) => {
         <Grid item xs={12} style={{backgroundColor:"yellow"}}>
         <Grid container spacing={2}>
           
-          <Grid item xs={6} style={{backgroundColor:"red"}}>
+          <Grid item xs={6} style={{backgroundColor:"white"}}>
           <img
                           src={Logo}
                           alt="The Perception Shop"
@@ -129,7 +131,16 @@ const Register = (props) => {
       <TextField id="outlined" label="Email-id" variant="outlined" />
       <TextField id="outlined" label="Password" variant="outlined" />
       <TextField id="outlined" label="Confirm Password" variant="outlined" />
+        
+    
+
     </Box>
+    <Stack spacing={6} direction="row">
+      
+      <Button variant="contained">REGISTER</Button>
+      
+    </Stack>
+  
         </Grid>
         </Grid>
         </Grid>
