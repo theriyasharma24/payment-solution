@@ -6,16 +6,25 @@
 // import styled from "styled-components";
 // import breakpoints from "../../essentials/screensize";
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 //importing image
-import Logo from "../../assets/theperception_whitelogo.svg";
-import { LOGOUT } from '../../context/types';
+import Agent from "../../assets/agents.jpeg";
+import { LOGOUT } from "../../context/types";
+import styled from "styled-components";
+import breakpoints from "../../essentials/screensize";
+const Container = styled.div`
+  padding-left: 4rem;
+  @media (max-width: ${breakpoints.sm}px) {
+    padding-left: 1.5rem;
+  }
+`;
+
 // const ActionButton = styled(SubmitButton)`
 //   && {
 //     background: #0ec0e2;
@@ -97,122 +106,140 @@ const Register = (props) => {
   // };
 
   return (
-    
-     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} style={{backgroundColor:"orange"}}>
-          <h1>Register</h1>
-        </Grid>
-        
-        <Grid item xs={12} style={{backgroundColor:"yellow"}}>
+    <Container>
+      <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          
-          <Grid item xs={6} style={{backgroundColor:"white"}}>
-          <img
-                          src={Logo}
-                          alt="The Perception Shop"
-                          className="logo"
-                        ></img>{" "}
-        </Grid>
-        <Grid item xs={6} style={{backgroundColor:"white"}}>
-        <Grid container spacing={2}>
-        <Grid item xs={6} style={{backgroundColor:"white"}}>
-        <Grid item xs={6} style={{backgroundColor:"white"}}>
-        </Grid>
-        <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      // autoComplete="off"
-    >
-      <TextField id="outlined" label="Name" variant="outlined" />
-      <TextField id="outlined" label="Email-id" variant="outlined" />
-      <TextField id="outlined" label="Password" variant="outlined" />
-      <TextField id="outlined" label="Confirm Password" variant="outlined" />
-        
-    
+          <Grid item xs={12} md={12}>
+            <h1>Register</h1>
+          </Grid>
 
-    </Box>
-    <Stack spacing={6} direction="row">
+          <Grid item xs={12} md={12}>
+            <Grid container>
+              <Grid item xs={12} md={6}>
+                <img
+                  src={Agent}
+                  alt="The Perception Shop"
+                  className="logo"
+                  height="440"
+                  width="100%"
+                ></img>{" "}
+              </Grid>
+              <Grid item xs={12} md={6}>
+                {/* <Grid container > */}
+                <Grid item xs={12} md={12}>
+                  <Box
+                    component="form"
+                    sx={{
+                      "& > :not(style)": { m: 1 },
+                    }}
+                    noValidate
+                    // autoComplete="off"
+                  >
+                    <TextField
+                      id="outlined"
+                      label="Name"
+                      variant="outlined"
+                      fullWidth="true"
+                    />
+                    <TextField
+                      id="outlined"
+                      label="Email-id"
+                      variant="outlined"
+                      fullWidth="true"
+                    />
+                    <TextField
+                      id="outlined"
+                      label="Password"
+                      variant="outlined"
+                      fullWidth="true"
+                    />
+                    <TextField
+                      id="outlined"
+                      label="Confirm Password"
+                      variant="outlined"
+                      fullWidth="true"
+                    />
+                    <Stack spacing={6} direction="row">
       
       <Button variant="contained">REGISTER</Button>
       
     </Stack>
-  
+                  </Box>
+                </Grid>
+                {/* </Grid> */}
+              </Grid>
+              
+            </Grid>
+          </Grid>
+          
         </Grid>
-        </Grid>
-        </Grid>
-       </Grid>
-       </Grid>
-       </Grid>
       </Box>
-      // {window.dataLayer?.push({ event: "register" })}
-      // <LoginContainer>
-      //   <div className="text-primary h1">
-      //     REGISTER
-      //     <span className="dark h1"> ACCOUNT</span>{" "}
-      //   </div>
-      //   <form onSubmit={onSubmit}>
-      //     <div className="form-group">
-      //       <label htmlFor="name">Name</label>
-      //       <input
-      //         id="name"
-      //         type="textarea"
-      //         name="name"
-      //         value={name}
-      //         onChange={onChange}
-      //         required
-      //       />
-      //     </div>
-      //     <div className="form-group">
-      //       <label htmlFor="email">Email Address</label>
-      //       <input
-      //         id="email"
-      //         type="email"
-      //         name="email"
-      //         value={email}
-      //         onChange={onChange}
-      //         required
-      //       />
-      //     </div>
-      //     <div className="form-group">
-      //       <label htmlFor="password">Password</label>
-      //       <input
-      //         id="password"
-      //         type="password"
-      //         name="password"
-      //         value={password}
-      //         onChange={onChange}
-      //         required
-      //         minLength="6"
-      //       />
-      //     </div>
-      //     <div className="form-group">
-      //       <label htmlFor="password2">Confirm Password</label>
-      //       <input
-      //         id="password2"
-      //         type="password"
-      //         name="password2"
-      //         value={password2}
-      //         onChange={onChange}
-      //         required
-      //         minLength="6"
-      //       />
-      //     </div>
-      //     <div style={{ textAlign: "center" }}>
-      //       <ActionButton type="submit">Register</ActionButton>
-      //     </div>
-      //   </form>
-      //   <div className="dark h2 " style={{ textAlign: "center" }}>
-      //     Already have an account?
-      //     <Link to="/login">
-      //       <span className="text-primary "> LOGIN</span>
-      //     </Link>
-      //   </div>
-      // </LoginContainer>
-    
+    </Container>
+
+    // {window.dataLayer?.push({ event: "register" })}
+    // <LoginContainer>
+    //   <div className="text-primary h1">
+    //     REGISTER
+    //     <span className="dark h1"> ACCOUNT</span>{" "}
+    //   </div>
+    //   <form onSubmit={onSubmit}>
+    //     <div className="form-group">
+    //       <label htmlFor="name">Name</label>
+    //       <input
+    //         id="name"
+    //         type="textarea"
+    //         name="name"
+    //         value={name}
+    //         onChange={onChange}
+    //         required
+    //       />
+    //     </div>
+    //     <div className="form-group">
+    //       <label htmlFor="email">Email Address</label>
+    //       <input
+    //         id="email"
+    //         type="email"
+    //         name="email"
+    //         value={email}
+    //         onChange={onChange}
+    //         required
+    //       />
+    //     </div>
+    //     <div className="form-group">
+    //       <label htmlFor="password">Password</label>
+    //       <input
+    //         id="password"
+    //         type="password"
+    //         name="password"
+    //         value={password}
+    //         onChange={onChange}
+    //         required
+    //         minLength="6"
+    //       />
+    //     </div>
+    //     <div className="form-group">
+    //       <label htmlFor="password2">Confirm Password</label>
+    //       <input
+    //         id="password2"
+    //         type="password"
+    //         name="password2"
+    //         value={password2}
+    //         onChange={onChange}
+    //         required
+    //         minLength="6"
+    //       />
+    //     </div>
+    //     <div style={{ textAlign: "center" }}>
+    //       <ActionButton type="submit">Register</ActionButton>
+    //     </div>
+    //   </form>
+    //   <div className="dark h2 " style={{ textAlign: "center" }}>
+    //     Already have an account?
+    //     <Link to="/login">
+    //       <span className="text-primary "> LOGIN</span>
+    //     </Link>
+    //   </div>
+    // </LoginContainer>
   );
 };
 

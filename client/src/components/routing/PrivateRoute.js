@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { Route, Navigate } from 'react-router-dom';
-import AuthContext from '../../context/auth/authContext';
+import React, { useContext } from "react";
+import { Route, Navigate } from "react-router-dom";
+import AuthContext from "../../context/auth/authContext";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const authContext = useContext(AuthContext);
@@ -8,9 +8,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         !isAuthenticated && !loading ? (
-          <Navigate to='/login' />
+          <Navigate to="/login" />
         ) : (
           <Component {...props} />
         )
