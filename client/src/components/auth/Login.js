@@ -213,6 +213,7 @@ const Login = (props) => {
 //       </LoginContainer>
 //     </>
 //   );
-// };
+  )
+};
 
 export default Login;
