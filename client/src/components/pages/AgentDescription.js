@@ -114,7 +114,7 @@ const AgentDescription = () => {
           </LabelButton>
         </Grid>
         <Grid item xs={12} md={3}>
-          <LabelButton fullWidth="true">
+          <LabelButton fullWidth="true"
           onClick={paymentsummary}>
             <Typography color="white" p={3}>
               <ReceiptIcon />
