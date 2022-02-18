@@ -27,6 +27,9 @@ const LabelButton = styled(Button)`
 `;
 
 const AgentDescription = () => {
+  const navigate = useNavigate();
+  const paymentsummary = () =>
+  navigate("/paymentsummary");
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container>
@@ -112,6 +115,7 @@ const AgentDescription = () => {
         </Grid>
         <Grid item xs={12} md={3}>
           <LabelButton fullWidth="true">
+          onClick={paymentsummary}>
             <Typography color="white" p={3}>
               <ReceiptIcon />
               Payment Transactions
