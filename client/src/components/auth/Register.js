@@ -1,15 +1,18 @@
-// import React, { useState, useContext, useEffect } from "react";
-// import AlertContext from "../../context/alert/alertContext";
-// import AuthContext from "../../context/auth/authContext";
+import React, { useState, useContext, useEffect } from "react";
+import AlertContext from "../../context/alert/alertContext";
+import AuthContext from "../../context/auth/authContext";
 // import { Link } from "react-router-dom";
-// import SubmitButton from "../containers/SubmitButton";
+import SubmitButton from "../containers/SubmitButton";
 // import styled from "styled-components";
-// import breakpoints from "../../essentials/screensize";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
+// import breakpoints from "../../essentials/screensize
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 //importing image
 import Agent from "../../assets/agents.jpeg";
 import { LOGOUT } from "../../context/types";
@@ -58,49 +61,54 @@ const Container = styled.div`
 //   }
 // `;
 const Register = (props) => {
-  // const alertContext = useContext(AlertContext);
-  // const authContext = useContext(AuthContext);
+  const [checked, setChecked] = useState(false);
 
-  // const { setAlert } = alertContext;
-  // const { register, error, clearErrors, isAuthenticated } = authContext;
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     props.history.push("/");
-  //   }
+  const { setAlert } = alertContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
 
-  //   if (error === "User already exists") {
-  //     setAlert(error, "danger");
-  //     clearErrors();
-  //   }
-  //   // eslint-disable-next-line
-  // }, [error, isAuthenticated, props.history]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push("/");
+    }
 
-  // const [user, setUser] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   password2: "",
-  // });
+    if (error === "User already exists") {
+      setAlert(error, "danger");
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
 
-  // const { name, email, password, password2 } = user;
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
 
-  // const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+  const { name, email, password, password2 } = user;
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (name === "" || email === "" || password === "") {
-  //     setAlert("Please enter all fields", "danger");
-  //   } else if (password !== password2) {
-  //     setAlert("Passwords do not match", "danger");
-  //   } else {
-  //     register({
-  //       name,
-  //       email,
-  //       password,
-  //     });
-  //   }
-  // };
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (name === "" || email === "" || password === "") {
+      setAlert("Please enter all fields", "danger");
+    } else if (password !== password2) {
+      setAlert("Passwords do not match", "danger");
+    } else {
+      register({
+        name,
+        email,
+        password,
+      });
+    }
+  };
 
   return (
     <Container>
@@ -135,6 +143,10 @@ const Register = (props) => {
                     <TextField
                       id="outlined"
                       label="Name"
+                      name="name"
+              value={name}
+              onChange={onChange}
+              required
                       variant="outlined"
                       fullWidth="true"
                     />
@@ -144,24 +156,53 @@ const Register = (props) => {
                       variant="outlined"
                       fullWidth="true"
                     />
-                    <TextField
+                     {/* <Checkbox
+      checked={checked}
+      onChange={handleChange}
+      inputProps={{ 'aria-label': 'controlled' }}
+    /> */}
+     <FormControlLabel
+        label="Check if sign up using OTP"
+        control={<Checkbox checked={checked} onChange={handleChange}  />}
+      />
+      {/* Using tertiary operator */}
+      {checked?<><TextField
                       id="outlined"
-                      label="Password"
+                      label="Mobile No."
                       variant="outlined"
                       fullWidth="true"
                     />
                     <TextField
                       id="outlined"
-                      label="Confirm Password"
+                      label="OTP"
                       variant="outlined"
                       fullWidth="true"
-                    />
+                    /></>:<><TextField
+                    id="outlined"
+                    label="Password"
+                    variant="outlined"
+                    fullWidth="true"
+                  />
+                  <TextField
+                    id="outlined"
+                    label="Confirm Password"
+                    variant="outlined"
+                    fullWidth="true"
+                  /></>}
+                    
+                    <Stack spacing={6} direction="row">
+      
+      <Button variant="contained">REGISTER</Button>
+      
+    </Stack>
                   </Box>
                 </Grid>
                 {/* </Grid> */}
               </Grid>
+              
             </Grid>
           </Grid>
+          
         </Grid>
       </Box>
     </Container>
