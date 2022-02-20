@@ -25,7 +25,7 @@ const Container = styled.div`
   }
 `;
 
-// const ActionButton = styled(SubmitButton)`
+const ActionButton = styled(SubmitButton)`
 //   && {
 //     background: #0ec0e2;
 //     color: white;
@@ -153,6 +153,10 @@ const Register = (props) => {
                     <TextField
                       id="outlined"
                       label="Email-id"
+                      name="email"
+              value={email}
+              onChange={onChange}
+              required
                       variant="outlined"
                       fullWidth="true"
                     />
@@ -169,30 +173,50 @@ const Register = (props) => {
       {checked?<><TextField
                       id="outlined"
                       label="Mobile No."
+                      name="name"
+              value={name}
+              onChange={onChange}
+              required
                       variant="outlined"
                       fullWidth="true"
                     />
                     <TextField
                       id="outlined"
                       label="OTP"
+                      name="OTP"
+              value={OTP}
+              onChange={onChange}
+              required
                       variant="outlined"
                       fullWidth="true"
                     /></>:<><TextField
                     id="outlined"
                     label="Password"
+                    name="password"
+              value={password}
+              onChange={onChange}
+              required
+              minLength="6"
                     variant="outlined"
                     fullWidth="true"
                   />
                   <TextField
                     id="outlined"
                     label="Confirm Password"
+                    name="password2"
+              value={password2}
+              minLength="6"
+              onChange={onChange}
+              required
                     variant="outlined"
                     fullWidth="true"
                   /></>}
                     
                     <Stack spacing={6} direction="row">
       
-      <Button variant="contained">REGISTER</Button>
+      <div style={{ textAlign: "center" }}>
+          <ActionButton type="submit">Register</ActionButton>
+       </div>
       
     </Stack>
                   </Box>
