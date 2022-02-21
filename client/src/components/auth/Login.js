@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import AuthContext from "../../context/auth/authContext";
 import { useLocation } from "react-router-dom";
 import AlertContext from "../../context/alert/alertContext";
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 //importing image
 import Agent from "../../assets/agents.jpeg";
 import { LOGOUT } from "../../context/types";
@@ -23,7 +25,7 @@ const Container = styled.div`
   }
 `;
 
-// const ActionButton = styled(SubmitButton)`
+const ActionButton = styled(SubmitButton)`
 //   && {
 //     background: #0ec0e2;
 //     color: white;
@@ -59,53 +61,56 @@ const Container = styled.div`
 //   }
 // `;
 const Login = (props) => {
-//   let navigate = useNavigate();
-//   const alertContext = useContext(AlertContext);
-//   const authContext = useContext(AuthContext);
-//   const { setAlert } = alertContext;
-//   const { login, error, clearErrors, isAuthenticated } = authContext;
-//   // const location = useLocation();
+  let navigate = useNavigate();
+const handleChange = (event) => {
+  setChecked(event.target.checked);
+};
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+  const { setAlert } = alertContext;
+  const { login, error, clearErrors, isAuthenticated } = authContext;
+  const location = useLocation();
 
-//   useEffect(() => {
-//     if (isAuthenticated) {
-//       navigate("/");
-//     } else {
-//       navigate("/login");
-//     }
-//     if (error === "Invalid Credentials") {
-//       setAlert(error, "danger");
-//       clearErrors();
-//     }
-//     // eslint-disable-next-line
-//   }, [error, isAuthenticated, props.history]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+    if (error === "Invalid Credentials") {
+      setAlert(error, "danger");
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
 
-//   const [user, setUser] = useState({
-//     email: "",
-//     password: "",
-//   });
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
 
-//   const { email, password } = user;
+  const { email, password } = user;
 
-//   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
-//   const onSubmit = (e) => {
-//     e.preventDefault();
-//     if (email === "" || password === "") {
-//       setAlert("Please fill in all fields", "danger");
-//     } else {
-//       login({
-//         email,
-//         password,
-//       });
-//     }
-//   };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (email === "" || password === "") {
+      setAlert("Please fill in all fields", "danger");
+    } else {
+      login({
+        email,
+        password,
+      });
+    }
+  };
 
   return (
     <Container>
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
-          <h1>Register</h1>
+          <h1>Login</h1>
         </Grid>
 
         <Grid item xs={12} md={12}>
@@ -132,31 +137,64 @@ const Login = (props) => {
                 >
                   <TextField
                     id="outlined"
-                    label="Name"
-                    variant="outlined"
-                    fullWidth="true"
-                  />
-                  <TextField
-                    id="outlined"
                     label="Email-id"
+                    value={email}
+              onChange={onChange}
+              required
                     variant="outlined"
                     fullWidth="true"
                   />
-                  <TextField
+                 <FormControlLabel
+        label="Check if sign up using OTP"
+        control={<Checkbox checked={checked} onChange={handleChange}  />}
+      />
+      {/* Using tertiary operator */}
+      {checked?<><TextField
+                      id="outlined"
+                      label="Mobile No."
+                      name="name"
+              value={name}
+              onChange={onChange}
+              required
+                      variant="outlined"
+                      fullWidth="true"
+                    />
+                    <TextField
+                      id="outlined"
+                      label="OTP"
+                      name="OTP"
+              value={OTP}
+              onChange={onChange}
+              required
+                      variant="outlined"
+                      fullWidth="true"
+                    /></>:<><TextField
                     id="outlined"
                     label="Password"
+                    name="password"
+              value={password}
+              onChange={onChange}
+              required
                     variant="outlined"
                     fullWidth="true"
                   />
                   <TextField
                     id="outlined"
                     label="Confirm Password"
+                    name="password2"
+              value={password2}
+              onChange={onChange}
+              required
                     variant="outlined"
                     fullWidth="true"
-                  />
+                  /></>}
+                 
                   <Stack spacing={6} direction="row">
     
-    <Button variant="contained">Login</Button>
+   
+    <div style={{ textAlign: "center" }}>
+          <ActionButton type="submit">Login</ActionButton>
+       </div>
     
   </Stack>
                 </Box>
