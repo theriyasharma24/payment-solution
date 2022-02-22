@@ -26,13 +26,13 @@ const Container = styled.div`
 `;
 
 const ActionButton = styled(SubmitButton)`
-//   && {
-//     background: #0ec0e2;
-//     color: white;
-//     margin-top: 2em;
-//     width: 50%;
-//   }
-// `;
+  && {
+    background: #0ec0e2;
+    color: white;
+    margin-top: 2em;
+    width: 50%;
+  }
+`;
 // const LoginContainer = styled.div`
 //   font-weight: 400;
 //   justify-content: center;
@@ -62,6 +62,7 @@ const ActionButton = styled(SubmitButton)`
 // `;
 const Login = (props) => {
   let navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
 const handleChange = (event) => {
   setChecked(event.target.checked);
 };
@@ -82,7 +83,7 @@ const handleChange = (event) => {
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  },[error, isAuthenticated]);
 
   const [user, setUser] = useState({
     email: "",
@@ -112,7 +113,7 @@ const handleChange = (event) => {
         <Grid item xs={12} md={12}>
           <h1>Login</h1>
         </Grid>
-
+        <form onSubmit={onSubmit}>
         <Grid item xs={12} md={12}>
           <Grid container>
             <Grid item xs={12} md={6}>
@@ -128,7 +129,6 @@ const handleChange = (event) => {
               {/* <Grid container > */}
               <Grid item xs={12} md={12}>
                 <Box
-                  component="form"
                   sx={{
                     "& > :not(style)": { m: 1 },
                   }}
@@ -138,6 +138,8 @@ const handleChange = (event) => {
                   <TextField
                     id="outlined"
                     label="Email-id"
+                    name="email"
+                    type="email"
                     value={email}
               onChange={onChange}
               required
@@ -145,15 +147,15 @@ const handleChange = (event) => {
                     fullWidth="true"
                   />
                  <FormControlLabel
-        label="Check if sign up using OTP"
+        label="Check to login using OTP insted of password"
         control={<Checkbox checked={checked} onChange={handleChange}  />}
       />
       {/* Using tertiary operator */}
       {checked?<><TextField
                       id="outlined"
                       label="Mobile No."
-                      name="name"
-              value={name}
+                      name="number"
+              value={number}
               onChange={onChange}
               required
                       variant="outlined"
@@ -172,22 +174,14 @@ const handleChange = (event) => {
                     id="outlined"
                     label="Password"
                     name="password"
+                    type="password"
               value={password}
               onChange={onChange}
               required
                     variant="outlined"
                     fullWidth="true"
                   />
-                  <TextField
-                    id="outlined"
-                    label="Confirm Password"
-                    name="password2"
-              value={password2}
-              onChange={onChange}
-              required
-                    variant="outlined"
-                    fullWidth="true"
-                  /></>}
+                  </>}
                  
                   <Stack spacing={6} direction="row">
     
@@ -197,16 +191,19 @@ const handleChange = (event) => {
        </div>
     
   </Stack>
+  
                 </Box>
+                
               </Grid>
               {/* </Grid> */}
             </Grid>
             
           </Grid>
         </Grid>
-        
+        </form>
       </Grid>
     </Box>
+    
   </Container>
 //     <>
 //       {/* {window.dataLayer?.push({ event: "login" })} */}
