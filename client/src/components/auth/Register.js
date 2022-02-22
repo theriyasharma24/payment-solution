@@ -13,6 +13,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { useNavigate } from "react-router-dom";
 //importing image
 import Agent from "../../assets/agents.jpeg";
 import { LOGOUT } from "../../context/types";
@@ -26,13 +27,13 @@ const Container = styled.div`
 `;
 
 const ActionButton = styled(SubmitButton)`
-//   && {
-//     background: #0ec0e2;
-//     color: white;
-//     margin-top: 2em;
-//     width: 50%;
-//   }
-// `;
+  && {
+    background: #B658FF;
+    color: black;
+    margin-top: 2em;
+    // width: 60%;
+  }
+`;
 // const LoginContainer = styled.div`
 //   font-weight: 400;
 //   justify-content: center;
@@ -60,8 +61,10 @@ const ActionButton = styled(SubmitButton)`
 //     width: 60vw;
 //   }
 // `;
-const Register = (props) => {
+const Register = () => {
+  let navigate = useNavigate();
   const [checked, setChecked] = useState(false);
+  const [otp, setOtp] = useState();
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -74,7 +77,7 @@ const Register = (props) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/");
+      navigate("/");
     }
 
     if (error === "User already exists") {
@@ -82,7 +85,7 @@ const Register = (props) => {
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  },[error, isAuthenticated]);
 
   const [user, setUser] = useState({
     name: "",
@@ -117,7 +120,7 @@ const Register = (props) => {
           <Grid item xs={12} md={12}>
             <h1>Register</h1>
           </Grid>
-
+          <form onSubmit={onSubmit}>
           <Grid item xs={12} md={12}>
             <Grid container>
               <Grid item xs={12} md={6}>
@@ -133,7 +136,6 @@ const Register = (props) => {
                 {/* <Grid container > */}
                 <Grid item xs={12} md={12}>
                   <Box
-                    component="form"
                     sx={{
                       "& > :not(style)": { m: 1 },
                     }}
@@ -160,13 +162,8 @@ const Register = (props) => {
                       variant="outlined"
                       fullWidth="true"
                     />
-                     {/* <Checkbox
-      checked={checked}
-      onChange={handleChange}
-      inputProps={{ 'aria-label': 'controlled' }}
-    /> */}
      <FormControlLabel
-        label="Check if sign up using OTP"
+        label="Check to login using OTP insted of password"
         control={<Checkbox checked={checked} onChange={handleChange}  />}
       />
       {/* Using tertiary operator */}
@@ -183,8 +180,8 @@ const Register = (props) => {
                     <TextField
                       id="outlined"
                       label="OTP"
-                      name="OTP"
-              value={OTP}
+                      name="otp"
+              value={otp}
               onChange={onChange}
               required
                       variant="outlined"
@@ -193,6 +190,7 @@ const Register = (props) => {
                     id="outlined"
                     label="Password"
                     name="password"
+                    type="password"
               value={password}
               onChange={onChange}
               required
@@ -204,6 +202,7 @@ const Register = (props) => {
                     id="outlined"
                     label="Confirm Password"
                     name="password2"
+                    type="password"
               value={password2}
               minLength="6"
               onChange={onChange}
@@ -219,14 +218,16 @@ const Register = (props) => {
        </div>
       
     </Stack>
+    
                   </Box>
+                  
                 </Grid>
                 {/* </Grid> */}
               </Grid>
               
             </Grid>
           </Grid>
-          
+          </form>
         </Grid>
       </Box>
     </Container>
