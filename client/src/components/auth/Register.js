@@ -8,13 +8,18 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Paper from "@mui/material/Paper";
+//import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+//import Button from "@mui/material/Button";
 //importing image
 import Agent from "../../assets/agents.jpeg";
-import { LOGOUT } from "../../context/types";
+//import { LOGOUT } from "../../context/types";
 import styled from "styled-components";
 import breakpoints from "../../essentials/screensize";
+import Switch from "@material-ui/core/Switch";
+import Checkbox from "@material-ui/core/Checkbox";
+//import FormControlLabel from "@material-ui/core/FormControlLabel";
+
 const Container = styled.div`
   padding-left: 4rem;
   @media (max-width: ${breakpoints.sm}px) {
@@ -102,12 +107,19 @@ const Register = (props) => {
   //   }
   // };
 
+  const otp = () => {
+    <div className="nototp" style={{ display: "none" }}></div>;
+  };
+  const [checked, setChecked] = React.useState(false);
   return (
     <Container>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={12}>
+          <Grid item xs={12} md={6}>
             <h1>Register</h1>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Switch name="toggleDark" color="default" />
           </Grid>
 
           <Grid item xs={12} md={12}>
@@ -144,18 +156,38 @@ const Register = (props) => {
                       variant="outlined"
                       fullWidth="true"
                     />
-                    <TextField
-                      id="outlined"
-                      label="Password"
-                      variant="outlined"
-                      fullWidth="true"
-                    />
-                    <TextField
-                      id="outlined"
-                      label="Confirm Password"
-                      variant="outlined"
-                      fullWidth="true"
-                    />
+                    <Grid container spacing={1}>
+                      <Grid item xs={12} md={1}>
+                        <Checkbox checked={checked} onChange={otp} />
+                      </Grid>
+                      <Grid item xs={12} md={11}>
+                        <p>Check for sign up using OTP</p>
+                      </Grid>
+                    </Grid>
+                    <div className="nototp">
+                      <TextField
+                        id="outlined"
+                        label="Password"
+                        variant="outlined"
+                        fullWidth="true"
+                      />
+                      <br></br>
+                      <br></br>
+                      <TextField
+                        id="outlined"
+                        label="Confirm Password"
+                        variant="outlined"
+                        fullWidth="true"
+                      />
+                    </div>
+                    <div className="otpfield" style={{ display: "none" }}>
+                      <TextField
+                        id="outlined"
+                        label="Enter OTP"
+                        variant="outlined"
+                        fullWidth="true"
+                      />
+                    </div>
                   </Box>
                 </Grid>
                 {/* </Grid> */}

@@ -19,6 +19,7 @@ import agent from "../../assets/agents.jpeg";
 import DescriptionIcon from "@mui/icons-material/Description";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import SnoozeIcon from "@mui/icons-material/Snooze";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const LabelButton = styled(Button)`
   && {
@@ -27,6 +28,8 @@ const LabelButton = styled(Button)`
 `;
 
 const AgentDescription = () => {
+  const navigate = useNavigate();
+  const paymentsummary = () => navigate("/paymentsummary");
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container>
@@ -111,7 +114,7 @@ const AgentDescription = () => {
           </LabelButton>
         </Grid>
         <Grid item xs={12} md={3}>
-          <LabelButton fullWidth="true">
+          <LabelButton fullWidth="true" onClick={paymentsummary}>
             <Typography color="white" p={3}>
               <ReceiptIcon />
               Payment Transactions
