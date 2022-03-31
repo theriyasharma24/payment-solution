@@ -1,40 +1,43 @@
-// import React, { useState, useContext, useEffect } from "react";
-// import AlertContext from "../../context/alert/alertContext";
-// import AuthContext from "../../context/auth/authContext";
+import React, { useState, useContext, useEffect } from 'react';
+import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
 // import { Link } from "react-router-dom";
-// import SubmitButton from "../containers/SubmitButton";
+import SubmitButton from '../containers/SubmitButton';
 // import styled from "styled-components";
-// import breakpoints from "../../essentials/screensize";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-//import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-//import Button from "@mui/material/Button";
+// import breakpoints from "../../essentials/screensize
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { useNavigate } from 'react-router-dom';
 //importing image
-import Agent from "../../assets/agents.jpeg";
+import Agent from '../../assets/agents.jpeg';
 //import { LOGOUT } from "../../context/types";
-import styled from "styled-components";
-import breakpoints from "../../essentials/screensize";
-import Switch from "@material-ui/core/Switch";
-import Checkbox from "@material-ui/core/Checkbox";
+import styled from 'styled-components';
+import breakpoints from '../../essentials/screensize';
+import Switch from '@material-ui/core/Switch';
+import Checkbox from '@material-ui/core/Checkbox';
 //import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const Container = styled.div`
-  padding-left: 4rem;
-  @media (max-width: ${breakpoints.sm}px) {
-    padding-left: 1.5rem;
-  }
+    padding-left: 4rem;
+    @media (max-width: ${breakpoints.sm}px) {
+        padding-left: 1.5rem;
+    }
 `;
 
-// const ActionButton = styled(SubmitButton)`
-//   && {
-//     background: #0ec0e2;
-//     color: white;
-//     margin-top: 2em;
-//     width: 50%;
-//   }
-// `;
+const ActionButton = styled(SubmitButton)`
+    && {
+        background: #b658ff;
+        color: black;
+        margin-top: 2em;
+        // width: 60%;
+    }
+`;
 // const LoginContainer = styled.div`
 //   font-weight: 400;
 //   justify-content: center;
@@ -62,207 +65,261 @@ const Container = styled.div`
 //     width: 60vw;
 //   }
 // `;
-const Register = (props) => {
-  // const alertContext = useContext(AlertContext);
-  // const authContext = useContext(AuthContext);
+const Register = () => {
+    let navigate = useNavigate();
+    const [checked, setChecked] = useState(false);
+    const [otp, setOtp] = useState();
 
-  // const { setAlert } = alertContext;
-  // const { register, error, clearErrors, isAuthenticated } = authContext;
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+    };
+    const alertContext = useContext(AlertContext);
+    const authContext = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     props.history.push("/");
-  //   }
+    const { setAlert } = alertContext;
+    const { register, error, clearErrors, isAuthenticated } = authContext;
 
-  //   if (error === "User already exists") {
-  //     setAlert(error, "danger");
-  //     clearErrors();
-  //   }
-  //   // eslint-disable-next-line
-  // }, [error, isAuthenticated, props.history]);
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
 
-  // const [user, setUser] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   password2: "",
-  // });
+        if (error === 'User already exists') {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+        // eslint-disable-next-line
+    }, [error, isAuthenticated]);
 
-  // const { name, email, password, password2 } = user;
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        password: '',
+        password2: ''
+    });
 
-  // const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+    const { name, email, password, password2 } = user;
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (name === "" || email === "" || password === "") {
-  //     setAlert("Please enter all fields", "danger");
-  //   } else if (password !== password2) {
-  //     setAlert("Passwords do not match", "danger");
-  //   } else {
-  //     register({
-  //       name,
-  //       email,
-  //       password,
-  //     });
-  //   }
-  // };
+    const onChange = (e) =>
+        setUser({ ...user, [e.target.name]: e.target.value });
 
-  const otp = () => {
-    <div className="nototp" style={{ display: "none" }}></div>;
-  };
-  const [checked, setChecked] = React.useState(false);
-  return (
-    <Container>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <h1>Register</h1>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Switch name="toggleDark" color="default" />
-          </Grid>
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (name === '' || email === '' || password === '') {
+            setAlert('Please enter all fields', 'danger');
+        } else if (password !== password2) {
+            setAlert('Passwords do not match', 'danger');
+        } else {
+            register({
+                name,
+                email,
+                password
+            });
+        }
+    };
 
-          <Grid item xs={12} md={12}>
-            <Grid container>
-              <Grid item xs={12} md={6}>
-                <img
-                  src={Agent}
-                  alt="The Perception Shop"
-                  className="logo"
-                  height="440"
-                  width="100%"
-                ></img>{" "}
-              </Grid>
-              <Grid item xs={12} md={6}>
-                {/* <Grid container > */}
-                <Grid item xs={12} md={12}>
-                  <Box
-                    component="form"
-                    sx={{
-                      "& > :not(style)": { m: 1 },
-                    }}
-                    noValidate
-                    // autoComplete="off"
-                  >
-                    <TextField
-                      id="outlined"
-                      label="Name"
-                      variant="outlined"
-                      fullWidth="true"
-                    />
-                    <TextField
-                      id="outlined"
-                      label="Email-id"
-                      variant="outlined"
-                      fullWidth="true"
-                    />
-                    <Grid container spacing={1}>
-                      <Grid item xs={12} md={1}>
-                        <Checkbox checked={checked} onChange={otp} />
-                      </Grid>
-                      <Grid item xs={12} md={11}>
-                        <p>Check for sign up using OTP</p>
-                      </Grid>
+    const otp = () => {
+        <div className="nototp" style={{ display: 'none' }}></div>;
+    };
+    const [checked, setChecked] = React.useState(false);
+    return (
+        <Container>
+            <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                        <h1>Register</h1>
                     </Grid>
-                    <div className="nototp">
-                      <TextField
-                        id="outlined"
-                        label="Password"
-                        variant="outlined"
-                        fullWidth="true"
-                      />
-                      <br></br>
-                      <br></br>
-                      <TextField
-                        id="outlined"
-                        label="Confirm Password"
-                        variant="outlined"
-                        fullWidth="true"
-                      />
-                    </div>
-                    <div className="otpfield" style={{ display: "none" }}>
-                      <TextField
-                        id="outlined"
-                        label="Enter OTP"
-                        variant="outlined"
-                        fullWidth="true"
-                      />
-                    </div>
-                  </Box>
-                </Grid>
-                {/* </Grid> */}
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
+                    <form onSubmit={onSubmit}>
+                        <Grid item xs={12} md={12}>
+                            <Grid container>
+                                <Grid item xs={12} md={6}>
+                                    <img
+                                        src={Agent}
+                                        alt="The Perception Shop"
+                                        className="logo"
+                                        height="440"
+                                        width="100%"
+                                    ></img>{' '}
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    {/* <Grid container > */}
+                                    <Grid item xs={12} md={12}>
+                                        <Box
+                                            sx={{
+                                                '& > :not(style)': { m: 1 }
+                                            }}
+                                            noValidate
+                                            // autoComplete="off"
+                                        >
+                                            <TextField
+                                                id="outlined"
+                                                label="Name"
+                                                name="name"
+                                                value={name}
+                                                onChange={onChange}
+                                                required
+                                                variant="outlined"
+                                                fullWidth="true"
+                                            />
+                                            <TextField
+                                                id="outlined"
+                                                label="Email-id"
+                                                name="email"
+                                                value={email}
+                                                onChange={onChange}
+                                                required
+                                                variant="outlined"
+                                                fullWidth="true"
+                                            />
+                                            <FormControlLabel
+                                                label="Check to login using OTP insted of password"
+                                                control={
+                                                    <Checkbox
+                                                        checked={checked}
+                                                        onChange={handleChange}
+                                                    />
+                                                }
+                                            />
+                                            {/* Using tertiary operator */}
+                                            {checked ? (
+                                                <>
+                                                    <TextField
+                                                        id="outlined"
+                                                        label="Mobile No."
+                                                        name="name"
+                                                        value={name}
+                                                        onChange={onChange}
+                                                        required
+                                                        variant="outlined"
+                                                        fullWidth="true"
+                                                    />
+                                                    <TextField
+                                                        id="outlined"
+                                                        label="OTP"
+                                                        name="otp"
+                                                        value={otp}
+                                                        onChange={onChange}
+                                                        required
+                                                        variant="outlined"
+                                                        fullWidth="true"
+                                                    />
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <TextField
+                                                        id="outlined"
+                                                        label="Password"
+                                                        name="password"
+                                                        type="password"
+                                                        value={password}
+                                                        onChange={onChange}
+                                                        required
+                                                        minLength="6"
+                                                        variant="outlined"
+                                                        fullWidth="true"
+                                                    />
+                                                    <TextField
+                                                        id="outlined"
+                                                        label="Confirm Password"
+                                                        name="password2"
+                                                        type="password"
+                                                        value={password2}
+                                                        minLength="6"
+                                                        onChange={onChange}
+                                                        required
+                                                        variant="outlined"
+                                                        fullWidth="true"
+                                                    />
+                                                </>
+                                            )}
 
-    // {window.dataLayer?.push({ event: "register" })}
-    // <LoginContainer>
-    //   <div className="text-primary h1">
-    //     REGISTER
-    //     <span className="dark h1"> ACCOUNT</span>{" "}
-    //   </div>
-    //   <form onSubmit={onSubmit}>
-    //     <div className="form-group">
-    //       <label htmlFor="name">Name</label>
-    //       <input
-    //         id="name"
-    //         type="textarea"
-    //         name="name"
-    //         value={name}
-    //         onChange={onChange}
-    //         required
-    //       />
-    //     </div>
-    //     <div className="form-group">
-    //       <label htmlFor="email">Email Address</label>
-    //       <input
-    //         id="email"
-    //         type="email"
-    //         name="email"
-    //         value={email}
-    //         onChange={onChange}
-    //         required
-    //       />
-    //     </div>
-    //     <div className="form-group">
-    //       <label htmlFor="password">Password</label>
-    //       <input
-    //         id="password"
-    //         type="password"
-    //         name="password"
-    //         value={password}
-    //         onChange={onChange}
-    //         required
-    //         minLength="6"
-    //       />
-    //     </div>
-    //     <div className="form-group">
-    //       <label htmlFor="password2">Confirm Password</label>
-    //       <input
-    //         id="password2"
-    //         type="password"
-    //         name="password2"
-    //         value={password2}
-    //         onChange={onChange}
-    //         required
-    //         minLength="6"
-    //       />
-    //     </div>
-    //     <div style={{ textAlign: "center" }}>
-    //       <ActionButton type="submit">Register</ActionButton>
-    //     </div>
-    //   </form>
-    //   <div className="dark h2 " style={{ textAlign: "center" }}>
-    //     Already have an account?
-    //     <Link to="/login">
-    //       <span className="text-primary "> LOGIN</span>
-    //     </Link>
-    //   </div>
-    // </LoginContainer>
-  );
+                                            <Stack spacing={6} direction="row">
+                                                <div
+                                                    style={{
+                                                        textAlign: 'center'
+                                                    }}
+                                                >
+                                                    <ActionButton type="submit">
+                                                        Register
+                                                    </ActionButton>
+                                                </div>
+                                            </Stack>
+                                        </Box>
+                                    </Grid>
+                                    {/* </Grid> */}
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </form>
+                </Grid>
+            </Box>
+        </Container>
+
+        // {window.dataLayer?.push({ event: "register" })}
+        // <LoginContainer>
+        //   <div className="text-primary h1">
+        //     REGISTER
+        //     <span className="dark h1"> ACCOUNT</span>{" "}
+        //   </div>
+        //   <form onSubmit={onSubmit}>
+        //     <div className="form-group">
+        //       <label htmlFor="name">Name</label>
+        //       <input
+        //         id="name"
+        //         type="textarea"
+        //         name="name"
+        //         value={name}
+        //         onChange={onChange}
+        //         required
+        //       />
+        //     </div>
+        //     <div className="form-group">
+        //       <label htmlFor="email">Email Address</label>
+        //       <input
+        //         id="email"
+        //         type="email"
+        //         name="email"
+        //         value={email}
+        //         onChange={onChange}
+        //         required
+        //       />
+        //     </div>
+        //     <div className="form-group">
+        //       <label htmlFor="password">Password</label>
+        //       <input
+        //         id="password"
+        //         type="password"
+        //         name="password"
+        //         value={password}
+        //         onChange={onChange}
+        //         required
+        //         minLength="6"
+        //       />
+        //     </div>
+        //     <div className="form-group">
+        //       <label htmlFor="password2">Confirm Password</label>
+        //       <input
+        //         id="password2"
+        //         type="password"
+        //         name="password2"
+        //         value={password2}
+        //         onChange={onChange}
+        //         required
+        //         minLength="6"
+        //       />
+        //     </div>
+        //     <div style={{ textAlign: "center" }}>
+        //       <ActionButton type="submit">Register</ActionButton>
+        //     </div>
+        //   </form>
+        //   <div className="dark h2 " style={{ textAlign: "center" }}>
+        //     Already have an account?
+        //     <Link to="/login">
+        //       <span className="text-primary "> LOGIN</span>
+        //     </Link>
+        //   </div>
+        // </LoginContainer>
+    );
 };
 
 export default Register;

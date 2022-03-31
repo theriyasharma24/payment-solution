@@ -21,6 +21,8 @@ import ReceiptIcon from "@mui/icons-material/Receipt";
 import SnoozeIcon from "@mui/icons-material/Snooze";
 import { Navigate, useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router";
+
 const LabelButton = styled(Button)`
   && {
     background-color: ${colors.orange};
@@ -28,8 +30,18 @@ const LabelButton = styled(Button)`
 `;
 
 const AgentDescription = () => {
+<<<<<<< HEAD
   const navigate = useNavigate();
   const paymentsummary = () => navigate("/paymentsummary");
+=======
+  let navigate = useNavigate();
+  const onClickPaymentTrans = () => {
+    navigate("/paymentsummary");
+  };
+  const onClickNotifications = () => {
+    navigate("/Notification");
+  };
+>>>>>>> 2ff387977ad593fa75fe64f73b98cfd57293508a
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container>
@@ -114,17 +126,22 @@ const AgentDescription = () => {
           </LabelButton>
         </Grid>
         <Grid item xs={12} md={3}>
+<<<<<<< HEAD
           <LabelButton fullWidth="true" onClick={paymentsummary}>
             <Typography color="white" p={3}>
+=======
+          <LabelButton fullWidth="true" onClick={onClickPaymentTrans}>
+            <Typography color="white" p={4}>
+>>>>>>> 2ff387977ad593fa75fe64f73b98cfd57293508a
               <ReceiptIcon />
               Payment Transactions
             </Typography>
           </LabelButton>
         </Grid>
         <Grid item xs={12} md={3}>
-          <LabelButton fullWidth="true">
+          <LabelButton fullWidth="true" onClick={onClickNotifications}>
             <Typography color="white" p={4}>
-              <SnoozeIcon /> Reminders
+              <SnoozeIcon /> Notifications
             </Typography>
           </LabelButton>
         </Grid>
