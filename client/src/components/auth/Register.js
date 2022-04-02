@@ -20,7 +20,7 @@ import Agent from '../../assets/agents.jpeg';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
 import Switch from '@material-ui/core/Switch';
-import Checkbox from '@material-ui/core/Checkbox';
+
 //import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const Container = styled.div`
@@ -68,7 +68,7 @@ const ActionButton = styled(SubmitButton)`
 const Register = () => {
     let navigate = useNavigate();
     const [checked, setChecked] = useState(false);
-    const [otp, setOtp] = useState();
+    const [otp] = useState();
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
@@ -118,10 +118,9 @@ const Register = () => {
         }
     };
 
-    const otp = () => {
+    const setOtp = () => {
         <div className="nototp" style={{ display: 'none' }}></div>;
     };
-    const [checked, setChecked] = React.useState(false);
     return (
         <Container>
             <Box sx={{ flexGrow: 1 }}>
