@@ -15,19 +15,22 @@ const ClientrdSchema = mongoose.Schema({
     // },
     contact: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     aadhaar: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     pan: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     date: {
         type: Date,
         default: Date.now
     }
 });
-module.exports = mongoose.model('client RD', ClientrdSchema);
+module.exports = mongoose.model('Clientrd', ClientrdSchema);
