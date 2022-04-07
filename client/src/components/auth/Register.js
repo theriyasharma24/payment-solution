@@ -16,7 +16,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { useNavigate } from 'react-router-dom';
 //importing image
 import Agent from '../../assets/agents.jpeg';
-//import { LOGOUT } from "../../context/types";
+import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
 import Switch from '@material-ui/core/Switch';
@@ -125,7 +125,7 @@ const Register = () => {
         <Container>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={12}>
                         <h1>Register</h1>
                     </Grid>
                     <form onSubmit={onSubmit}>
@@ -196,7 +196,7 @@ const Register = () => {
                                                         id="outlined"
                                                         label="OTP"
                                                         name="otp"
-                                                        value={otp}
+                                                        value={OTP}
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"

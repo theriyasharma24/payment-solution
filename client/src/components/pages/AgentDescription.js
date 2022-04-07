@@ -20,7 +20,6 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import SnoozeIcon from '@mui/icons-material/Snooze';
 import { Navigate, useNavigate } from 'react-router-dom';
-
 const LabelButton = styled(Button)`
     && {
         background-color: ${colors.orange};
