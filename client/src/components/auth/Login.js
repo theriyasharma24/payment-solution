@@ -4,18 +4,19 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import AuthContext from '../../context/auth/authContext';
 import { useLocation } from 'react-router-dom';
-import AlertContext from '../../context/alert/alertContext';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
+
 //importing image
 import Agent from '../../assets/agents.jpeg';
 import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
 import './Login.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import SubmitButton from '../containers/SubmitButton';
 import { useNavigate } from 'react-router-dom';
 const Container = styled.div`
@@ -28,9 +29,9 @@ const Container = styled.div`
 const ActionButton = styled(SubmitButton)`
     && {
         background: #0ec0e2;
-        color: white;
+        color: black;
         margin-top: 2em;
-        width: 50%;
+        width: 60%;
     }
 `;
 // const LoginContainer = styled.div`
@@ -97,8 +98,6 @@ const Login = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('email:', email);
-        console.log('password:', password);
 
         if (email === '' || password === '') {
             setAlert('Please fill in all fields', 'danger');
@@ -140,6 +139,7 @@ const Login = (props) => {
                                             // autoComplete="off"
                                         >
                                             <TextField
+                                                id="email"
                                                 label="Email-id"
                                                 name="email"
                                                 type="email"
@@ -159,9 +159,10 @@ const Login = (props) => {
                                                 }
                                             />
                                             {/* Using tertiary operator */}
-                                            {/* {checked ? (
+                                            {checked ? (
                                                 <>
                                                     <TextField
+                                                        id="number"
                                                         label="Mobile No."
                                                         name="number"
                                                         value={number}
@@ -171,10 +172,12 @@ const Login = (props) => {
                                                         fullWidth={true}
                                                     />
                                                     <TextField
+                                                        id="otp"
                                                         label="OTP"
                                                         name="OTP"
                                                         value={OTP}
                                                         onChange={onChange}
+                                                        required
                                                         variant="outlined"
                                                         fullWidth={true}
                                                     />
@@ -182,6 +185,7 @@ const Login = (props) => {
                                             ) : (
                                                 <>
                                                     <TextField
+                                                        id="password"
                                                         label="Password"
                                                         name="password"
                                                         type="password"
@@ -192,17 +196,8 @@ const Login = (props) => {
                                                         fullWidth={true}
                                                     />
                                                 </>
-                                            )} */}
-                                            <TextField
-                                                label="Password"
-                                                name="password"
-                                                type="password"
-                                                value={password}
-                                                onChange={onChange}
-                                                required
-                                                variant="outlined"
-                                                fullWidth={true}
-                                            />
+                                            )}
+
                                             <Stack spacing={6} direction="row">
                                                 <div
                                                     style={{
@@ -216,6 +211,7 @@ const Login = (props) => {
                                             </Stack>
                                         </Box>
                                     </Grid>
+                                    {/* </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -223,6 +219,49 @@ const Login = (props) => {
                 </Grid>
             </Box>
         </Container>
+        //     <>
+        //       {/* {window.dataLayer?.push({ event: "login" })} */}
+        //       <LoginContainer>
+        //         <div className="dark h1">
+        //           ACCOUNT
+        //           <span className="text-primary h1"> LOGIN</span>{" "}
+        //         </div>
+        //         <form onSubmit={onSubmit}>
+        //           <div className="form-group">
+        //             <label htmlFor="email">Email Address</label>
+        //             <input
+        //               id="email"
+        //               type="email"
+        //               name="email"
+        //               value={email}
+        //               onChange={onChange}
+        //               required
+        //             />
+        //           </div>
+        //           <div className="form-group">
+        //             <label htmlFor="password">Password</label>
+        //             <input
+        //               id="password"
+        //               type="password"
+        //               name="password"
+        //               value={password}
+        //               onChange={onChange}
+        //               required
+        //             />
+        //           </div>
+        //           <div style={{ textAlign: "center" }}>
+        //             <ActionButton type="submit">Login</ActionButton>
+        //           </div>
+        //         </form>
+        //         <div className="dark h2 " style={{ textAlign: "center" }}>
+        //           Do not have an account already?
+        //           <Link to="/register">
+        //             <span className="text-primary "> REGISTER</span>
+        //           </Link>
+        //         </div>
+        //       </LoginContainer>
+        //     </>
+        //   );
     );
 };
 

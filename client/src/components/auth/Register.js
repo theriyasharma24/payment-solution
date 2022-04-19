@@ -151,24 +151,24 @@ const Register = () => {
                                             // autoComplete="off"
                                         >
                                             <TextField
-                                                id="outlined"
+                                                id="name"
                                                 label="Name"
                                                 name="name"
                                                 value={name}
                                                 onChange={onChange}
                                                 required
                                                 variant="outlined"
-                                                fullWidth="true"
+                                                fullWidth={true}
                                             />
                                             <TextField
-                                                id="outlined"
+                                                id="email"
                                                 label="Email-id"
                                                 name="email"
                                                 value={email}
                                                 onChange={onChange}
                                                 required
                                                 variant="outlined"
-                                                fullWidth="true"
+                                                fullWidth={true}
                                             />
                                             <FormControlLabel
                                                 label="Check to login using OTP insted of password"
@@ -183,30 +183,30 @@ const Register = () => {
                                             {checked ? (
                                                 <>
                                                     <TextField
-                                                        id="outlined"
+                                                        id="mobile"
                                                         label="Mobile No."
                                                         name="name"
                                                         value={name}
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                     <TextField
-                                                        id="outlined"
+                                                        id="otp"
                                                         label="OTP"
                                                         name="otp"
                                                         value={OTP}
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                 </>
                                             ) : (
                                                 <>
                                                     <TextField
-                                                        id="outlined"
+                                                        id="password"
                                                         label="Password"
                                                         name="password"
                                                         type="password"
@@ -215,10 +215,10 @@ const Register = () => {
                                                         required
                                                         minLength="6"
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                     <TextField
-                                                        id="outlined"
+                                                        id="confirm"
                                                         label="Confirm Password"
                                                         name="password2"
                                                         type="password"
@@ -227,7 +227,7 @@ const Register = () => {
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                 </>
                                             )}
