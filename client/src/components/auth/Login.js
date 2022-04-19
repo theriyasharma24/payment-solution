@@ -4,12 +4,12 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import AuthContext from '../../context/auth/authContext';
 import { useLocation } from 'react-router-dom';
-import AlertContext from '../../context/alert/alertContext';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
+
 //importing image
 import Agent from '../../assets/agents.jpeg';
 import { LOGOUT } from '../../context/types';
@@ -98,8 +98,6 @@ const Login = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('email:', email);
-        console.log('password:', password);
 
         if (email === '' || password === '') {
             setAlert('Please fill in all fields', 'danger');
@@ -128,7 +126,7 @@ const Login = (props) => {
                                         className="logo"
                                         height="440"
                                         width="100%"
-                                    ></img>{' '}
+                                    ></img>
                                 </Grid>
                                 <Grid item xs={12} md={6}>
                                     {/* <Grid container > */}
@@ -141,7 +139,7 @@ const Login = (props) => {
                                             // autoComplete="off"
                                         >
                                             <TextField
-                                                id="outlined"
+                                                id="email"
                                                 label="Email-id"
                                                 name="email"
                                                 type="email"
@@ -149,7 +147,7 @@ const Login = (props) => {
                                                 onChange={onChange}
                                                 required
                                                 variant="outlined"
-                                                fullWidth="true"
+                                                fullWidth={true}
                                             />
                                             <FormControlLabel
                                                 label="Check to login using OTP insted of password"
@@ -164,30 +162,30 @@ const Login = (props) => {
                                             {checked ? (
                                                 <>
                                                     <TextField
-                                                        id="outlined"
+                                                        id="number"
                                                         label="Mobile No."
                                                         name="number"
                                                         value={number}
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                     <TextField
-                                                        id="outlined"
+                                                        id="otp"
                                                         label="OTP"
                                                         name="OTP"
                                                         value={OTP}
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                 </>
                                             ) : (
                                                 <>
                                                     <TextField
-                                                        id="outlined"
+                                                        id="password"
                                                         label="Password"
                                                         name="password"
                                                         type="password"
@@ -195,7 +193,7 @@ const Login = (props) => {
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                 </>
                                             )}

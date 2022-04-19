@@ -19,6 +19,10 @@ import Agent from '../../assets/agents.jpeg';
 import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
+import Switch from '@material-ui/core/Switch';
+
+//import FormControlLabel from "@material-ui/core/FormControlLabel";
+
 const Container = styled.div`
     padding-left: 4rem;
     @media (max-width: ${breakpoints.sm}px) {
@@ -64,7 +68,7 @@ const ActionButton = styled(SubmitButton)`
 const Register = () => {
     let navigate = useNavigate();
     const [checked, setChecked] = useState(false);
-    const [otp, setOtp] = useState();
+    const [otp] = useState();
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
@@ -114,6 +118,9 @@ const Register = () => {
         }
     };
 
+    const setOtp = () => {
+        <div className="nototp" style={{ display: 'none' }}></div>;
+    };
     return (
         <Container>
             <Box sx={{ flexGrow: 1 }}>
@@ -144,24 +151,24 @@ const Register = () => {
                                             // autoComplete="off"
                                         >
                                             <TextField
-                                                id="outlined"
+                                                id="name"
                                                 label="Name"
                                                 name="name"
                                                 value={name}
                                                 onChange={onChange}
                                                 required
                                                 variant="outlined"
-                                                fullWidth="true"
+                                                fullWidth={true}
                                             />
                                             <TextField
-                                                id="outlined"
+                                                id="email"
                                                 label="Email-id"
                                                 name="email"
                                                 value={email}
                                                 onChange={onChange}
                                                 required
                                                 variant="outlined"
-                                                fullWidth="true"
+                                                fullWidth={true}
                                             />
                                             <FormControlLabel
                                                 label="Check to login using OTP insted of password"
@@ -176,30 +183,30 @@ const Register = () => {
                                             {checked ? (
                                                 <>
                                                     <TextField
-                                                        id="outlined"
+                                                        id="mobile"
                                                         label="Mobile No."
                                                         name="name"
                                                         value={name}
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                     <TextField
-                                                        id="outlined"
+                                                        id="otp"
                                                         label="OTP"
                                                         name="otp"
                                                         value={OTP}
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                 </>
                                             ) : (
                                                 <>
                                                     <TextField
-                                                        id="outlined"
+                                                        id="password"
                                                         label="Password"
                                                         name="password"
                                                         type="password"
@@ -208,10 +215,10 @@ const Register = () => {
                                                         required
                                                         minLength="6"
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                     <TextField
-                                                        id="outlined"
+                                                        id="confirm"
                                                         label="Confirm Password"
                                                         name="password2"
                                                         type="password"
@@ -220,7 +227,7 @@ const Register = () => {
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                 </>
                                             )}

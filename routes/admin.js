@@ -5,11 +5,10 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 const auth = require('../middleware/auth');
+const Admin = require('../models/Admin');
 
-const User = require('../models/User');
-
-// @route     POST api/users
-// @desc      Regiter a user
+// @route     POST api/admin
+// @desc      Regiter a admin
 // @access    Public
 router.post(
     '/',
@@ -30,13 +29,13 @@ router.post(
         const { name, email, password } = req.body;
 
         try {
-            let user = await User.findOne({ email });
+            let admin = await Admin.findOne({ email });
 
-            if (user) {
-                return res.status(400).json({ msg: 'User already exists' });
+            if (admin) {
+                return res.status(400).json({ msg: 'Admin already exists' });
             }
 
-            user = new User({
+            admin = new Admin({
                 name,
                 email,
                 password
@@ -44,16 +43,17 @@ router.post(
 
             const salt = await bcrypt.genSalt(10);
 
-            user.password = await bcrypt.hash(password, salt);
+            admin.password = await bcrypt.hash(password, salt);
 
-            await user.save();
+            await admin.save();
 
             const payload = {
-                user: {
-                    id: user.id
+                admin: {
+                    id: admin.id
                 }
             };
 
+            console.log('admin id:', admin.id);
             jwt.sign(
                 payload,
                 config.get('jwtSecret'),
@@ -71,5 +71,16 @@ router.post(
         }
     }
 );
+
+//login admin
+router.get('/', auth, async (req, res) => {
+    try {
+        const admin = await Admin.findById(req.admin.id).select('-password');
+        res.json(admin);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 
 module.exports = router;
