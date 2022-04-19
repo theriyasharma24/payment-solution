@@ -11,8 +11,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    CLEAR_ERRORS,
-    GET_USERS
+    CLEAR_ERRORS
 } from '../types';
 
 const AuthState = (props) => {
@@ -25,11 +24,11 @@ const AuthState = (props) => {
     };
 
     const [state, dispatch] = useReducer(authReducer, initialState);
+
     // Load User
     const loadUser = async () => {
-        console.log('inside loaduser:', localStorage.token);
-
         setAuthToken(localStorage.token);
+
         try {
             const res = await axios.get('/api/auth');
 
@@ -44,7 +43,6 @@ const AuthState = (props) => {
 
     // Register User
     const register = async (formData) => {
-        console.log('inside register:', formData);
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -70,7 +68,6 @@ const AuthState = (props) => {
 
     // Login User
     const login = async (formData) => {
-        console.log('inside login:', formData);
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -78,8 +75,8 @@ const AuthState = (props) => {
         };
 
         try {
-            const res = await axios.get('/api/auth', formData, config);
-            console.log('response:', res);
+            const res = await axios.post('/api/auth', formData, config);
+
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
@@ -89,21 +86,7 @@ const AuthState = (props) => {
         } catch (err) {
             dispatch({
                 type: LOGIN_FAIL,
-                payload: err.response
-            });
-        }
-    };
-    const getUsers = async () => {
-        try {
-            const res = await axios.get('/api/users');
-            dispatch({
-                type: GET_USERS,
-                payload: res.data
-            });
-        } catch (err) {
-            dispatch({
-                type: AUTH_ERROR,
-                payload: err.response.msg
+                payload: err.response.data.msg
             });
         }
     };
@@ -122,13 +105,11 @@ const AuthState = (props) => {
                 loading: state.loading,
                 user: state.user,
                 error: state.error,
-                users: state.users,
                 register,
                 loadUser,
                 login,
                 logout,
-                clearErrors,
-                getUsers
+                clearErrors
             }}
         >
             {props.children}

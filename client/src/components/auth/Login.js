@@ -127,7 +127,7 @@ const Login = (props) => {
                                         className="logo"
                                         height="440"
                                         width="100%"
-                                    ></img>{' '}
+                                    ></img>
                                 </Grid>
                                 <Grid item xs={12} md={6}>
                                     {/* <Grid container > */}
@@ -140,7 +140,6 @@ const Login = (props) => {
                                             // autoComplete="off"
                                         >
                                             <TextField
-                                                id="outlined"
                                                 label="Email-id"
                                                 name="email"
                                                 type="email"
@@ -148,7 +147,7 @@ const Login = (props) => {
                                                 onChange={onChange}
                                                 required
                                                 variant="outlined"
-                                                fullWidth="true"
+                                                fullWidth={true}
                                             />
                                             <FormControlLabel
                                                 label="Check to login using OTP insted of password"
@@ -160,33 +159,29 @@ const Login = (props) => {
                                                 }
                                             />
                                             {/* Using tertiary operator */}
-                                            {checked ? (
+                                            {/* {checked ? (
                                                 <>
                                                     <TextField
-                                                        id="outlined"
                                                         label="Mobile No."
                                                         name="number"
                                                         value={number}
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                     <TextField
-                                                        id="outlined"
                                                         label="OTP"
                                                         name="OTP"
                                                         value={OTP}
                                                         onChange={onChange}
-                                                        required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                 </>
                                             ) : (
                                                 <>
                                                     <TextField
-                                                        id="outlined"
                                                         label="Password"
                                                         name="password"
                                                         type="password"
@@ -194,11 +189,20 @@ const Login = (props) => {
                                                         onChange={onChange}
                                                         required
                                                         variant="outlined"
-                                                        fullWidth="true"
+                                                        fullWidth={true}
                                                     />
                                                 </>
-                                            )}
-
+                                            )} */}
+                                            <TextField
+                                                label="Password"
+                                                name="password"
+                                                type="password"
+                                                value={password}
+                                                onChange={onChange}
+                                                required
+                                                variant="outlined"
+                                                fullWidth={true}
+                                            />
                                             <Stack spacing={6} direction="row">
                                                 <div
                                                     style={{
@@ -212,7 +216,6 @@ const Login = (props) => {
                                             </Stack>
                                         </Box>
                                     </Grid>
-                                    {/* </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -220,49 +223,6 @@ const Login = (props) => {
                 </Grid>
             </Box>
         </Container>
-        //     <>
-        //       {/* {window.dataLayer?.push({ event: "login" })} */}
-        //       <LoginContainer>
-        //         <div className="dark h1">
-        //           ACCOUNT
-        //           <span className="text-primary h1"> LOGIN</span>{" "}
-        //         </div>
-        //         <form onSubmit={onSubmit}>
-        //           <div className="form-group">
-        //             <label htmlFor="email">Email Address</label>
-        //             <input
-        //               id="email"
-        //               type="email"
-        //               name="email"
-        //               value={email}
-        //               onChange={onChange}
-        //               required
-        //             />
-        //           </div>
-        //           <div className="form-group">
-        //             <label htmlFor="password">Password</label>
-        //             <input
-        //               id="password"
-        //               type="password"
-        //               name="password"
-        //               value={password}
-        //               onChange={onChange}
-        //               required
-        //             />
-        //           </div>
-        //           <div style={{ textAlign: "center" }}>
-        //             <ActionButton type="submit">Login</ActionButton>
-        //           </div>
-        //         </form>
-        //         <div className="dark h2 " style={{ textAlign: "center" }}>
-        //           Do not have an account already?
-        //           <Link to="/register">
-        //             <span className="text-primary "> REGISTER</span>
-        //           </Link>
-        //         </div>
-        //       </LoginContainer>
-        //     </>
-        //   );
     );
 };
 

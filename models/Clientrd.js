@@ -3,16 +3,7 @@ const ClientrdSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
-    },
-    // name: {
-    //   type: String,
-    //   required: true
-    // },
-    // email: {
-    //   type: String,
-    //   required: false,
-    //   unique: true
-    // },
+    },    
     contact: {
         type: Number,
         required: true,
