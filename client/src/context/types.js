@@ -13,3 +13,13 @@ export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const GET_USER = 'GET_USER';
 export const GET_USERS = 'GET_USERS';
+export const GET_CLIENTRDS,
+export const  ADD_CLIENTRD,
+export const    DELETE_CLIENTRD,
+    SET_CURRENT,
+    CLEAR_CURRENT,
+    UPDATE_CLIENTRD,
+    FILTER_CLIENTRDS,
+    CLEAR_FILTER,
+    CLIENTRD_ERROR,
+    CLEAR_CLIENTRDS
