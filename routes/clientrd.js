@@ -27,19 +27,23 @@ router.post(
     '/',
     [auth, [check('contact', 'Contact is required').not().isEmpty()]],
     async (req, res) => {
+        console.log('inside add');
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { contact, aadhaar, pan } = req.body;
+        const { contact, aadhaar, pan, address, photo, signature } = req.body;
 
         try {
             const newClientrd = new Clientrd({
                 contact,
                 aadhaar,
                 pan,
-                user: req.user.id
+                user: req.user.id,
+                address,
+                photo,
+                signature
             });
 
             const clientrd = await newClientrd.save();
@@ -56,13 +60,16 @@ router.post(
 // @phone      Update clientrd
 // @access    Private
 router.put('/:id', auth, async (req, res) => {
-    const { contact, aadhaar, pan } = req.body;
+    const { contact, aadhaar, pan, address, photo, signature } = req.body;
 
     // Build contact object
     const clientrdFields = {};
     if (contact) clientrdFields.contact = contact;
     if (aadhaar) clientrdFields.aadhaar = aadhaar;
     if (pan) clientrdFields.pan = pan;
+    if (address) clientrdFields.address = address;
+    if (photo) clientrdFields.photo = photo;
+    if (signature) clientrdFields.signature = signature;
     try {
         let clientrd = await Clientrd.findById(req.params.id);
 

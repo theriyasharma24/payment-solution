@@ -81,7 +81,7 @@ const Register = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/');
+            navigate('/paymentsummary');
         }
 
         if (error === 'User already exists') {
