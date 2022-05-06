@@ -119,7 +119,9 @@ const ClientForm = () => {
                         Photo
                         <Button
                             style={{
-                                marginLeft: '180px'
+                                marginLeft: '180px',
+                                background: 'rgba(149, 213, 84)',
+                                color: 'black'
                             }}
                             variant="contained"
                             component="label"
@@ -135,7 +137,9 @@ const ClientForm = () => {
                         Signature
                         <Button
                             style={{
-                                marginLeft: '150px'
+                                marginLeft: '150px',
+                                background: 'rgba(149, 213, 84)',
+                                color: 'black'
                             }}
                             variant="contained"
                             component="label"
@@ -152,7 +156,11 @@ const ClientForm = () => {
                             variant="contained"
                             color="primary"
                             type="submit"
-                            style={{ width: '30px' }}
+                            style={{
+                                width: '30px',
+                                background: 'rgba(149, 213, 84)',
+                                color: 'black'
+                            }}
                         >
                             Submit
                         </Button>
