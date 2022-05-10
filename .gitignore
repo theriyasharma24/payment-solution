@@ -1,10 +1,10 @@
 node_modules/
 
 /client/build
-/config/default.json
+# /config/default.json
 
 .yarn/
-.env
+# .env
 .yarnrc.yml
 .DS_Store
 /client/.env
