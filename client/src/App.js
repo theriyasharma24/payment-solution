@@ -13,6 +13,7 @@ import PaymentSummary from './components/pages/PaymentSummary';
 import Notification from './components/pages/Notification';
 import AgentDescription from './components/pages/AgentDescription';
 import ClientForm from './components/pages/ClientForm';
+import ClientrdState from './context/clientrd/ClientrdState';
 
 import './App.css';
 
@@ -30,49 +31,51 @@ const Container = styled.div`
 const App = () => {
     return (
         <AuthState>
-            <AlertState>
-                <Router>
-                    <Fragment>
-                        <Navbar />
-                        <Container>
-                            <Alerts />
-                            <Routes>
-                                <Route exact path="/" element={<Home />} />{' '}
-                                <Route
-                                    exact
-                                    path="/register"
-                                    element={<Register />}
-                                />
-                                <Route
-                                    exact
-                                    path="/login"
-                                    element={<Login />}
-                                />
-                                <Route
-                                    exact
-                                    path="/paymentsummary"
-                                    element={<PaymentSummary />}
-                                />
-                                <Route
-                                    exact
-                                    path="/notification"
-                                    element={<Notification />}
-                                />
-                                <Route
-                                    exact
-                                    path="/agentdescription"
-                                    element={<AgentDescription />}
-                                />
-                                <Route
-                                    exact
-                                    path="/clientform"
-                                    element={<ClientForm />}
-                                />
-                            </Routes>
-                        </Container>
-                    </Fragment>
-                </Router>
-            </AlertState>
+            <ClientrdState>
+                <AlertState>
+                    <Router>
+                        <Fragment>
+                            <Navbar />
+                            <Container>
+                                <Alerts />
+                                <Routes>
+                                    <Route exact path="/" element={<Home />} />{' '}
+                                    <Route
+                                        exact
+                                        path="/register"
+                                        element={<Register />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/login"
+                                        element={<Login />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/paymentsummary"
+                                        element={<PaymentSummary />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/notification"
+                                        element={<Notification />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/agentdescription"
+                                        element={<AgentDescription />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/clientform"
+                                        element={<ClientForm />}
+                                    />
+                                </Routes>
+                            </Container>
+                        </Fragment>
+                    </Router>
+                </AlertState>
+            </ClientrdState>
         </AuthState>
     );
 };

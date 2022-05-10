@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import { SET_ALERT, REMOVE_ALERT } from '../types';
-
-export default (state, action) => {
-    switch (action.type) {
-        case SET_ALERT:
-            return [...state, action.payload];
-        case REMOVE_ALERT:
-            return state.filter((alert) => alert.id !== action.payload);
-=======
 import {
     GET_CLIENTRDS,
     ADD_CLIENTRD,
@@ -93,7 +83,6 @@ export default (state, action) => {
                 ...state,
                 error: action.payload
             };
->>>>>>> 2e659d31ddfde8c64f50c2e80ca7dbe9e68575af
         default:
             return state;
     }

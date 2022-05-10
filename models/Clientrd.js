@@ -6,9 +6,7 @@ const ClientrdSchema = mongoose.Schema(
             ref: 'users'
         },
         contact: {
-            type: Number,
-            required: true,
-            unique: true
+            type: Number
         },
         aadhaar: {
             type: Number,

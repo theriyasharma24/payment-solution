@@ -1,31 +1,3 @@
-<<<<<<< HEAD
-import React, { useReducer } from "react";
-import axios from "axios";
-import ShipContext from "./shipContext";
-import shipReducer from "./shipReducer";
-import {
-  GET_SHIPS,
-  ADD_SHIP,
-  DELETE_SHIP,
-  SET_CURRENT,
-  CLEAR_CURRENT,
-  UPDATE_SHIP,
-  FILTER_SHIPS,
-  CLEAR_FILTER,
-  SHIP_ERROR,
-  CLEAR_SHIPS,
-} from "../types";
-
-const ShipState = (props) => {
-  const initialState = {
-    ships: null,
-    current: null,
-    filtered: null,
-    error: null,
-  };
-
-  const [state, dispatch] = useReducer;
-=======
 import React, { useReducer } from 'react';
 import axios from 'axios';
 import ClientrdContext from './clientrdContext';
@@ -57,20 +29,23 @@ const ClientrdState = (props) => {
         try {
             const res = await axios.get('/api/clientrd');
 
-            dispatch({
-                type: GET_CLIENTRDS,
-                payload: res.data
-            });
+            // dispatch({
+            //     type: GET_CLIENTRDS,
+            //     payload: res.data
+            // });
+            return res.data;
         } catch (err) {
-            dispatch({
-                type: CLIENTRD_ERROR,
-                payload: err.response.msg
-            });
+            // dispatch({
+            //     type: CLIENTRD_ERROR,
+            //     payload: err.response.msg
+            // });
+            return err;
         }
     };
 
     // Add Contact
     const addClientrd = async (clientrd) => {
+        console.log('inside clientrd');
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -79,16 +54,18 @@ const ClientrdState = (props) => {
 
         try {
             const res = await axios.post('/api/clientrd', clientrd, config);
-
-            dispatch({
-                type: ADD_CLIENTRD,
-                payload: res.data
-            });
+            console.log('response', res.data);
+            // dispatch({
+            //     type: ADD_CLIENTRD,
+            //     payload: res.data
+            // });
+            return res.data;
         } catch (err) {
-            dispatch({
-                type: CLIENTRD_ERROR,
-                payload: err.response.msg
-            });
+            // dispatch({
+            //     // type: CLIENTRD_ERROR
+            //     // payload: err?.response.msg
+            // });
+            return err;
         }
     };
 
@@ -185,4 +162,3 @@ const ClientrdState = (props) => {
 };
 
 export default ClientrdState;
->>>>>>> 2e659d31ddfde8c64f50c2e80ca7dbe9e68575af
