@@ -19,7 +19,6 @@ import Agent from '../../assets/agents.jpeg';
 import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
-import Switch from '@material-ui/core/Switch';
 
 //import FormControlLabel from "@material-ui/core/FormControlLabel";
 
@@ -38,33 +37,7 @@ const ActionButton = styled(SubmitButton)`
         // width: 60%;
     }
 `;
-// const LoginContainer = styled.div`
-//   font-weight: 400;
-//   justify-content: center;
-//   align-items: center;
-//   margin-inline: auto;
-//   padding: 5%;
-//   width: 40vw;
-//   .h1 {
-//     text-align: center;
-//     font-size: 28px;
-//     font-weight: 700;
-//     margin-bottom: 2rem;
-//   }
-//   .h2 {
-//     font-size: 18px;
-//     margin-top: 1rem;
-//   }
-//   @media (max-width: ${breakpoints.sm}px) {
-//     .h1 {
-//       font-size: 22px;
-//     }
-//     .h2 {
-//       font-size: 12px;
-//     }
-//     width: 60vw;
-//   }
-// `;
+
 const Register = () => {
     let navigate = useNavigate();
     const [checked, setChecked] = useState(false);
@@ -81,7 +54,7 @@ const Register = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/');
+            navigate('/paymentsummary');
         }
 
         if (error === 'User already exists') {

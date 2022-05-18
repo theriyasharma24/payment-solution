@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import { Typography } from "@mui/material";
 import colors from "../../essentials/colors";
 import styled from "styled-components";
+import AuthContext from "../../context/auth/authContext";
 
 const Container = styled.div`
   padding-left: 2rem;
@@ -60,6 +61,8 @@ const AmountPending = styled(Paper)`
 `;
 
 const PaymentSummary = () => {
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
   function createData(dop, name, amount, status) {
     return { dop, name, amount, status };
   }
@@ -69,8 +72,12 @@ const PaymentSummary = () => {
     createData("24-01-2022 | 9:00 PM", "Akshta", 2000, "Paid"),
     createData("03-01-2022 | 8:00 PM", "Riya Sharma", 1000, "Paid"),
   ];
+  
   return (
     <Container>
+      <div>
+      Welcome <h1>{user && user.name}</h1>
+    </div>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={24} md={0}>
