@@ -211,7 +211,13 @@ const Register = () => {
                                                         textAlign: 'center'
                                                     }}
                                                 >
-                                                    <ActionButton type="submit">
+                                                    <ActionButton
+                                                        type="submit"
+                                                        style={{
+                                                            background:
+                                                                'rgba(149, 213, 84)'
+                                                        }}
+                                                    >
                                                         Register
                                                     </ActionButton>
                                                 </div>
