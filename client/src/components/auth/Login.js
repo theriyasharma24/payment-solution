@@ -11,7 +11,7 @@ import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 
 //importing image
-import Agent from '../../assets/agent.jpeg';
+import Agent from '../../assets/agent.jpg';
 import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';

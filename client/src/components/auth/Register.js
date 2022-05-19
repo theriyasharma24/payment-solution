@@ -15,7 +15,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useNavigate } from 'react-router-dom';
 //importing image
-import Agent from '../../assets/agent.jpeg';
+import Agent from '../../assets/agent.jpg';
 import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
