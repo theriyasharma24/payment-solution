@@ -32,13 +32,15 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { contact, aadhaar, pan } = req.body;
+        const { contact, aadhaar, pan,amount, paymentstatus } = req.body;
 
         try {
             const newClientrd = new Clientrd({
                 contact,
                 aadhaar,
                 pan,
+                amount,
+                paymentstatus,
                 user: req.user.id
             });
 
@@ -63,6 +65,8 @@ router.put('/:id', auth, async (req, res) => {
     if (contact) clientrdFields.contact = contact;
     if (aadhaar) clientrdFields.aadhaar = aadhaar;
     if (pan) clientrdFields.pan = pan;
+    if (amount) clientrdFields.amount = amount;
+    if (paymentstatus) clientrdFields.paymentstatus = paymentstatus;
     try {
         let clientrd = await Clientrd.findById(req.params.id);
 

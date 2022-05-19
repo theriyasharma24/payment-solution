@@ -19,6 +19,12 @@ const ClientrdSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    amount: {
+        type: Number
+    },
+    paymentstatus: {
+        type: String
+    },
     date: {
         type: Date,
         default: Date.now
