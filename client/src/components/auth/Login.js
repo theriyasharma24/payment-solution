@@ -11,7 +11,7 @@ import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 
 //importing image
-import Agent from '../../assets/agents.jpeg';
+import Agent from '../../assets/agent.jpg';
 import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
@@ -75,7 +75,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/paymentsummary');
+            navigate('/clientform');
         } else {
             navigate('/login');
         }
@@ -204,7 +204,13 @@ const Login = (props) => {
                                                         textAlign: 'center'
                                                     }}
                                                 >
-                                                    <ActionButton type="submit">
+                                                    <ActionButton
+                                                        type="submit"
+                                                        style={{
+                                                            background:
+                                                                'rgba(149, 213, 84)'
+                                                        }}
+                                                    >
                                                         Login
                                                     </ActionButton>
                                                 </div>

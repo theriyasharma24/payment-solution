@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -12,7 +12,7 @@ import { Typography } from "@mui/material";
 import colors from "../../essentials/colors";
 import styled from "styled-components";
 import AuthContext from "../../context/auth/authContext";
-
+import ClientrdContext from "../../context/clientrd/clientrdContext"
 const Container = styled.div`
   padding-left: 2rem;
 `;
@@ -63,14 +63,20 @@ const AmountPending = styled(Paper)`
 const PaymentSummary = () => {
   const authContext = useContext(AuthContext);
   const { user } = authContext;
+  const clientrdContext = useContext(ClientrdContext);
+  const { clientrds,getClientrds } = clientrdContext;
   function createData(dop, name, amount, status) {
     return { dop, name, amount, status };
   }
 
+  useEffect(() => {
+   getClientrds();
+  }, []);
+  console.log("getClientrds",clientrds);
   const rows = [
     createData("14-01-2022 | 8:00 PM", "Riya Sharma", 1000, "Paid"),
     createData("24-01-2022 | 9:00 PM", "Akshta", 2000, "Paid"),
-    createData("03-01-2022 | 8:00 PM", "Riya Sharma", 1000, "Paid"),
+    createData("03-01-2022 | 8:00 PM", "Devanshi", 1000, "Paid"),
   ];
   
   return (
@@ -134,13 +140,14 @@ const PaymentSummary = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {clientrds?.map((row) => (
               <TableRow
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <PaymentBodyTableCell scope="row">
-                  {row.dop}
+                  {/* {row.dop} */}
+                  " "
                 </PaymentBodyTableCell>
                 <PaymentBodyTableCell align="left">
                   {row.name}
@@ -150,7 +157,7 @@ const PaymentSummary = () => {
                 </PaymentBodyTableCell>
                 <PaymentBodyTableCell align="right">
                   {" "}
-                  {row.status}
+                  {row.paymentstatus}
                 </PaymentBodyTableCell>
               </TableRow>
             ))}
