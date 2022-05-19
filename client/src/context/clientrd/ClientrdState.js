@@ -27,13 +27,15 @@ const ClientrdState = (props) => {
 
     const getClientrds = async () => {
         try {
-            const res = await axios.get('/api/clientrd');
 
-            // dispatch({
-            //     type: GET_CLIENTRDS,
-            //     payload: res.data
-            // });
-            return res.data;
+            const res = await axios.get('/api/clientrd');
+            console.log("getclientrds",res.data)
+
+            dispatch({
+                type: GET_CLIENTRDS,
+                payload: res.data
+            });
+            // return res.data;
         } catch (err) {
             // dispatch({
             //     type: CLIENTRD_ERROR,
@@ -45,7 +47,7 @@ const ClientrdState = (props) => {
 
     // Add Contact
     const addClientrd = async (clientrd) => {
-        console.log('inside clientrd');
+        console.log('inside clientrd',clientrd);
         const config = {
             headers: {
                 'Content-Type': 'application/json'

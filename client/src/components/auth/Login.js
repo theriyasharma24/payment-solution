@@ -75,7 +75,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/paymentsummary');
+            navigate('/clientform');
         } else {
             navigate('/login');
         }

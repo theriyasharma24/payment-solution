@@ -22,16 +22,16 @@ const defaultValues = {
 };
 
 const ClientForm = () => {
-    //const [clientrd, setClientrd] = useState();
     const [clientrd, setClientrd] = useState({
         name: '',
         aadhaar: '',
         pan: '',
         contact: '',
         email: '',
-        address: ''
+        address: '',
+        paymentstatus: 'unpaid'
     });
-    const { name, aadhaar, pan, contact, email, address } = clientrd;
+    const { name, aadhaar, pan, contact, email, address, paymentstatus } = clientrd;
 
     const clientrdContext = useContext(ClientrdContext);
     const { addClientrd, getClientrds, clientrds } = clientrdContext;
@@ -75,7 +75,7 @@ const ClientForm = () => {
     };
     return (
         <form onSubmit={onSubmit}>
-            <p style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
                 <h3> CLIENT FORM</h3>
                 <br></br>
                 <Grid
@@ -128,7 +128,7 @@ const ClientForm = () => {
                             id="pan-input"
                             name="pan"
                             label="Pan Number"
-                            type="number"
+                            type="string"
                             value={pan}
                             onChange={onChange}
                         />
@@ -234,7 +234,7 @@ const ClientForm = () => {
                         <div>{clientrds}</div>
                     </Grid>
                 </Grid>
-            </p>
+            </div>
         </form>
     );
 };
