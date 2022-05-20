@@ -12,7 +12,7 @@ import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
 import { ConstructionOutlined } from '@mui/icons-material';
 import ClientrdContext from '../../context/clientrd/clientrdContext';
-
+import { useNavigate } from 'react-router-dom';
 const defaultValues = {
     name: '',
     age: 0,
@@ -31,7 +31,13 @@ const ClientForm = () => {
         address: '',
         paymentstatus: 'unpaid'
     });
-    const { name, aadhaar, pan, contact, email, address, paymentstatus } = clientrd;
+
+    let navigate = useNavigate();
+    const payment = () => {
+        navigate('/paymentsummary');
+    };
+    const { name, aadhaar, pan, contact, email, address, paymentstatus } =
+        clientrd;
 
     const clientrdContext = useContext(ClientrdContext);
     const { addClientrd, getClientrds, clientrds } = clientrdContext;
@@ -139,7 +145,7 @@ const ClientForm = () => {
                             style={{
                                 position: 'relative',
                                 bottom: '20px',
-                                marginLeft: '110px'
+                                marginLeft: '165px'
                             }}
                             id="contact-input"
                             name="contact"
@@ -218,18 +224,19 @@ const ClientForm = () => {
                         </Button>
                     </Grid>
                     <br></br>
-                    <Grid item style={{ marginLeft: '-8vw' }}>
+                    <Grid item>
                         <Button
                             variant="contained"
                             color="primary"
                             type="submit"
                             style={{
-                                width: '30px',
+                                width: '430px',
                                 background: 'rgba(149, 213, 84)',
                                 color: 'black'
                             }}
+                            onClick={payment}
                         >
-                            Submit
+                            <b>SUBMIT</b>
                         </Button>
                         <div>{clientrds}</div>
                     </Grid>
