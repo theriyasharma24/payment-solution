@@ -13,6 +13,8 @@ import Button from '@material-ui/core/Button';
 import { ConstructionOutlined } from '@mui/icons-material';
 import ClientrdContext from '../../context/clientrd/clientrdContext';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../context/auth/authContext';
+
 const defaultValues = {
     name: '',
     age: 0,
@@ -22,6 +24,8 @@ const defaultValues = {
 };
 
 const ClientForm = () => {
+    const authContext = useContext(AuthContext);
+    const { user } = authContext;
     const [clientrd, setClientrd] = useState({
         name: '',
         aadhaar: '',
@@ -29,15 +33,21 @@ const ClientForm = () => {
         contact: '',
         email: '',
         address: '',
+        amount: '',
         paymentstatus: 'unpaid'
     });
 
     let navigate = useNavigate();
-    const payment = () => {
-        navigate('/paymentsummary');
-    };
-    const { name, aadhaar, pan, contact, email, address, paymentstatus } =
-        clientrd;
+    const {
+        name,
+        aadhaar,
+        pan,
+        contact,
+        email,
+        address,
+        amount,
+        paymentstatus
+    } = clientrd;
 
     const clientrdContext = useContext(ClientrdContext);
     const { addClientrd, getClientrds, clientrds } = clientrdContext;
@@ -69,20 +79,24 @@ const ClientForm = () => {
 
     const onChange = (m) => {
         setClientrd({ ...clientrd, [m.target.name]: m.target.value });
-        console.log('address', clientrd);
+        console.log('clientrd', clientrd);
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('inside clientrd on submit');
+        console.log('before inside clientrd on submit', clientrd);
         addClientrd(clientrd);
         getClientrds();
         console.log('inside clientrd on submit', clientrds);
+        navigate('/paymentsummary');
     };
     return (
         <form onSubmit={onSubmit}>
             <div style={{ textAlign: 'center' }}>
                 <h3> CLIENT FORM</h3>
+                <div>
+                    Welcome <h1>{user && user.name}</h1>
+                </div>
                 <br></br>
                 <Grid
                     container
@@ -188,6 +202,22 @@ const ClientForm = () => {
                             onChange={onChange}
                         />
                     </Grid>
+                    <Grid item>
+                        Amount
+                        <TextField
+                            style={{
+                                position: 'relative',
+                                bottom: '20px',
+                                marginLeft: '165px'
+                            }}
+                            id="amount"
+                            name="amount"
+                            label="Amount"
+                            type="text"
+                            value={amount}
+                            onChange={onChange}
+                        />
+                    </Grid>
                     <Grid item style={{ marginLeft: '-8vw' }}>
                         Photo
                         <Button
@@ -234,7 +264,6 @@ const ClientForm = () => {
                                 background: 'rgba(149, 213, 84)',
                                 color: 'black'
                             }}
-                            onClick={payment}
                         >
                             <b>SUBMIT</b>
                         </Button>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -72,12 +72,23 @@ const PaymentSummary = () => {
     const { user } = authContext;
     const clientrdContext = useContext(ClientrdContext);
     const { clientrds, getClientrds } = clientrdContext;
+    const [netincome, setNetincome] = useState();
     function createData(dop, name, amount, status) {
         return { dop, name, amount, status };
     }
-
+    let noc = 0;
+    let value = 0;
+    noc = clientrds?.length;
     useEffect(() => {
         getClientrds();
+
+        clientrds?.map((amt) => {
+            console.log('amount', amt.amount);
+            value = value + amt.amount;
+            setNetincome(value);
+        });
+        console.log('value=', value);
+        setNetincome(value);
     }, []);
     console.log('getClientrds', clientrds);
     const rows = [
@@ -93,22 +104,22 @@ const PaymentSummary = () => {
             </div>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
-                    <Grid item xs={24} md={0}>
+                    <Grid item xs={12} md={0}>
                         <Typography variant="h4">Overview</Typography>
                     </Grid>
-                    <Grid item style={{ textAlign: 'center' }} xs={12} md={4}>
+                    <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
                         <NetIncome elevation={3} style={{ padding: 15 }}>
                             <h3>
                                 <b>Net Income</b>
                             </h3>
                             <p>
-                                <b>₹ 10000/-</b>
+                                <b>₹ {netincome}/-</b>
                             </p>
                             <p>2 clients</p>
                         </NetIncome>
                     </Grid>
 
-                    <Grid item style={{ textAlign: 'center' }} xs={12} md={4}>
+                    <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
                         <AmountPaid elevation={3} style={{ padding: 15 }}>
                             <h3>
                                 <b>Amount Paid</b>
@@ -119,7 +130,7 @@ const PaymentSummary = () => {
                             <p>2 clients</p>
                         </AmountPaid>
                     </Grid>
-                    <Grid item style={{ textAlign: 'center' }} xs={12} md={4}>
+                    <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
                         <AmountPending elevation={2} style={{ padding: 15 }}>
                             <h3>
                                 <b>Amount Pending</b>
@@ -128,6 +139,17 @@ const PaymentSummary = () => {
                                 <b>₹ 10000/-</b>
                             </p>
                             <p>2 clients</p>
+                        </AmountPending>
+                    </Grid>
+
+                    <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
+                        <AmountPending elevation={2} style={{ padding: 15 }}>
+                            <h3>
+                                <b>No. of Clients</b>
+                            </h3>
+                            <p>
+                                <b>{noc}</b>
+                            </p>
                         </AmountPending>
                     </Grid>
                 </Grid>
@@ -155,7 +177,7 @@ const PaymentSummary = () => {
                     <TableBody>
                         {clientrds?.map((row) => (
                             <TableRow
-                                key={row.name}
+                                key={row.createdAt}
                                 sx={{
                                     '&:last-child td, &:last-child th': {
                                         border: 0
@@ -163,7 +185,7 @@ const PaymentSummary = () => {
                                 }}
                             >
                                 <PaymentBodyTableCell scope="row">
-                                    {/* {row.dop} */}" "
+                                    {/* {row.createdAt} */}
                                 </PaymentBodyTableCell>
                                 <PaymentBodyTableCell align="left">
                                     {row.name}
@@ -180,7 +202,7 @@ const PaymentSummary = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button
+            {/* <Button
                 variant="contained"
                 color="primary"
                 type="submit"
@@ -192,7 +214,7 @@ const PaymentSummary = () => {
                 onClick={client}
             >
                 Client Form
-            </Button>
+            </Button> */}
         </Container>
     );
 };
