@@ -20,13 +20,6 @@ import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
 
-const Container = styled.div`
-    padding-left: 4rem;
-    @media (max-width: ${breakpoints.sm}px) {
-        padding-left: 1.5rem;
-    }
-`;
-
 const ActionButton = styled(SubmitButton)`
     && {
         background: #b658ff;
@@ -93,7 +86,7 @@ const Register = () => {
         <div className="nototp" style={{ display: 'none' }}></div>;
     };
     return (
-        <Container>
+        <>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={12}>
@@ -222,14 +215,13 @@ const Register = () => {
                                             </Stack>
                                         </Box>
                                     </Grid>
-                                    {/* </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
                     </form>
                 </Grid>
             </Box>
-        </Container>
+        </>
     );
 };
 

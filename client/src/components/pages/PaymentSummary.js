@@ -14,10 +14,6 @@ import styled from 'styled-components';
 import AuthContext from '../../context/auth/authContext';
 import ClientrdContext from '../../context/clientrd/clientrdContext';
 import { useNavigate } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-const Container = styled.div`
-    padding-left: 2rem;
-`;
 
 const PaymentTableCell = styled(TableCell)`
     && {
@@ -64,18 +60,13 @@ const AmountPending = styled(Paper)`
 
 const PaymentSummary = () => {
     let navigate = useNavigate();
-    const client = () => {
-        navigate('/clientform');
-    };
 
     const authContext = useContext(AuthContext);
     const { user } = authContext;
     const clientrdContext = useContext(ClientrdContext);
     const { clientrds, getClientrds } = clientrdContext;
     const [netincome, setNetincome] = useState();
-    function createData(dop, name, amount, status) {
-        return { dop, name, amount, status };
-    }
+
     let noc = 0;
     let value = 0;
     noc = clientrds?.length;
@@ -91,14 +82,9 @@ const PaymentSummary = () => {
         setNetincome(value);
     }, []);
     console.log('getClientrds', clientrds);
-    const rows = [
-        createData('14-01-2022 | 8:00 PM', 'Riya Sharma', 1000, 'Paid'),
-        createData('24-01-2022 | 9:00 PM', 'Akshta', 2000, 'Paid'),
-        createData('03-01-2022 | 8:00 PM', 'Devanshi', 1000, 'Paid')
-    ];
 
     return (
-        <Container>
+        <>
             <div style={{ marginBottom: 2 }}>
                 Welcome! <b>{user && user.name}</b>
             </div>
@@ -215,7 +201,7 @@ const PaymentSummary = () => {
             >
                 Client Form
             </Button> */}
-        </Container>
+        </>
     );
 };
 export default PaymentSummary;

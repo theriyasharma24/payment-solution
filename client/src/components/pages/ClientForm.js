@@ -1,10 +1,22 @@
 import React, { useContext, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+
+import SubmitButton from '../containers/SubmitButton';
+
 import ClientrdContext from '../../context/clientrd/clientrdContext';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
+import styled from 'styled-components';
+
+const ActionButton = styled(SubmitButton)`
+    && {
+        background: #0ec0e2;
+        color: black;
+        margin-top: 2em;
+        width: 60%;
+    }
+`;
 
 const ClientForm = () => {
     const authContext = useContext(AuthContext);
@@ -74,179 +86,176 @@ const ClientForm = () => {
         navigate('/paymentsummary');
     };
     return (
-        <form onSubmit={onSubmit} style={{ textAlign: 'center' }}>
-            <div>
-                <h3> CLIENT FORM</h3>
-                <div style={{ marginBottom: '2rem' }}>
-                    Welcome <h1>{user && user.name}</h1>
-                </div>
+        <>
+            <form onSubmit={onSubmit} style={{ textAlign: 'center' }}>
+                <div>
+                    <h3> CLIENT FORM</h3>
+                    <div style={{ marginBottom: '2rem' }}>
+                        Welcome <h1>{user && user.name}</h1>
+                    </div>
 
-                <Grid
-                    container
-                    alignItems="center"
-                    justifyContent="center"
-                    textalign="center"
-                    direction="column"
-                >
                     <Grid
                         container
-                        justifyContent="space-between"
-                        style={{ marginBottom: '2rem' }}
+                        alignItems="center"
+                        justifyContent="center"
+                        textalign="center"
+                        direction="column"
                     >
-                        <Grid item xs={12} md={3}>
-                            <TextField
-                                id="name-input"
-                                name="name"
-                                label="Name"
-                                type="text"
-                                value={name}
-                                onChange={onChange}
-                                fullWidth={true}
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={12} md={3}>
-                            <TextField
-                                id="contact-input"
-                                name="contact"
-                                label="Phone Number"
-                                type="number"
-                                value={contact}
-                                onChange={onChange}
-                                fullWidth={true}
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={12} md={3}>
-                            <TextField
-                                id="email-input"
-                                name="email"
-                                label="Email Address"
-                                type="email"
-                                value={email}
-                                onChange={onChange}
-                                fullWidth={true}
-                                variant="outlined"
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid
-                        container
-                        justifyContent="space-between"
-                        style={{ marginBottom: '2rem' }}
-                    >
-                        <Grid item xs={12} md={5}>
-                            <TextField
-                                id="pan-input"
-                                name="pan"
-                                label="Pan Number"
-                                type="string"
-                                value={pan}
-                                onChange={onChange}
-                                fullWidth={true}
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={12} md={5}>
-                            <TextField
-                                id="adhaar-input"
-                                name="aadhaar"
-                                label="Aadhaar Number"
-                                type="number"
-                                value={aadhaar}
-                                onChange={onChange}
-                                fullWidth={true}
-                                variant="outlined"
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid
-                        container
-                        justifyContent="space-between"
-                        style={{ marginBottom: '2rem' }}
-                    >
-                        <Grid item xs={12} md={5}>
-                            <TextField
-                                id="address-input"
-                                name="address"
-                                label="Address"
-                                type="text"
-                                value={address}
-                                onChange={onChange}
-                                fullWidth={true}
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={12} md={5}>
-                            <TextField
-                                id="amount"
-                                name="amount"
-                                label="Amount"
-                                type="text"
-                                value={amount}
-                                onChange={onChange}
-                                fullWidth={true}
-                                variant="outlined"
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid
-                        container
-                        justifyContent="space-between"
-                        style={{ marginBottom: '2rem' }}
-                    >
-                        <Grid item xs={12} md={5}>
-                            Photo
-                            <Button
-                                style={{
-                                    background: 'rgba(149, 213, 84)',
-                                    color: 'black',
-                                    marginLeft: '1rem'
-                                }}
-                                variant="contained"
-                                component="label"
-                                color="primary"
-                            >
-                                Upload
-                                <input type="file" hidden />
-                            </Button>
-                        </Grid>
-
-                        <Grid item xs={12} md={5}>
-                            Signature
-                            <Button
-                                style={{
-                                    background: 'rgba(149, 213, 84)',
-                                    color: 'black',
-                                    marginLeft: '1rem'
-                                }}
-                                variant="contained"
-                                component="label"
-                                color="primary"
-                            >
-                                Upload
-                                <input type="file" hidden />
-                            </Button>
-                        </Grid>
-                    </Grid>
-                    <Grid container justifyContent="center">
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                            style={{
-                                background: 'rgba(149, 213, 84)',
-                                color: 'black',
-                                width: '100%'
-                            }}
+                        {/* <Grid
+                            container
+                            justifyContent="space-between"
+                            style={{ marginBottom: '2rem' }}
                         >
-                            <h3>SUBMIT</h3>
-                        </Button>
-                        <div>{clientrds}</div>
+                            <Grid item xs={12} md={3}>
+                                <TextField
+                                    id="name-input"
+                                    name="name"
+                                    label="Name"
+                                    type="text"
+                                    value={name}
+                                    onChange={onChange}
+                                    fullWidth={true}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={3}>
+                                <TextField
+                                    id="contact-input"
+                                    name="contact"
+                                    label="Phone Number"
+                                    type="number"
+                                    value={contact}
+                                    onChange={onChange}
+                                    fullWidth={true}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={3}>
+                                <TextField
+                                    id="email-input"
+                                    name="email"
+                                    label="Email Address"
+                                    type="email"
+                                    value={email}
+                                    onChange={onChange}
+                                    fullWidth={true}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid
+                            container
+                            justifyContent="space-between"
+                            style={{ marginBottom: '2rem' }}
+                        >
+                            <Grid item xs={12} md={5}>
+                                <TextField
+                                    id="pan-input"
+                                    name="pan"
+                                    label="Pan Number"
+                                    type="string"
+                                    value={pan}
+                                    onChange={onChange}
+                                    fullWidth={true}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={5}>
+                                <TextField
+                                    id="adhaar-input"
+                                    name="aadhaar"
+                                    label="Aadhaar Number"
+                                    type="number"
+                                    value={aadhaar}
+                                    onChange={onChange}
+                                    fullWidth={true}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid
+                            container
+                            justifyContent="space-between"
+                            style={{ marginBottom: '2rem' }}
+                        >
+                            <Grid item xs={12} md={5}>
+                                <TextField
+                                    id="address-input"
+                                    name="address"
+                                    label="Address"
+                                    type="text"
+                                    value={address}
+                                    onChange={onChange}
+                                    fullWidth={true}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={5}>
+                                <TextField
+                                    id="amount"
+                                    name="amount"
+                                    label="Amount"
+                                    type="text"
+                                    value={amount}
+                                    onChange={onChange}
+                                    fullWidth={true}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid
+                            container
+                            justifyContent="space-between"
+                            style={{ marginBottom: '2rem' }}
+                        >
+                            <Grid item xs={12} md={5}>
+                                Photo
+                                <Button
+                                    style={{
+                                        background: 'rgba(149, 213, 84)',
+                                        color: 'black',
+                                        marginLeft: '1rem'
+                                    }}
+                                    variant="contained"
+                                    component="label"
+                                    color="primary"
+                                >
+                                    Upload
+                                    <input type="file" hidden />
+                                </Button>
+                            </Grid>
+
+                            <Grid item xs={12} md={5}>
+                                Signature
+                                <Button
+                                    style={{
+                                        background: 'rgba(149, 213, 84)',
+                                        color: 'black',
+                                        marginLeft: '1rem'
+                                    }}
+                                    variant="contained"
+                                    component="label"
+                                    color="primary"
+                                >
+                                    Upload
+                                    <input type="file" hidden />
+                                </Button>
+                            </Grid>
+                        </Grid> */}
+                        <Grid container justifyContent="center">
+                            <ActionButton
+                                type="submit"
+                                style={{
+                                    background: 'rgba(149, 213, 84)'
+                                }}
+                            >
+                                Submit
+                            </ActionButton>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </div>
-        </form>
+                </div>
+            </form>
+        </>
     );
 };
 export default ClientForm;

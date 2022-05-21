@@ -42,8 +42,7 @@ const Navbar = ({ icon }) => {
 
     const { isAuthenticated, logout, user, loadUser } = authContext;
     const [anchorElNav, setAnchorElNav] = useState(null);
-
-    let history = useNavigate();
+    console.log('isAuthenitcated:', isAuthenticated);
     let navigate = useNavigate();
     const onLogout = () => {
         logout();
@@ -200,7 +199,7 @@ const Navbar = ({ icon }) => {
                                 </Menu>
                             </Box>
                             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                {isAuthenticated ? authLinks : guestLinks}{' '}
+                                {isAuthenticated ? authLinks : guestLinks}
                             </Box>
                         </Toolbar>
                     </Container>
