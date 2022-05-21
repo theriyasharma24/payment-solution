@@ -99,8 +99,8 @@ const PaymentSummary = () => {
 
     return (
         <Container>
-            <div>
-                Welcome <h1>{user && user.name}</h1>
+            <div style={{ marginBottom: 2 }}>
+                Welcome! <b>{user && user.name}</b>
             </div>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>

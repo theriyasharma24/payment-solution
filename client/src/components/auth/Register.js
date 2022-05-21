@@ -52,7 +52,7 @@ const Register = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/paymentsummary');
+            navigate('/clientform');
         }
 
         if (error === 'User already exists') {
