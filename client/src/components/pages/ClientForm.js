@@ -101,7 +101,7 @@ const ClientForm = () => {
                         textalign="center"
                         direction="column"
                     >
-                        {/* <Grid
+                        <Grid
                             container
                             justifyContent="space-between"
                             style={{ marginBottom: '2rem' }}
@@ -210,7 +210,7 @@ const ClientForm = () => {
                         >
                             <Grid item xs={12} md={5}>
                                 Photo
-                                <Button
+                                <ActionButton
                                     style={{
                                         background: 'rgba(149, 213, 84)',
                                         color: 'black',
@@ -222,12 +222,12 @@ const ClientForm = () => {
                                 >
                                     Upload
                                     <input type="file" hidden />
-                                </Button>
+                                </ActionButton>
                             </Grid>
 
                             <Grid item xs={12} md={5}>
                                 Signature
-                                <Button
+                                <ActionButton
                                     style={{
                                         background: 'rgba(149, 213, 84)',
                                         color: 'black',
@@ -239,9 +239,9 @@ const ClientForm = () => {
                                 >
                                     Upload
                                     <input type="file" hidden />
-                                </Button>
+                                </ActionButton>
                             </Grid>
-                        </Grid> */}
+                        </Grid>
                         <Grid container justifyContent="center">
                             <ActionButton
                                 type="submit"

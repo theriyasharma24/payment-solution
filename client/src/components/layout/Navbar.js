@@ -42,7 +42,6 @@ const Navbar = ({ icon }) => {
 
     const { isAuthenticated, logout, user, loadUser } = authContext;
     const [anchorElNav, setAnchorElNav] = useState(null);
-    console.log('isAuthenitcated:', isAuthenticated);
     let navigate = useNavigate();
     const onLogout = () => {
         logout();

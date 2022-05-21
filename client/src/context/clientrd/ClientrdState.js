@@ -1,7 +1,9 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import axios from 'axios';
 import ClientrdContext from './clientrdContext';
 import clientrdReducer from './clientrdReducer';
+import AuthContext from '../auth/authContext';
+
 import {
     GET_CLIENTRDS,
     ADD_CLIENTRD,
@@ -24,12 +26,13 @@ const ClientrdState = (props) => {
     };
 
     const [state, dispatch] = useReducer(clientrdReducer, initialState);
+    const authContext = useContext(AuthContext);
+    const { user } = authContext;
 
     const getClientrds = async () => {
         try {
-
             const res = await axios.get('/api/clientrd');
-            console.log("getclientrds",res.data)
+            console.log('getclientrds', res.data);
 
             dispatch({
                 type: GET_CLIENTRDS,
@@ -47,7 +50,7 @@ const ClientrdState = (props) => {
 
     // Add Contact
     const addClientrd = async (clientrd) => {
-        console.log('inside clientrd',clientrd);
+        console.log('inside clientrd api', clientrd);
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -55,19 +58,21 @@ const ClientrdState = (props) => {
         };
 
         try {
-            const res = await axios.post('/api/clientrd', clientrd, config);
+            const res = await axios.post(
+                `/api/clientrd/${user?._id}`,
+                clientrd,
+                config
+            );
             console.log('response', res.data);
-            // dispatch({
-            //     type: ADD_CLIENTRD,
-            //     payload: res.data
-            // });
-            return res.data;
+            dispatch({
+                type: ADD_CLIENTRD,
+                payload: res.data
+            });
         } catch (err) {
-            // dispatch({
-            //     // type: CLIENTRD_ERROR
-            //     // payload: err?.response.msg
-            // });
-            return err;
+            dispatch({
+                type: CLIENTRD_ERROR,
+                payload: err?.response.msg
+            });
         }
     };
 

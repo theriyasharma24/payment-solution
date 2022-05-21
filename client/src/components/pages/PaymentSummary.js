@@ -74,14 +74,11 @@ const PaymentSummary = () => {
         getClientrds();
 
         clientrds?.map((amt) => {
-            console.log('amount', amt.amount);
             value = value + amt.amount;
             setNetincome(value);
         });
-        console.log('value=', value);
         setNetincome(value);
-    }, []);
-    console.log('getClientrds', clientrds);
+    }, [clientrds]);
 
     return (
         <>
@@ -101,7 +98,7 @@ const PaymentSummary = () => {
                             <p>
                                 <b>₹ {netincome}/-</b>
                             </p>
-                            <p>2 clients</p>
+                            <p>{noc} clients</p>
                         </NetIncome>
                     </Grid>
 
@@ -148,7 +145,9 @@ const PaymentSummary = () => {
                 <Table sx={{ minWidth: 200 }} size="small">
                     <TableHead>
                         <TableRow>
-                            <PaymentTableCell>Date of Payment</PaymentTableCell>
+                            <PaymentTableCell>
+                                Date of Creation
+                            </PaymentTableCell>
                             <PaymentTableCell align="left">
                                 Client Name
                             </PaymentTableCell>
@@ -171,7 +170,7 @@ const PaymentSummary = () => {
                                 }}
                             >
                                 <PaymentBodyTableCell scope="row">
-                                    {/* {row.createdAt} */}
+                                    {row.createdAt}
                                 </PaymentBodyTableCell>
                                 <PaymentBodyTableCell align="left">
                                     {row.name}
@@ -180,7 +179,6 @@ const PaymentSummary = () => {
                                     ₹{row.amount}/-
                                 </PaymentBodyTableCell>
                                 <PaymentBodyTableCell align="right">
-                                    {' '}
                                     {row.paymentstatus}
                                 </PaymentBodyTableCell>
                             </TableRow>
