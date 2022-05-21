@@ -5,6 +5,10 @@ const ClientrdSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users'
         },
+        name: {
+            type: String,
+            required: true
+        },
         contact: {
             type: Number
         },
@@ -27,14 +31,13 @@ const ClientrdSchema = mongoose.Schema(
         signature: {
             type: String
         },
-    amount: {
-        type: Number
+        amount: {
+            type: Number
+        },
+        paymentstatus: {
+            type: String
+        }
     },
-    paymentstatus: {
-        type: String
-    },
-    
-},
     { timestamps: true }
 );
 module.exports = mongoose.model('Clientrd', ClientrdSchema);

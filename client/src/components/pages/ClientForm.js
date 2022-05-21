@@ -12,6 +12,8 @@ import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
 import { ConstructionOutlined } from '@mui/icons-material';
 import ClientrdContext from '../../context/clientrd/clientrdContext';
+import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../context/auth/authContext';
 
 const defaultValues = {
     name: '',
@@ -22,6 +24,8 @@ const defaultValues = {
 };
 
 const ClientForm = () => {
+    const authContext = useContext(AuthContext);
+    const { user } = authContext;
     const [clientrd, setClientrd] = useState({
         name: '',
         aadhaar: '',
@@ -29,9 +33,21 @@ const ClientForm = () => {
         contact: '',
         email: '',
         address: '',
+        amount: '',
         paymentstatus: 'unpaid'
     });
-    const { name, aadhaar, pan, contact, email, address, paymentstatus } = clientrd;
+
+    let navigate = useNavigate();
+    const {
+        name,
+        aadhaar,
+        pan,
+        contact,
+        email,
+        address,
+        amount,
+        paymentstatus
+    } = clientrd;
 
     const clientrdContext = useContext(ClientrdContext);
     const { addClientrd, getClientrds, clientrds } = clientrdContext;
@@ -63,20 +79,24 @@ const ClientForm = () => {
 
     const onChange = (m) => {
         setClientrd({ ...clientrd, [m.target.name]: m.target.value });
-        console.log('address', clientrd);
+        console.log('clientrd', clientrd);
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('inside clientrd on submit');
+        console.log('before inside clientrd on submit', clientrd);
         addClientrd(clientrd);
         getClientrds();
         console.log('inside clientrd on submit', clientrds);
+        navigate('/paymentsummary');
     };
     return (
         <form onSubmit={onSubmit}>
             <div style={{ textAlign: 'center' }}>
                 <h3> CLIENT FORM</h3>
+                <div>
+                    Welcome <h1>{user && user.name}</h1>
+                </div>
                 <br></br>
                 <Grid
                     container
@@ -139,7 +159,7 @@ const ClientForm = () => {
                             style={{
                                 position: 'relative',
                                 bottom: '20px',
-                                marginLeft: '110px'
+                                marginLeft: '165px'
                             }}
                             id="contact-input"
                             name="contact"
@@ -182,6 +202,22 @@ const ClientForm = () => {
                             onChange={onChange}
                         />
                     </Grid>
+                    <Grid item>
+                        Amount
+                        <TextField
+                            style={{
+                                position: 'relative',
+                                bottom: '20px',
+                                marginLeft: '165px'
+                            }}
+                            id="amount"
+                            name="amount"
+                            label="Amount"
+                            type="text"
+                            value={amount}
+                            onChange={onChange}
+                        />
+                    </Grid>
                     <Grid item style={{ marginLeft: '-8vw' }}>
                         Photo
                         <Button
@@ -218,18 +254,18 @@ const ClientForm = () => {
                         </Button>
                     </Grid>
                     <br></br>
-                    <Grid item style={{ marginLeft: '-8vw' }}>
+                    <Grid item>
                         <Button
                             variant="contained"
                             color="primary"
                             type="submit"
                             style={{
-                                width: '30px',
+                                width: '430px',
                                 background: 'rgba(149, 213, 84)',
                                 color: 'black'
                             }}
                         >
-                            Submit
+                            <b>SUBMIT</b>
                         </Button>
                         <div>{clientrds}</div>
                     </Grid>
