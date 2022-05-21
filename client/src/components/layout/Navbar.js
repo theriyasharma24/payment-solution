@@ -60,10 +60,10 @@ const Navbar = ({ icon }) => {
         <>
             <Link to="/">
                 <IconButton size="large" aria-label="account of current user">
+                    <AccountCircle />
                     <Typography variant="body2" align="center">
                         {user && user.name}
                     </Typography>
-                    <AccountCircle />
                 </IconButton>
             </Link>
             <IconButton
@@ -135,7 +135,7 @@ const Navbar = ({ icon }) => {
                                     <Link to="/">
                                         <img
                                             src={icon}
-                                            alt="The Perception Shop"
+                                            alt="payment-solution"
                                             className="logo"
                                         ></img>
                                     </Link>

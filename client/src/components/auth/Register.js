@@ -41,9 +41,9 @@ const Register = () => {
     const [checked, setChecked] = useState(false);
     const [otp] = useState();
 
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-    };
+    // const handleChange = (event) => {
+    //     setChecked(event.target.checked);
+    // };
     const alertContext = useContext(AlertContext);
     const authContext = useContext(AuthContext);
 
