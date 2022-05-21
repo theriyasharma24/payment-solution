@@ -11,12 +11,10 @@ import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 
 //importing image
-import Agent from '../../assets/agent.jpg';
-import { LOGOUT } from '../../context/types';
+import Agent from '../../assets/agent.png';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
 import './Login.css';
-// import { Link } from 'react-router-dom';
 import SubmitButton from '../containers/SubmitButton';
 import { useNavigate } from 'react-router-dom';
 const Container = styled.div`
@@ -118,7 +116,7 @@ const Login = (props) => {
                     </Grid>
                     <form onSubmit={onSubmit}>
                         <Grid item xs={12} md={12}>
-                            <Grid container>
+                            <Grid container alignItems="center">
                                 <Grid item xs={12} md={6}>
                                     <img
                                         src={Agent}
@@ -136,7 +134,6 @@ const Login = (props) => {
                                                 '& > :not(style)': { m: 1 }
                                             }}
                                             noValidate
-                                            // autoComplete="off"
                                         >
                                             <TextField
                                                 id="email"
@@ -149,7 +146,7 @@ const Login = (props) => {
                                                 variant="outlined"
                                                 fullWidth={true}
                                             />
-                                            <FormControlLabel
+                                            {/* <FormControlLabel
                                                 label="Check to login using OTP insted of password"
                                                 control={
                                                     <Checkbox
@@ -157,7 +154,7 @@ const Login = (props) => {
                                                         onChange={handleChange}
                                                     />
                                                 }
-                                            />
+                                            /> */}
                                             {/* Using tertiary operator */}
                                             {checked ? (
                                                 <>
