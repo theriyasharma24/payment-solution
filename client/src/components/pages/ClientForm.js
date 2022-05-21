@@ -91,7 +91,7 @@ const ClientForm = () => {
                             style={{
                                 position: 'relative',
                                 bottom: '20px',
-                                marginLeft: '180px'
+                                marginLeft: '100px'
                             }}
                             id="name-input"
                             name="name"
@@ -102,7 +102,7 @@ const ClientForm = () => {
                         />
                     </Grid>
                     <Grid item>
-                        Adhaar Number
+                        Aadhaar Number
                         <TextField
                             style={{
                                 position: 'relative',
@@ -123,7 +123,7 @@ const ClientForm = () => {
                             style={{
                                 position: 'relative',
                                 bottom: '20px',
-                                marginLeft: '130px'
+                                marginLeft: '100px'
                             }}
                             id="pan-input"
                             name="pan"
@@ -139,7 +139,7 @@ const ClientForm = () => {
                             style={{
                                 position: 'relative',
                                 bottom: '20px',
-                                marginLeft: '110px'
+                                marginLeft: '100px'
                             }}
                             id="contact-input"
                             name="contact"
@@ -155,7 +155,7 @@ const ClientForm = () => {
                             style={{
                                 position: 'relative',
                                 bottom: '20px',
-                                marginLeft: '165px'
+                                marginLeft: '100px'
                             }}
                             text="hi"
                             id="email-input"
@@ -172,7 +172,7 @@ const ClientForm = () => {
                             style={{
                                 position: 'relative',
                                 bottom: '20px',
-                                marginLeft: '165px'
+                                marginLeft: '100px'
                             }}
                             id="address-input"
                             name="address"

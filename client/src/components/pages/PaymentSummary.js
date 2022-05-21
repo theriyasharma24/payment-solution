@@ -13,6 +13,10 @@ import colors from "../../essentials/colors";
 import styled from "styled-components";
 import AuthContext from "../../context/auth/authContext";
 import ClientrdContext from "../../context/clientrd/clientrdContext"
+import Button from '@material-ui/core/Button';
+import { useNavigate } from 'react-router-dom';
+
+
 const Container = styled.div`
   padding-left: 2rem;
 `;
@@ -61,6 +65,10 @@ const AmountPending = styled(Paper)`
 `;
 
 const PaymentSummary = () => {
+  let navigate = useNavigate();
+  const client = () => {
+    navigate("/clientform")
+  }
   const authContext = useContext(AuthContext);
   const { user } = authContext;
   const clientrdContext = useContext(ClientrdContext);
@@ -164,6 +172,19 @@ const PaymentSummary = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                            style={{
+                                width: '30px',
+                                background: 'rgba(149, 213, 84)',
+                                color: 'black'
+                            }}
+                            onClick={client}
+                        >
+                            Client Form
+                        </Button>
     </Container>
   );
 };
