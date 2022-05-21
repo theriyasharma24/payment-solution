@@ -13,8 +13,10 @@ import colors from '../../essentials/colors';
 import styled from 'styled-components';
 import AuthContext from '../../context/auth/authContext';
 import ClientrdContext from '../../context/clientrd/clientrdContext';
-import { useNavigate } from 'react-router-dom';
 
+const TableSummary = styled(TableContainer)`
+    background: ${colors.lightblue};
+`;
 const PaymentTableCell = styled(TableCell)`
     && {
         font-weight: 900;
@@ -33,8 +35,8 @@ const PaymentBodyTableCell = styled(TableCell)`
 const NetIncome = styled(Paper)`
     && {
         border: 4px solid ${colors.purple};
-        // background: rgba(182, 88, 255, 0.4);
-        color: ${colors.purple};
+        background-color: ${colors.purple};
+        color: white;
         border-radius: 10px;
         box-shadow: 4px 5px 5px ${colors.grey};
     }
@@ -42,8 +44,8 @@ const NetIncome = styled(Paper)`
 const AmountPaid = styled(Paper)`
     && {
         border: 4px solid ${colors.primary};
-        color: ${colors.primary};
-        // background: rgba(0, 128, 0, 0.3);
+        color: white;
+        background-color: ${colors.primary};
         border-radius: 10px;
         box-shadow: 4px 5px 5px ${colors.grey};
     }
@@ -51,16 +53,24 @@ const AmountPaid = styled(Paper)`
 
 const AmountPending = styled(Paper)`
     && {
-        border: 4px solid ${colors.darkred};
-        color: ${colors.darkred};
+        border: 4px solid ${colors.orange};
+        color: ${colors.orange};
+        border-radius: 10px;
+        // box-shadow: 4px 5px 5px ${colors.grey};
+    }
+`;
+const TotalClients = styled(Paper)`
+    && {
+        background: rgba(182, 88, 255, 0.4);
+        background-color: ${colors.lightblue};
+        // border: 4px solid ${colors.lightblue};
+        color: white;
         border-radius: 10px;
         box-shadow: 4px 5px 5px ${colors.grey};
     }
 `;
 
 const PaymentSummary = () => {
-    let navigate = useNavigate();
-
     const authContext = useContext(AuthContext);
     const { user } = authContext;
     const clientrdContext = useContext(ClientrdContext);
@@ -92,48 +102,48 @@ const PaymentSummary = () => {
                     </Grid>
                     <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
                         <NetIncome elevation={3} style={{ padding: 15 }}>
-                            <h3>
-                                <b>Net Income</b>
-                            </h3>
                             <p>
-                                <b>₹ {netincome}/-</b>
+                                <b>Net Income</b>
                             </p>
+                            <h3>
+                                <b>₹ {netincome}/-</b>
+                            </h3>
                             <p>{noc} clients</p>
                         </NetIncome>
                     </Grid>
 
                     <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
                         <AmountPaid elevation={3} style={{ padding: 15 }}>
-                            <h3>
-                                <b>Amount Paid</b>
-                            </h3>
                             <p>
-                                <b>₹ 10000/-</b>
+                                <b>Payment Complete</b>
                             </p>
+                            <h3>
+                                <b>₹ 10000/-</b>
+                            </h3>
                             <p>2 clients</p>
                         </AmountPaid>
                     </Grid>
                     <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
                         <AmountPending elevation={2} style={{ padding: 15 }}>
-                            <h3>
-                                <b>Amount Pending</b>
-                            </h3>
                             <p>
-                                <b>₹ 10000/-</b>
+                                <b>Amount Due</b>
                             </p>
+                            <h3>
+                                <b>₹ 10000/-</b>
+                            </h3>
                             <p>2 clients</p>
                         </AmountPending>
                     </Grid>
 
                     <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
-                        <AmountPending elevation={2} style={{ padding: 15 }}>
-                            <h3>
-                                <b>No. of Clients</b>
-                            </h3>
+                        <TotalClients elevation={2} style={{ padding: 15 }}>
                             <p>
-                                <b>{noc}</b>
+                                <b>Total No. of Clients on the Platform</b>
                             </p>
-                        </AmountPending>
+                            <h2>
+                                <b>{noc}</b>
+                            </h2>
+                        </TotalClients>
                     </Grid>
                 </Grid>
             </Box>
@@ -141,7 +151,7 @@ const PaymentSummary = () => {
             <br></br>
             <Typography variant="h4">Earning History</Typography>
             <br></br>
-            <TableContainer component={Paper}>
+            <TableSummary component={Paper}>
                 <Table sx={{ minWidth: 200 }} size="small">
                     <TableHead>
                         <TableRow>
@@ -170,22 +180,28 @@ const PaymentSummary = () => {
                                 }}
                             >
                                 <PaymentBodyTableCell scope="row">
-                                    {row.createdAt}
+                                    <p style={{ color: 'white' }}>
+                                        {row.createdAt}
+                                    </p>
                                 </PaymentBodyTableCell>
                                 <PaymentBodyTableCell align="left">
-                                    {row.name}
+                                    <p style={{ color: 'white' }}>{row.name}</p>
                                 </PaymentBodyTableCell>
                                 <PaymentBodyTableCell align="left">
-                                    ₹{row.amount}/-
+                                    <p style={{ color: 'white' }}>
+                                        ₹{row.amount}/-
+                                    </p>
                                 </PaymentBodyTableCell>
                                 <PaymentBodyTableCell align="right">
-                                    {row.paymentstatus}
+                                    <p style={{ color: 'white' }}>
+                                        {row.paymentstatus}
+                                    </p>
                                 </PaymentBodyTableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
-            </TableContainer>
+            </TableSummary>
             {/* <Button
                 variant="contained"
                 color="primary"

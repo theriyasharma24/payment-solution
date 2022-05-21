@@ -32,7 +32,6 @@ const ClientrdState = (props) => {
     const getClientrds = async () => {
         try {
             const res = await axios.get('/api/clientrd');
-            console.log('getclientrds', res.data);
 
             dispatch({
                 type: GET_CLIENTRDS,
@@ -50,7 +49,6 @@ const ClientrdState = (props) => {
 
     // Add Contact
     const addClientrd = async (clientrd) => {
-        console.log('inside clientrd api', clientrd);
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -63,7 +61,6 @@ const ClientrdState = (props) => {
                 clientrd,
                 config
             );
-            console.log('response', res.data);
             dispatch({
                 type: ADD_CLIENTRD,
                 payload: res.data
