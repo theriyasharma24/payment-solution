@@ -21,10 +21,10 @@ import styled from 'styled-components';
 import breakpoints from './essentials/screensize';
 
 const Container = styled.div`
-    padding: 8vw 52px 18px 0px;
+    padding: 8vw 5% 1.5% 5%;
     justify-content: center;
     @media (max-width: ${breakpoints.sm}px) {
-        padding: 24vw 52px 18px 52px;
+        padding: 24vw 2% 1.5% 2%;
     }
 `;
 
@@ -39,7 +39,7 @@ const App = () => {
                             <Container>
                                 <Alerts />
                                 <Routes>
-                                    <Route exact path="/" element={<Home />} />{' '}
+                                    <Route exact path="/" element={<Home />} />
                                     <Route
                                         exact
                                         path="/register"
