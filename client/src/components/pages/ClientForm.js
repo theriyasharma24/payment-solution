@@ -110,9 +110,9 @@ const ClientForm = () => {
             {message ? <Message msg={message} /> : null}
             <form onSubmit={onSubmit} style={{ textAlign: 'center' }}>
                 <div>
-                    <h3> CLIENT FORM</h3>
                     <div style={{ marginBottom: '2rem' }}>
-                        Welcome <h1>{user && user.name}</h1>
+                        <h1>{user && user.name}</h1> Welcome to
+                        <h3> CLIENT FORM</h3>
                     </div>
 
                     <Grid
