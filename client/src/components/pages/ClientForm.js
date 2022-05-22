@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import Message from '../Message';
 import Progress from '../Progress';
 import CardMedia from '@mui/material/CardMedia';
+import axios from 'axios';
 const ActionButton = styled(SubmitButton)`
     && {
         background: #0ec0e2;
@@ -63,7 +64,7 @@ const ClientForm = () => {
         console.log('file', file);
         setClientrd({
             ...clientrd,
-            signature: e.target.files[0]
+            signature: file
         });
     };
 
