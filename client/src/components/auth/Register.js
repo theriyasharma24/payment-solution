@@ -15,19 +15,10 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useNavigate } from 'react-router-dom';
 //importing image
-import Agent from '../../assets/agent.jpg';
+import Agent from '../../assets/agent.png';
 import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
-
-//import FormControlLabel from "@material-ui/core/FormControlLabel";
-
-const Container = styled.div`
-    padding-left: 4rem;
-    @media (max-width: ${breakpoints.sm}px) {
-        padding-left: 1.5rem;
-    }
-`;
 
 const ActionButton = styled(SubmitButton)`
     && {
@@ -43,9 +34,9 @@ const Register = () => {
     const [checked, setChecked] = useState(false);
     const [otp] = useState();
 
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-    };
+    // const handleChange = (event) => {
+    //     setChecked(event.target.checked);
+    // };
     const alertContext = useContext(AlertContext);
     const authContext = useContext(AuthContext);
 
@@ -54,7 +45,7 @@ const Register = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/paymentsummary');
+            navigate('/clientform');
         }
 
         if (error === 'User already exists') {
@@ -95,7 +86,7 @@ const Register = () => {
         <div className="nototp" style={{ display: 'none' }}></div>;
     };
     return (
-        <Container>
+        <>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={12}>
@@ -103,7 +94,7 @@ const Register = () => {
                     </Grid>
                     <form onSubmit={onSubmit}>
                         <Grid item xs={12} md={12}>
-                            <Grid container>
+                            <Grid container alignItems="center">
                                 <Grid item xs={12} md={6}>
                                     <img
                                         src={Agent}
@@ -111,7 +102,7 @@ const Register = () => {
                                         className="logo"
                                         height="440"
                                         width="100%"
-                                    ></img>{' '}
+                                    ></img>
                                 </Grid>
                                 <Grid item xs={12} md={6}>
                                     {/* <Grid container > */}
@@ -143,7 +134,7 @@ const Register = () => {
                                                 variant="outlined"
                                                 fullWidth={true}
                                             />
-                                            <FormControlLabel
+                                            {/* <FormControlLabel
                                                 label="Check to login using OTP insted of password"
                                                 control={
                                                     <Checkbox
@@ -151,7 +142,7 @@ const Register = () => {
                                                         onChange={handleChange}
                                                     />
                                                 }
-                                            />
+                                            /> */}
                                             {/* Using tertiary operator */}
                                             {checked ? (
                                                 <>
@@ -224,79 +215,13 @@ const Register = () => {
                                             </Stack>
                                         </Box>
                                     </Grid>
-                                    {/* </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
                     </form>
                 </Grid>
             </Box>
-        </Container>
-
-        // {window.dataLayer?.push({ event: "register" })}
-        // <LoginContainer>
-        //   <div className="text-primary h1">
-        //     REGISTER
-        //     <span className="dark h1"> ACCOUNT</span>{" "}
-        //   </div>
-        //   <form onSubmit={onSubmit}>
-        //     <div className="form-group">
-        //       <label htmlFor="name">Name</label>
-        //       <input
-        //         id="name"
-        //         type="textarea"
-        //         name="name"
-        //         value={name}
-        //         onChange={onChange}
-        //         required
-        //       />
-        //     </div>
-        //     <div className="form-group">
-        //       <label htmlFor="email">Email Address</label>
-        //       <input
-        //         id="email"
-        //         type="email"
-        //         name="email"
-        //         value={email}
-        //         onChange={onChange}
-        //         required
-        //       />
-        //     </div>
-        //     <div className="form-group">
-        //       <label htmlFor="password">Password</label>
-        //       <input
-        //         id="password"
-        //         type="password"
-        //         name="password"
-        //         value={password}
-        //         onChange={onChange}
-        //         required
-        //         minLength="6"
-        //       />
-        //     </div>
-        //     <div className="form-group">
-        //       <label htmlFor="password2">Confirm Password</label>
-        //       <input
-        //         id="password2"
-        //         type="password"
-        //         name="password2"
-        //         value={password2}
-        //         onChange={onChange}
-        //         required
-        //         minLength="6"
-        //       />
-        //     </div>
-        //     <div style={{ textAlign: "center" }}>
-        //       <ActionButton type="submit">Register</ActionButton>
-        //     </div>
-        //   </form>
-        //   <div className="dark h2 " style={{ textAlign: "center" }}>
-        //     Already have an account?
-        //     <Link to="/login">
-        //       <span className="text-primary "> LOGIN</span>
-        //     </Link>
-        //   </div>
-        // </LoginContainer>
+        </>
     );
 };
 
