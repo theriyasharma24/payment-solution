@@ -70,7 +70,7 @@ const ClientForm = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('file', file);
-        console.log('formData', file);
+        // console.log('formData', file);
         let res;
         try {
             {
@@ -87,7 +87,7 @@ const ClientForm = () => {
             setTimeout(() => setUploadPercentage(0), 10000);
             console.log('data:', res.data);
             const { secure_url } = res.data;
-            setClientrd({ signature: secure_url });
+            setClientrd({ ...clientrd, signature: secure_url });
         } catch (err) {
             console.log('Error', err);
         }
@@ -95,7 +95,6 @@ const ClientForm = () => {
 
     const onChange = (m) => {
         setClientrd({ ...clientrd, [m.target.name]: m.target.value });
-        console.log('clientrd', clientrd);
     };
 
     const onSubmit = (e) => {
@@ -108,6 +107,7 @@ const ClientForm = () => {
     };
     return (
         <>
+            {message ? <Message msg={message} /> : null}
             <form onSubmit={onSubmit} style={{ textAlign: 'center' }}>
                 <div>
                     <h3> CLIENT FORM</h3>
@@ -275,7 +275,6 @@ const ClientForm = () => {
                                     onClick={onUploadImage}
                                 >
                                     Upload
-                                    <input type="file" hidden />
                                 </ActionButton>
                             </Grid>
                         </Grid>

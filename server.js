@@ -34,6 +34,7 @@ app.use('/api/clients', require('./routes/clients'));
 app.use('/api/clientrd', require('./routes/clientrd'));
 app.use('/api/event', require('./routes/events'));
 
+//cloudinary upload api
 app.post('/upload', auth, upload.single('image'), async (req, res) => {
     console.log('inside upload api', req.files);
     let tmpPath = req.files?.file;
@@ -41,7 +42,7 @@ app.post('/upload', auth, upload.single('image'), async (req, res) => {
         tmpPath?.tempFilePath,
         'q2fmc4ar',
         {
-            folder: 'profile_image',
+            folder: 'client_media',
             public_id: tmpPath?.name,
             resource_type: 'auto'
         },
