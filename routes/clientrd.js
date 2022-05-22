@@ -154,7 +154,7 @@ router.delete('/:id', auth, async (req, res) => {
 });
 
 router.post('/upload', auth, upload.single('image'), async (req, res) => {
-    console.log('inside upload');
+    console.log('inside upload api');
     let tmpPath = req.files?.file;
     cloudinary.uploader.unsigned_upload(
         tmpPath?.tempFilePath,
