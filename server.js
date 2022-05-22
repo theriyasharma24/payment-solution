@@ -4,16 +4,18 @@ const connectDB = require('./config/db');
 const path = require('path');
 const app = express();
 var cors = require('cors');
+const auth = require('./middleware/auth');
 var bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
-
+var multer = require('multer');
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET
+    cloud_name: 'riyasharma',
+    api_key: '285646332687546',
+    api_secret: 'UAse27C9NMMXX9x1bYUvbpGxhl4'
 });
-
 app.use(fileUpload({ useTempFiles: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -31,6 +33,24 @@ app.use('/api/loginclient', require('./routes/loginclient'));
 app.use('/api/clients', require('./routes/clients'));
 app.use('/api/clientrd', require('./routes/clientrd'));
 app.use('/api/event', require('./routes/events'));
+
+app.post('/upload', auth, upload.single('image'), async (req, res) => {
+    console.log('inside upload api', req.files);
+    let tmpPath = req.files?.file;
+    cloudinary.uploader.unsigned_upload(
+        tmpPath?.tempFilePath,
+        'q2fmc4ar',
+        {
+            folder: 'profile_image',
+            public_id: tmpPath?.name,
+            resource_type: 'auto'
+        },
+        (err, fileResponse) => {
+            if (err) console.log(err);
+            res.json(fileResponse);
+        }
+    );
+});
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

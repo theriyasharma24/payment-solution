@@ -59,9 +59,7 @@ const ClientForm = () => {
 
     const onImgChange = (e) => {
         e.preventDefault();
-        setFile({ file: e.target.files[0] });
-        console.log('file', e.target.files[0]);
-        console.log('file', file);
+        setFile(e.target.files[0]);
         setClientrd({
             ...clientrd,
             signature: file
@@ -72,29 +70,26 @@ const ClientForm = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('file', file);
-        console.log('message', formData);
+        console.log('formData', file);
         let res;
         try {
             {
                 file
-                    ? (res = await axios.post(
-                          '/api/clientrd/upload',
-                          formData,
-                          {
-                              headers: {
-                                  'Content-Type': 'multipart/form-data'
-                              }
+                    ? (res = await axios.post('/upload', formData, {
+                          headers: {
+                              'Content-Type': 'multipart/form-data'
                           }
-                      ))
-                    : console.log('No file selected');
+                      }))
+                    : alert('No file selected');
             }
 
             // Clear percentage
             setTimeout(() => setUploadPercentage(0), 10000);
+            console.log('data:', res.data);
             const { secure_url } = res.data;
             setClientrd({ signature: secure_url });
         } catch (err) {
-            console.log('There was a problem with the server');
+            console.log('Error', err);
         }
     };
 
@@ -221,7 +216,7 @@ const ClientForm = () => {
                                     id="amount"
                                     name="amount"
                                     label="Amount"
-                                    type="text"
+                                    type="number"
                                     value={amount}
                                     onChange={onChange}
                                     fullWidth={true}
@@ -247,7 +242,6 @@ const ClientForm = () => {
                                     color="primary"
                                 >
                                     Upload
-                                    <input type="file" hidden />
                                 </ActionButton>
                             </Grid>
                             <CardMedia
@@ -256,8 +250,8 @@ const ClientForm = () => {
                                 image={signature}
                                 alt="Profile Image"
                                 style={{ borderRadius: 12 }}
-                                justifyContent="center"
-                            />{' '}
+                                // justifyContent="center"
+                            />
                             <div className="form-group">
                                 <label htmlFor="signature">Signature</label>
                                 <input
