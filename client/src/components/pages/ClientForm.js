@@ -27,6 +27,8 @@ const ClientForm = () => {
     const [file, setFile] = useState('');
     const [message, setMessage] = useState('');
     const [uploadPercentage, setUploadPercentage] = useState(0);
+    const [uploadPercentageSign, setUploadPercentageSign] = useState(0);
+
     const [clientrd, setClientrd] = useState({
         name: '',
         aadhaar: '',
@@ -78,13 +80,23 @@ const ClientForm = () => {
                     ? (res = await axios.post('/upload', formData, {
                           headers: {
                               'Content-Type': 'multipart/form-data'
+                          },
+                          onUploadProgress: (progressEvent) => {
+                              setUploadPercentageSign(
+                                  parseInt(
+                                      Math.round(
+                                          (progressEvent.loaded * 100) /
+                                              progressEvent.total
+                                      )
+                                  )
+                              );
                           }
                       }))
                     : alert('No file selected');
             }
 
             // Clear percentage
-            setTimeout(() => setUploadPercentage(0), 10000);
+            setTimeout(() => setUploadPercentageSign(0), 10000);
             console.log('data:', res.data);
             const { secure_url } = res.data;
             setClientrd({ ...clientrd, signature: secure_url });
@@ -115,6 +127,16 @@ const ClientForm = () => {
                     ? (res = await axios.post('/upload', formData, {
                           headers: {
                               'Content-Type': 'multipart/form-data'
+                          },
+                          onUploadProgress: (progressEvent) => {
+                              setUploadPercentage(
+                                  parseInt(
+                                      Math.round(
+                                          (progressEvent.loaded * 100) /
+                                              progressEvent.total
+                                      )
+                                  )
+                              );
                           }
                       }))
                     : alert('No file selected');
@@ -264,90 +286,147 @@ const ClientForm = () => {
                         <Grid
                             container
                             justifyContent="space-between"
-                            style={{ marginBottom: '2rem' }}
+                            style={{
+                                marginBottom: '2rem'
+                            }}
                         >
-                            {/* <Grid item xs={12} md={5}>
-                                Photo
-                                <ActionButton
-                                    style={{
-                                        background: 'rgba(149, 213, 84)',
-                                        color: 'black',
-                                        marginLeft: '1rem'
-                                    }}
-                                    variant="contained"
-                                    component="label"
-                                    color="primary"
-                                >
-                                    Upload
-                                </ActionButton>
-                            </Grid> */}
-
-                            <CardMedia
-                                component="img"
-                                height="180vh"
-                                image={photo}
-                                alt="Profile Image"
-                                style={{ borderRadius: 12 }}
-                                // justifyContent="center"
-                            />
-                            <div className="form-group">
-                                <label htmlFor="photo">Photo</label>
-                                <input
-                                    type="file"
-                                    id="customFile"
-                                    onChange={onImgChangePhoto}
-                                    name="photo"
-                                />
-                                <Progress percentage={uploadPercentage} />
-                            </div>
                             <Grid item xs={12} md={5}>
-                                <ActionButton
+                                <Grid
+                                    container
                                     style={{
-                                        background: 'rgba(149, 213, 84)',
-                                        color: 'black',
-                                        marginLeft: '1rem'
+                                        // backgroundColor: 'pink',
+                                        alignItems: 'center'
                                     }}
-                                    variant="contained"
-                                    component="label"
-                                    color="primary"
-                                    onClick={onUploadImagePhoto}
                                 >
-                                    Upload
-                                </ActionButton>
+                                    <Grid
+                                        item
+                                        xs={12}
+                                        md={8}
+                                        style={{
+                                            // backgroundColor: 'orange',
+                                            paddingInline: '1rem'
+                                        }}
+                                    >
+                                        <CardMedia
+                                            component="img"
+                                            height="120vh"
+                                            image={photo}
+                                            style={{
+                                                borderRadius: 12,
+                                                resizeMode: 'contain'
+                                            }}
+                                        />
+                                        <div className="form-group">
+                                            <label
+                                                htmlFor="photo"
+                                                style={{ textAlign: 'left' }}
+                                            >
+                                                Photo
+                                            </label>
+                                            <input
+                                                type="file"
+                                                id="customFile"
+                                                onChange={onImgChangePhoto}
+                                                name="photo"
+                                            />
+                                        </div>
+                                        <Progress
+                                            percentage={uploadPercentage}
+                                        />
+                                    </Grid>
+                                    <Grid
+                                        item
+                                        xs={12}
+                                        md={4}
+                                        style={{
+                                            // backgroundColor: 'blue',
+                                            textAlign: 'right'
+                                        }}
+                                    >
+                                        <ActionButton
+                                            style={{
+                                                background:
+                                                    'rgba(149, 213, 84)',
+                                                color: 'black'
+                                            }}
+                                            variant="contained"
+                                            component="label"
+                                            color="primary"
+                                            onClick={onUploadImagePhoto}
+                                        >
+                                            Upload
+                                        </ActionButton>
+                                    </Grid>
+                                </Grid>
                             </Grid>
-
-                            <CardMedia
-                                component="img"
-                                height="180vh"
-                                image={signature}
-                                alt="Profile Image"
-                                style={{ borderRadius: 12 }}
-                                // justifyContent="center"
-                            />
-                            <div className="form-group">
-                                <label htmlFor="signature">Signature</label>
-                                <input
-                                    type="file"
-                                    id="customFile"
-                                    onChange={onImgChange}
-                                    name="signature"
-                                />
-                                <Progress percentage={uploadPercentage} />
-                            </div>
                             <Grid item xs={12} md={5}>
-                                <ActionButton
+                                <Grid
+                                    container
                                     style={{
-                                        background: 'rgba(149, 213, 84)',
-                                        color: 'black',
-                                        marginLeft: '1rem'
+                                        // backgroundColor: 'pink',
+                                        alignItems: 'center'
                                     }}
-                                    variant="contained"
-                                    component="label"
-                                    color="primary"
-                                    onClick={onUploadImage}
                                 >
-                                    Upload
-                                </ActionButton>
+                                    <Grid
+                                        item
+                                        xs={12}
+                                        md={8}
+                                        style={{
+                                            // backgroundColor: 'orange',
+                                            paddingInline: '1rem'
+                                        }}
+                                    >
+                                        <CardMedia
+                                            component="img"
+                                            height="120vh"
+                                            image={signature}
+                                            style={{
+                                                borderRadius: 12,
+                                                resizeMode: 'contain'
+                                            }}
+                                        />
+                                        <div className="form-group">
+                                            <label
+                                                htmlFor="photo"
+                                                style={{ textAlign: 'left' }}
+                                            >
+                                                Signature
+                                            </label>
+                                            <input
+                                                type="file"
+                                                id="customFile"
+                                                onChange={onImgChange}
+                                                name="singature"
+                                            />
+                                        </div>
+                                        <Progress
+                                            percentage={uploadPercentageSign}
+                                        />
+                                    </Grid>
+                                    <Grid
+                                        item
+                                        xs={12}
+                                        md={4}
+                                        style={{
+                                            // backgroundColor: 'blue',
+                                            textAlign: 'right'
+                                        }}
+                                    >
+                                        <ActionButton
+                                            style={{
+                                                background:
+                                                    'rgba(149, 213, 84)',
+                                                color: 'black'
+                                            }}
+                                            variant="contained"
+                                            component="label"
+                                            color="primary"
+                                            onClick={onUploadImage}
+                                        >
+                                            Upload
+                                        </ActionButton>
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </Grid>
                         <Grid container justifyContent="center">
