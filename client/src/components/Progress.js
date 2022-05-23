@@ -11,7 +11,8 @@ const Progress = ({ percentage }) => {
                     borderRadius: '5px',
                     backgroundColor: `${colors.neonGreen}`,
                     marginBlock: '1rem',
-                    padding: '0.5rem'
+                    padding: '0.3rem',
+                    fontSize: '8px'
                 }}
             >
                 {percentage}%
