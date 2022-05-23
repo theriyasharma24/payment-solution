@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-import React, { useContext, useEffect } from "react";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { Typography } from "@mui/material";
-import colors from "../../essentials/colors";
-import styled from "styled-components";
-import AuthContext from "../../context/auth/authContext";
-import ClientrdContext from "../../context/clientrd/clientrdContext"
-import Button from '@material-ui/core/Button';
-import { useNavigate } from 'react-router-dom';
-
-
-const Container = styled.div`
-  padding-left: 2rem;
-`;
-=======
 import React, { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -37,7 +13,6 @@ import colors from '../../essentials/colors';
 import styled from 'styled-components';
 import AuthContext from '../../context/auth/authContext';
 import ClientrdContext from '../../context/clientrd/clientrdContext';
->>>>>>> master
 
 const TableSummary = styled(TableContainer)`
     background: ${colors.lightblue};
@@ -96,25 +71,11 @@ const TotalClients = styled(Paper)`
 `;
 
 const PaymentSummary = () => {
-<<<<<<< HEAD
-  let navigate = useNavigate();
-  const client = () => {
-    navigate("/clientform")
-  }
-  const authContext = useContext(AuthContext);
-  const { user } = authContext;
-  const clientrdContext = useContext(ClientrdContext);
-  const { clientrds,getClientrds } = clientrdContext;
-  function createData(dop, name, amount, status) {
-    return { dop, name, amount, status };
-  }
-=======
     const authContext = useContext(AuthContext);
     const { user } = authContext;
     const clientrdContext = useContext(ClientrdContext);
     const { clientrds, getClientrds } = clientrdContext;
     const [netincome, setNetincome] = useState();
->>>>>>> master
 
     let noc = 0;
     let value = 0;
@@ -129,61 +90,6 @@ const PaymentSummary = () => {
         setNetincome(value);
     }, [clientrds]);
 
-<<<<<<< HEAD
-      <br></br>
-      <Typography variant="h4">Earning History</Typography>
-      <br></br>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 200 }} size="small">
-          <TableHead>
-            <TableRow>
-              <PaymentTableCell>Date of Payment</PaymentTableCell>
-              <PaymentTableCell align="left">Client Name</PaymentTableCell>
-              <PaymentTableCell align="left">Amount</PaymentTableCell>
-              <PaymentTableCell align="right">Payment Status</PaymentTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {clientrds?.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <PaymentBodyTableCell scope="row">
-                  {/* {row.dop} */}
-                  " "
-                </PaymentBodyTableCell>
-                <PaymentBodyTableCell align="left">
-                  {row.name}
-                </PaymentBodyTableCell>
-                <PaymentBodyTableCell align="left">
-                  ₹{row.amount}/-
-                </PaymentBodyTableCell>
-                <PaymentBodyTableCell align="right">
-                  {" "}
-                  {row.paymentstatus}
-                </PaymentBodyTableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                            style={{
-                                width: '30px',
-                                background: 'rgba(149, 213, 84)',
-                                color: 'black'
-                            }}
-                            onClick={client}
-                        >
-                            Client Form
-                        </Button>
-    </Container>
-  );
-=======
     return (
         <>
             <div style={{ marginBottom: 2 }}>
@@ -311,6 +217,5 @@ const PaymentSummary = () => {
             </Button> */}
         </>
     );
->>>>>>> master
 };
 export default PaymentSummary;
