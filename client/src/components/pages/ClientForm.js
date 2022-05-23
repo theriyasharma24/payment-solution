@@ -8,7 +8,10 @@ import ClientrdContext from '../../context/clientrd/clientrdContext';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 import styled from 'styled-components';
-
+import Message from '../Message';
+import Progress from '../Progress';
+import CardMedia from '@mui/material/CardMedia';
+import axios from 'axios';
 const ActionButton = styled(SubmitButton)`
     && {
         background: #0ec0e2;
@@ -21,6 +24,9 @@ const ActionButton = styled(SubmitButton)`
 const ClientForm = () => {
     const authContext = useContext(AuthContext);
     const { user } = authContext;
+    const [file, setFile] = useState('');
+    const [message, setMessage] = useState('');
+    const [uploadPercentage, setUploadPercentage] = useState(0);
     const [clientrd, setClientrd] = useState({
         name: '',
         aadhaar: '',
@@ -29,7 +35,9 @@ const ClientForm = () => {
         email: '',
         address: '',
         amount: '',
-        paymentstatus: 'Unpaid'
+        paymentstatus: 'Unpaid',
+        signature: '',
+        photo: ''
     });
 
     let navigate = useNavigate();
@@ -41,40 +49,89 @@ const ClientForm = () => {
         email,
         address,
         amount,
-        paymentstatus
+        paymentstatus,
+        signature,
+        photo
     } = clientrd;
 
     const clientrdContext = useContext(ClientrdContext);
     const { addClientrd, getClientrds, clientrds } = clientrdContext;
 
+    const onImgChange = (e) => {
+        e.preventDefault();
+        setFile(e.target.files[0]);
+        setClientrd({
+            ...clientrd,
+            signature: file
+        });
+    };
+
     const onUploadImage = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('file', file);
+        // console.log('formData', file);
         let res;
         try {
             {
                 file
-                    ? (res = await axios.post('/api/artwork/upload', formData, {
+                    ? (res = await axios.post('/upload', formData, {
                           headers: {
                               'Content-Type': 'multipart/form-data'
                           }
                       }))
-                    : console.log('No file selected');
+                    : alert('No file selected');
             }
 
             // Clear percentage
             setTimeout(() => setUploadPercentage(0), 10000);
+            console.log('data:', res.data);
             const { secure_url } = res.data;
-            setArtwork({ art_img: secure_url });
+            setClientrd({ ...clientrd, signature: secure_url });
         } catch (err) {
-            console.log('There was a problem with the server');
+            console.log('Error', err);
+        }
+    };
+
+    //for photo upload
+
+    const onImgChangePhoto = (e) => {
+        e.preventDefault();
+        setFile(e.target.files[0]);
+        setClientrd({
+            ...clientrd,
+            photo: file
+        });
+    };
+    const onUploadImagePhoto = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', file);
+        // console.log('formData', file);
+        let res;
+        try {
+            {
+                file
+                    ? (res = await axios.post('/upload', formData, {
+                          headers: {
+                              'Content-Type': 'multipart/form-data'
+                          }
+                      }))
+                    : alert('No file selected');
+            }
+
+            // Clear percentage
+            setTimeout(() => setUploadPercentage(0), 10000);
+            console.log('data:', res.data);
+            const { secure_url } = res.data;
+            setClientrd({ ...clientrd, photo: secure_url });
+        } catch (err) {
+            console.log('Error', err);
         }
     };
 
     const onChange = (m) => {
         setClientrd({ ...clientrd, [m.target.name]: m.target.value });
-        console.log('clientrd', clientrd);
     };
 
     const onSubmit = (e) => {
@@ -87,6 +144,7 @@ const ClientForm = () => {
     };
     return (
         <>
+            {message ? <Message msg={message} /> : null}
             <form onSubmit={onSubmit} style={{ textAlign: 'center' }}>
                 <div>
                     <h3> CLIENT FORM</h3>
@@ -195,7 +253,7 @@ const ClientForm = () => {
                                     id="amount"
                                     name="amount"
                                     label="Amount"
-                                    type="text"
+                                    type="number"
                                     value={amount}
                                     onChange={onChange}
                                     fullWidth={true}
@@ -208,7 +266,7 @@ const ClientForm = () => {
                             justifyContent="space-between"
                             style={{ marginBottom: '2rem' }}
                         >
-                            <Grid item xs={12} md={5}>
+                            {/* <Grid item xs={12} md={5}>
                                 Photo
                                 <ActionButton
                                     style={{
@@ -221,12 +279,28 @@ const ClientForm = () => {
                                     color="primary"
                                 >
                                     Upload
-                                    <input type="file" hidden />
                                 </ActionButton>
-                            </Grid>
+                            </Grid> */}
 
+                            <CardMedia
+                                component="img"
+                                height="180vh"
+                                image={photo}
+                                alt="Profile Image"
+                                style={{ borderRadius: 12 }}
+                                // justifyContent="center"
+                            />
+                            <div className="form-group">
+                                <label htmlFor="photo">Photo</label>
+                                <input
+                                    type="file"
+                                    id="customFile"
+                                    onChange={onImgChangePhoto}
+                                    name="photo"
+                                />
+                                <Progress percentage={uploadPercentage} />
+                            </div>
                             <Grid item xs={12} md={5}>
-                                Signature
                                 <ActionButton
                                     style={{
                                         background: 'rgba(149, 213, 84)',
@@ -236,9 +310,43 @@ const ClientForm = () => {
                                     variant="contained"
                                     component="label"
                                     color="primary"
+                                    onClick={onUploadImagePhoto}
                                 >
                                     Upload
-                                    <input type="file" hidden />
+                                </ActionButton>
+                            </Grid>
+
+                            <CardMedia
+                                component="img"
+                                height="180vh"
+                                image={signature}
+                                alt="Profile Image"
+                                style={{ borderRadius: 12 }}
+                                // justifyContent="center"
+                            />
+                            <div className="form-group">
+                                <label htmlFor="signature">Signature</label>
+                                <input
+                                    type="file"
+                                    id="customFile"
+                                    onChange={onImgChange}
+                                    name="signature"
+                                />
+                                <Progress percentage={uploadPercentage} />
+                            </div>
+                            <Grid item xs={12} md={5}>
+                                <ActionButton
+                                    style={{
+                                        background: 'rgba(149, 213, 84)',
+                                        color: 'black',
+                                        marginLeft: '1rem'
+                                    }}
+                                    variant="contained"
+                                    component="label"
+                                    color="primary"
+                                    onClick={onUploadImage}
+                                >
+                                    Upload
                                 </ActionButton>
                             </Grid>
                         </Grid>
