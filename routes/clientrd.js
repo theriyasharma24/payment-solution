@@ -3,11 +3,6 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
-var multer = require('multer');
-var storage = multer.memoryStorage();
-var upload = multer({ storage: storage });
-const cloudinary = require('cloudinary').v2;
-
 const Clientrd = require('../models/Clientrd');
 
 // @route     GET api/clientrd
@@ -151,24 +146,6 @@ router.delete('/:id', auth, async (req, res) => {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
-});
-
-router.post('/upload', auth, upload.single('image'), async (req, res) => {
-    console.log('inside upload');
-    let tmpPath = req.files?.file;
-    cloudinary.uploader.unsigned_upload(
-        tmpPath?.tempFilePath,
-        process.env.UPLOAD_PRESET,
-        {
-            folder: 'profile_image',
-            public_id: tmpPath?.name,
-            resource_type: 'auto'
-        },
-        (err, fileResponse) => {
-            if (err) console.log(err);
-            res.json(fileResponse);
-        }
-    );
 });
 
 module.exports = router;
