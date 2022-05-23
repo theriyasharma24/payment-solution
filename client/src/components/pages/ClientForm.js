@@ -93,6 +93,43 @@ const ClientForm = () => {
         }
     };
 
+    //for photo upload
+
+    const onImgChangePhoto = (e) => {
+        e.preventDefault();
+        setFile(e.target.files[0]);
+        setClientrd({
+            ...clientrd,
+            photo: file
+        });
+    };
+    const onUploadImagePhoto = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', file);
+        // console.log('formData', file);
+        let res;
+        try {
+            {
+                file
+                    ? (res = await axios.post('/upload', formData, {
+                          headers: {
+                              'Content-Type': 'multipart/form-data'
+                          }
+                      }))
+                    : alert('No file selected');
+            }
+
+            // Clear percentage
+            setTimeout(() => setUploadPercentage(0), 10000);
+            console.log('data:', res.data);
+            const { secure_url } = res.data;
+            setClientrd({ ...clientrd, photo: secure_url });
+        } catch (err) {
+            console.log('Error', err);
+        }
+    };
+
     const onChange = (m) => {
         setClientrd({ ...clientrd, [m.target.name]: m.target.value });
     };
@@ -229,7 +266,7 @@ const ClientForm = () => {
                             justifyContent="space-between"
                             style={{ marginBottom: '2rem' }}
                         >
-                            <Grid item xs={12} md={5}>
+                            {/* <Grid item xs={12} md={5}>
                                 Photo
                                 <ActionButton
                                     style={{
@@ -243,7 +280,42 @@ const ClientForm = () => {
                                 >
                                     Upload
                                 </ActionButton>
+                            </Grid> */}
+
+                            <CardMedia
+                                component="img"
+                                height="180vh"
+                                image={photo}
+                                alt="Profile Image"
+                                style={{ borderRadius: 12 }}
+                                // justifyContent="center"
+                            />
+                            <div className="form-group">
+                                <label htmlFor="photo">Photo</label>
+                                <input
+                                    type="file"
+                                    id="customFile"
+                                    onChange={onImgChangePhoto}
+                                    name="photo"
+                                />
+                                <Progress percentage={uploadPercentage} />
+                            </div>
+                            <Grid item xs={12} md={5}>
+                                <ActionButton
+                                    style={{
+                                        background: 'rgba(149, 213, 84)',
+                                        color: 'black',
+                                        marginLeft: '1rem'
+                                    }}
+                                    variant="contained"
+                                    component="label"
+                                    color="primary"
+                                    onClick={onUploadImagePhoto}
+                                >
+                                    Upload
+                                </ActionButton>
                             </Grid>
+
                             <CardMedia
                                 component="img"
                                 height="180vh"
