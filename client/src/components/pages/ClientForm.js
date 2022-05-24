@@ -579,7 +579,6 @@ const ClientForm = () => {
                         <div>{clientrds}</div>
                     </Grid>
                 </Grid> 
-            </div>
         </form>
     );
 };
