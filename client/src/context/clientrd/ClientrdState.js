@@ -63,12 +63,12 @@ const ClientrdState = (props) => {
             );
             dispatch({
                 type: ADD_CLIENTRD,
-                payload: res.data
+                payload: ress?.data
             });
         } catch (err) {
             dispatch({
                 type: CLIENTRD_ERROR,
-                payload: err?.response.msg
+                payload: err?.response?.msg
             });
         }
     };
