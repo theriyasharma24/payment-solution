@@ -13,7 +13,7 @@ import colors from '../../essentials/colors';
 import styled from 'styled-components';
 import AuthContext from '../../context/auth/authContext';
 import ClientrdContext from '../../context/clientrd/clientrdContext';
-
+import { useNavigate } from 'react-router-dom';
 const TableSummary = styled(TableContainer)`
     background: ${colors.lightblue};
 `;
@@ -76,7 +76,7 @@ const PaymentSummary = () => {
     const clientrdContext = useContext(ClientrdContext);
     const { clientrds, getClientrds } = clientrdContext;
     const [netincome, setNetincome] = useState();
-
+    let navigate = useNavigate();
     let noc = 0;
     let value = 0;
     noc = clientrds?.length;
@@ -89,6 +89,10 @@ const PaymentSummary = () => {
         });
         setNetincome(value);
     }, [clientrds]);
+    const toClientDetails=()=>{
+       
+        navigate('/agentdescription');
+    }
 
     return (
         <>
@@ -178,6 +182,9 @@ const PaymentSummary = () => {
                                         border: 0
                                     }
                                 }}
+                                onClick={()=>{ navigate('/agentdescription',{state:row})}}
+                                
+                                style ={{cursor: "pointer"}}
                             >
                                 <PaymentBodyTableCell scope="row">
                                     <p style={{ color: 'white' }}>
