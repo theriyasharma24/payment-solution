@@ -21,7 +21,7 @@ import MenuItem from '@mui/material/MenuItem';
 import styled from 'styled-components';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import breakpoints from '../../essentials/screensize';
-
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 //importing image
 import Logo from '../../assets/logo.png';
 
@@ -90,6 +90,18 @@ const Navbar = ({ icon }) => {
 
     const guestLinks = (
         <>
+            <Link to="/">
+                <IconButton
+                    size="large"
+                    aria-label="aboutus"
+                    style={{ color: 'grey' }}
+                >
+                    <BusinessCenterIcon />
+                    <Typography variant="body2" align="center">
+                        About Us
+                    </Typography>
+                </IconButton>
+            </Link>
             <Link to="/login">
                 <IconButton
                     size="large"

@@ -37,7 +37,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/clientform');
+            navigate('/paymentsummary');
         } else {
             navigate('/login');
         }
