@@ -39,7 +39,7 @@ const App = () => {
                             <Navbar />
                             <Container>
                                 <Alerts />
-                                <Routes>
+                                <Route>
                                     <Route exact path="/" element={<Home />} />
                                     <Route
                                         exact
@@ -66,17 +66,17 @@ const App = () => {
                                         path="/agentdescription"
                                         element={<AgentDescription />}
                                     />
-                                    <Routes
+                                    <Route
                                         exact
                                         path="/clientform"
                                         element={<ClientForm />}
                                     />
-                                    <Routes
+                                    <Route
                                         exact
                                         path="/formnotification"
                                         element={<FormNotification />}
                                     />
-                                </Routes>
+                                </Route>
                             </Container>
                         </Fragment>
                     </Router>
