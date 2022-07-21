@@ -88,7 +88,7 @@ const PaymentSummary = () => {
             setNetincome(value);
         });
         setNetincome(value);
-    }, [clientrds]);
+    }, [netincome]);
     const toClientDetails = () => {
         navigate('/agentdescription');
     };

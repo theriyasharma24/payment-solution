@@ -53,7 +53,7 @@ const Register = () => {
             clearErrors();
         }
         // eslint-disable-next-line
-    }, [error, isAuthenticated]);
+    }, [isAuthenticated]);
 
     const [user, setUser] = useState({
         name: '',

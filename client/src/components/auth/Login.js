@@ -46,7 +46,7 @@ const Login = (props) => {
             clearErrors();
         }
         // eslint-disable-next-line
-    }, [error, isAuthenticated]);
+    }, [isAuthenticated]);
 
     const [user, setUser] = useState({
         email: '',
