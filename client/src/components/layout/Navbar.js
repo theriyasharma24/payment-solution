@@ -64,16 +64,18 @@ const Navbar = ({ icon }) => {
                     </Typography>
                 </IconButton>
             </Link>
-            <IconButton
-                size="large"
-                aria-label="Notes"
-                style={{ color: 'grey' }}
-            >
-                <DescriptionIcon />
-                <Typography variant="body2" align="center">
-                    Notes
-                </Typography>
-            </IconButton>
+            <Link to="/clientform">
+                <IconButton
+                    size="large"
+                    aria-label="Clientform"
+                    style={{ color: 'grey' }}
+                >
+                    <DescriptionIcon />
+                    <Typography variant="body2" align="center">
+                        Client Form
+                    </Typography>
+                </IconButton>
+            </Link>
             <IconButton
                 size="large"
                 onClick={onLogout}

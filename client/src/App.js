@@ -19,7 +19,6 @@ import './App.css';
 
 import styled from 'styled-components';
 import breakpoints from './essentials/screensize';
-import FormNotification from './components/pages/FormNotification';
 
 const Container = styled.div`
     padding: 8vw 5% 1.5% 5%;
@@ -39,7 +38,7 @@ const App = () => {
                             <Navbar />
                             <Container>
                                 <Alerts />
-                                <Route>
+                                <Routes>
                                     <Route exact path="/" element={<Home />} />
                                     <Route
                                         exact
@@ -71,12 +70,7 @@ const App = () => {
                                         path="/clientform"
                                         element={<ClientForm />}
                                     />
-                                    <Route
-                                        exact
-                                        path="/formnotification"
-                                        element={<FormNotification />}
-                                    />
-                                </Route>
+                                </Routes>
                             </Container>
                         </Fragment>
                     </Router>

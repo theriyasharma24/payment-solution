@@ -89,10 +89,9 @@ const PaymentSummary = () => {
         });
         setNetincome(value);
     }, [clientrds]);
-    const toClientDetails=()=>{
-       
+    const toClientDetails = () => {
         navigate('/agentdescription');
-    }
+    };
 
     return (
         <>
@@ -140,7 +139,10 @@ const PaymentSummary = () => {
                     </Grid>
 
                     <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
-                        <TotalClients elevation={2} style={{ padding: 15 }}>
+                        <TotalClients
+                            elevation={2}
+                            style={{ padding: 23.5, alignItems: 'center' }}
+                        >
                             <p>
                                 <b>Total No. of Clients on the Platform</b>
                             </p>
@@ -182,9 +184,12 @@ const PaymentSummary = () => {
                                         border: 0
                                     }
                                 }}
-                                onClick={()=>{ navigate('/agentdescription',{state:row})}}
-                                
-                                style ={{cursor: "pointer"}}
+                                onClick={() => {
+                                    navigate('/agentdescription', {
+                                        state: row
+                                    });
+                                }}
+                                style={{ cursor: 'pointer' }}
                             >
                                 <PaymentBodyTableCell scope="row">
                                     <p style={{ color: 'white' }}>

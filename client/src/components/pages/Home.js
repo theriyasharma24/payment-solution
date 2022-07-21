@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import home from '../../assets/home.png';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
@@ -45,36 +46,41 @@ const Home = () => {
                             >
                                 Log in to your account
                             </h1>
-                            <Button
-                                style={{
-                                    backgroundColor: 'darkgreen',
-                                    color: 'white',
-                                    fontWeight: '600',
-                                    fontSize: '15px',
-                                    width: '240px',
-                                    margin: '100px',
-                                    marginLeft: '200px',
-                                    textAlign: 'center'
-                                }}
-                            >
-                                Log In{' '}
-                            </Button>
+                            <Link to="/login">
+                                <Button
+                                    style={{
+                                        backgroundColor: 'darkgreen',
+                                        color: 'white',
+                                        fontWeight: '600',
+                                        fontSize: '15px',
+                                        width: '240px',
+                                        margin: '100px',
+                                        marginLeft: '200px',
+                                        textAlign: 'center',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    Log In
+                                </Button>
+                            </Link>
                             <br></br>
-                            <Button
-                                style={{
-                                    backgroundColor: 'darkgreen',
-                                    color: 'white',
-                                    fontWeight: '600',
-                                    fontSize: '15px',
-                                    width: '240px',
-                                    margin: '100px',
-                                    marginTop: '-5vw',
-                                    marginLeft: '200px',
-                                    textAlign: 'center'
-                                }}
-                            >
-                                Sign Up{' '}
-                            </Button>
+                            <Link to="/register">
+                                <Button
+                                    style={{
+                                        backgroundColor: 'darkgreen',
+                                        color: 'white',
+                                        fontWeight: '600',
+                                        fontSize: '15px',
+                                        width: '240px',
+                                        margin: '100px',
+                                        marginTop: '-5vw',
+                                        marginLeft: '200px',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    Sign Up{' '}
+                                </Button>
+                            </Link>
                         </div>
                     </Grid>
                 </Grid>
