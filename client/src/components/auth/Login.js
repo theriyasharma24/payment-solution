@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import { useLocation } from 'react-router-dom';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 //importing image
@@ -33,7 +32,6 @@ const Login = (props) => {
     const authContext = useContext(AuthContext);
     const { setAlert } = alertContext;
     const { login, error, clearErrors, isAuthenticated } = authContext;
-    const location = useLocation();
 
     useEffect(() => {
         if (isAuthenticated) {

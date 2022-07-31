@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import AuthContext from '../../context/auth/authContext';
 
 import SubmitButton from '../containers/SubmitButton';
 
 import ClientrdContext from '../../context/clientrd/clientrdContext';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../../context/auth/authContext';
+
 import styled from 'styled-components';
 import Message from '../Message';
 import Progress from '../Progress';
@@ -27,6 +28,7 @@ const ClientForm = () => {
     const [file, setFile] = useState('');
     const [message, setMessage] = useState('');
     const [uploadPercentage, setUploadPercentage] = useState(0);
+
     const [clientrd, setClientrd] = useState({
         name: '',
         aadhaar: '',

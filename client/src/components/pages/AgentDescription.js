@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 // import * as React from 'react';
 // import { styled } from "@mui/material/styles";
 import Box from '@mui/material/Box';
@@ -19,7 +19,7 @@ import agent from '../../assets/agents.jpeg';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import SnoozeIcon from '@mui/icons-material/Snooze';
-import { Navigate, useNavigate,useLocation} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const LabelButton = styled(Button)`
     && {
@@ -28,7 +28,6 @@ const LabelButton = styled(Button)`
 `;
 
 const AgentDescription = (props) => {
-
     let navigate = useNavigate();
     const onClickPaymentTrans = () => {
         navigate('/paymentsummary');
@@ -37,9 +36,9 @@ const AgentDescription = (props) => {
         navigate('/Notification');
     };
     const location = useLocation();
-console.log(location.state);
-let agent=location.state;
-    
+    console.log(location.state);
+    let agent = location.state;
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container>
@@ -91,26 +90,19 @@ let agent=location.state;
                             <h3>Name: </h3>
                         </Grid>
                         <Grid item xs={6} md={9}>
-                        {
-                            agent.name
-                        }
+                            {agent.name}
                         </Grid>
                         <Grid item xs={6} md={3}>
                             <h3>Address: </h3>
                         </Grid>
                         <Grid item xs={6} md={9}>
-                            {
-                                agent.address
-                            }
-
+                            {agent.address}
                         </Grid>
                         <Grid item xs={6} md={3}>
                             <h3>Pan No. : </h3>
                         </Grid>
                         <Grid item xs={6} md={9}>
-                            {
-                                agent.pan
-                            }
+                            {agent.pan}
                         </Grid>
                         <Grid item xs={6} md={3}>
                             <h3>Contact No. : </h3>
