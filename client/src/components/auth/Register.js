@@ -1,25 +1,16 @@
 import { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
-// import { Link } from "react-router-dom";
 import SubmitButton from '../containers/SubmitButton';
-// import styled from "styled-components";
-// import breakpoints from "../../essentials/screensize
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 //importing image
-
 import landingimage from '../../assets/home.png';
-import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
-import breakpoints from '../../essentials/screensize';
+import colors from '../../essentials/colors';
 
 const ActionButton = styled(SubmitButton)`
     && {
@@ -214,6 +205,17 @@ const Register = () => {
                                                     </ActionButton>
                                                 </div>
                                             </Stack>
+                                            <h6>
+                                                Already have an account ?{' '}
+                                                <Link
+                                                    to="/"
+                                                    style={{
+                                                        color: `${colors.orange}`
+                                                    }}
+                                                >
+                                                    Login
+                                                </Link>
+                                            </h6>
                                         </Box>
                                     </Grid>
                                 </Grid>

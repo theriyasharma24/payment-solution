@@ -9,10 +9,10 @@ import AuthContext from '../../context/auth/authContext';
 
 import landingimage from '../../assets/home.png';
 import styled from 'styled-components';
-import breakpoints from '../../essentials/screensize';
+import colors from '../../essentials/colors';
 import './Login.css';
 import SubmitButton from '../containers/SubmitButton';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const ActionButton = styled(SubmitButton)`
     && {
@@ -86,7 +86,6 @@ const Login = (props) => {
                                     ></img>
                                 </Grid>
                                 <Grid item xs={12} md={6} p={2}>
-                                    {/* <Grid container > */}
                                     <h1>Login</h1>
                                     <Grid item xs={12} md={12}>
                                         <Box
@@ -172,9 +171,20 @@ const Login = (props) => {
                                                     </ActionButton>
                                                 </div>
                                             </Stack>
+                                            <h6>
+                                                Don't have your account
+                                                registered with us?{' '}
+                                                <Link
+                                                    to="/register"
+                                                    style={{
+                                                        color: `${colors.orange}`
+                                                    }}
+                                                >
+                                                    Register
+                                                </Link>
+                                            </h6>
                                         </Box>
                                     </Grid>
-                                    {/* </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
