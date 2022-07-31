@@ -46,7 +46,7 @@ const Home = () => {
                             >
                                 Log in to your account
                             </h1>
-                            <Link to="/login">
+                            <Link to="/">
                                 <Button
                                     style={{
                                         backgroundColor: 'darkgreen',

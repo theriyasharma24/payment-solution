@@ -104,7 +104,7 @@ const Navbar = ({ icon }) => {
                     </Typography>
                 </IconButton>
             </Link>
-            <Link to="/login">
+            <Link to="/">
                 <IconButton
                     size="large"
                     aria-label="login"

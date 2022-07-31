@@ -15,7 +15,8 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useNavigate } from 'react-router-dom';
 //importing image
-import Agent from '../../assets/agent.png';
+
+import landingimage from '../../assets/home.png';
 import { LOGOUT } from '../../context/types';
 import styled from 'styled-components';
 import breakpoints from '../../essentials/screensize';
@@ -88,23 +89,23 @@ const Register = () => {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={12}>
-                        <h1>Register</h1>
-                    </Grid>
+                <Grid container spacing={2} p={1}>
                     <form onSubmit={onSubmit}>
                         <Grid item xs={12} md={12}>
                             <Grid container alignItems="center">
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} md={5}>
                                     <img
-                                        src={Agent}
+                                        src={landingimage}
                                         alt="The Perception Shop"
                                         className="logo"
                                         height="440"
                                         width="100%"
                                     ></img>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} md={7} p={2}>
+                                    <Grid item xs={12} md={12}>
+                                        <h1>Register</h1>
+                                    </Grid>
                                     {/* <Grid container > */}
                                     <Grid item xs={12} md={12}>
                                         <Box

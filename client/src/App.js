@@ -38,7 +38,7 @@ const App = () => {
                             <Container>
                                 <Alerts />
                                 <Routes>
-                                    <Route exact path="/" element={<Home />} />
+                                    <Route exact path="/" element={<Login />} />
                                     <Route
                                         exact
                                         path="/register"
