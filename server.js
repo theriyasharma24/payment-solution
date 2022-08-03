@@ -36,7 +36,6 @@ app.use('/api/event', require('./routes/events'));
 
 //cloudinary upload api
 app.post('/upload', auth, upload.single('image'), async (req, res) => {
-    console.log('inside upload api', req.files);
     let tmpPath = req.files?.file;
     cloudinary.uploader.unsigned_upload(
         tmpPath?.tempFilePath,

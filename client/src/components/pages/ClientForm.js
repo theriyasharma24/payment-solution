@@ -26,8 +26,10 @@ const ClientForm = () => {
     const authContext = useContext(AuthContext);
     const { user } = authContext;
     const [file, setFile] = useState('');
+    const [filesign, setFileSign] = useState('');
     const [message, setMessage] = useState('');
     const [uploadPercentage, setUploadPercentage] = useState(0);
+    const [uploadPercSign, setUploadPercSign] = useState(0);
 
     const [clientrd, setClientrd] = useState({
         name: '',
@@ -59,27 +61,37 @@ const ClientForm = () => {
     const clientrdContext = useContext(ClientrdContext);
     const { addClientrd, getClientrds, clientrds } = clientrdContext;
 
-    const onImgChange = (e) => {
+    const onSigChange = (e) => {
         e.preventDefault();
-        setFile(e.target.files[0]);
+        setFileSign(e.target.files[0]);
         setClientrd({
             ...clientrd,
-            signature: file
+            signature: filesign
         });
     };
 
-    const onUploadImage = async (e) => {
+    const onUploadSignature = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('file', file);
+        formData.append('file', filesign);
         // console.log('formData', file);
         let res;
         try {
             {
-                file
+                filesign
                     ? (res = await axios.post('/upload', formData, {
                           headers: {
                               'Content-Type': 'multipart/form-data'
+                          },
+                          onUploadProgress: (progressEvent) => {
+                              setUploadPercSign(
+                                  parseInt(
+                                      Math.round(
+                                          (progressEvent.loaded * 100) /
+                                              progressEvent.total
+                                      )
+                                  )
+                              );
                           }
                       }))
                     : alert('No file selected');
@@ -89,7 +101,7 @@ const ClientForm = () => {
             setTimeout(() => setUploadPercentage(0), 10000);
             console.log('data:', res.data);
             const { secure_url } = res.data;
-            setClientrd({ ...clientrd, signature: secure_url });
+            await setClientrd({ ...clientrd, signature: secure_url });
         } catch (err) {
             console.log('Error', err);
         }
@@ -105,7 +117,7 @@ const ClientForm = () => {
             photo: file
         });
     };
-    const onUploadImagePhoto = async (e) => {
+    const onUploadPhoto = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('file', file);
@@ -117,6 +129,16 @@ const ClientForm = () => {
                     ? (res = await axios.post('/upload', formData, {
                           headers: {
                               'Content-Type': 'multipart/form-data'
+                          },
+                          onUploadProgress: (progressEvent) => {
+                              setUploadPercentage(
+                                  parseInt(
+                                      Math.round(
+                                          (progressEvent.loaded * 100) /
+                                              progressEvent.total
+                                      )
+                                  )
+                              );
                           }
                       }))
                     : alert('No file selected');
@@ -126,7 +148,7 @@ const ClientForm = () => {
             setTimeout(() => setUploadPercentage(0), 10000);
             console.log('data:', res.data);
             const { secure_url } = res.data;
-            setClientrd({ ...clientrd, photo: secure_url });
+            await setClientrd({ ...clientrd, photo: secure_url });
         } catch (err) {
             console.log('Error', err);
         }
@@ -136,13 +158,10 @@ const ClientForm = () => {
         setClientrd({ ...clientrd, [m.target.name]: m.target.value });
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        console.log('before inside clientrd on submit', clientrd);
-        addClientrd(clientrd);
-        getClientrds();
-        console.log('inside clientrd on submit', clientrds);
-        navigate('/paymentsummary');
+        await addClientrd(clientrd);
+        await navigate('/paymentsummary');
     };
     return (
         <>
@@ -312,7 +331,7 @@ const ClientForm = () => {
                                     variant="contained"
                                     component="label"
                                     color="primary"
-                                    onClick={onUploadImagePhoto}
+                                    onClick={onUploadPhoto}
                                 >
                                     Upload
                                 </ActionButton>
@@ -331,10 +350,10 @@ const ClientForm = () => {
                                 <input
                                     type="file"
                                     id="customFile"
-                                    onChange={onImgChange}
+                                    onChange={onSigChange}
                                     name="signature"
                                 />
-                                <Progress percentage={uploadPercentage} />
+                                <Progress percentage={uploadPercSign} />
                             </div>
                             <Grid item xs={12} md={5}>
                                 <ActionButton
@@ -346,7 +365,7 @@ const ClientForm = () => {
                                     variant="contained"
                                     component="label"
                                     color="primary"
-                                    onClick={onUploadImage}
+                                    onClick={onUploadSignature}
                                 >
                                     Upload
                                 </ActionButton>

@@ -122,14 +122,14 @@ const AgentDescription = (props) => {
                 justifyContent="space-around"
             >
                 <Grid item xs={12} md={3}>
-                    <LabelButton fullWidth="true">
+                    <LabelButton fullWidth={true}>
                         <Typography color="white" p={4}>
                             <DescriptionIcon /> Client's List
                         </Typography>
                     </LabelButton>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <LabelButton fullWidth="true" onClick={onClickPaymentTrans}>
+                    <LabelButton fullWidth={true} onClick={onClickPaymentTrans}>
                         <Typography color="white" p={4}>
                             <ReceiptIcon />
                             Payment Transactions
@@ -138,7 +138,7 @@ const AgentDescription = (props) => {
                 </Grid>
                 <Grid item xs={12} md={3}>
                     <LabelButton
-                        fullWidth="true"
+                        fullWidth={true}
                         onClick={onClickNotifications}
                     >
                         <Typography color="white" p={4}>

@@ -1,4 +1,4 @@
-import  { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -82,7 +82,6 @@ const PaymentSummary = () => {
     noc = clientrds?.length;
     useEffect(() => {
         getClientrds();
-
         clientrds?.map((amt) => {
             value = value + amt.amount;
             setNetincome(value);

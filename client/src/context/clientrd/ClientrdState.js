@@ -26,6 +26,8 @@ const ClientrdState = (props) => {
     };
 
     const [state, dispatch] = useReducer(clientrdReducer, initialState);
+    const authContext = useContext(AuthContext);
+    const { user } = authContext;
 
     const getClientrds = async () => {
         try {
@@ -47,8 +49,6 @@ const ClientrdState = (props) => {
 
     // Add Contact
     const addClientrd = async (clientrd) => {
-        const authContext = useContext(AuthContext);
-        const { user } = authContext;
         const config = {
             headers: {
                 'Content-Type': 'application/json'
