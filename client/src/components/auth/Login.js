@@ -3,16 +3,16 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import { useLocation } from 'react-router-dom';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 //importing image
-import Agent from '../../assets/agent.png';
+
+import landingimage from '../../assets/home.png';
 import styled from 'styled-components';
-import breakpoints from '../../essentials/screensize';
+import colors from '../../essentials/colors';
 import './Login.css';
 import SubmitButton from '../containers/SubmitButton';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const ActionButton = styled(SubmitButton)`
     && {
@@ -33,11 +33,10 @@ const Login = (props) => {
     const authContext = useContext(AuthContext);
     const { setAlert } = alertContext;
     const { login, error, clearErrors, isAuthenticated } = authContext;
-    const location = useLocation();
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/clientform');
+            navigate('/paymentsummary');
         } else {
             navigate('/login');
         }
@@ -46,7 +45,7 @@ const Login = (props) => {
             clearErrors();
         }
         // eslint-disable-next-line
-    }, [error, isAuthenticated]);
+    }, [isAuthenticated]);
 
     const [user, setUser] = useState({
         email: '',
@@ -74,23 +73,20 @@ const Login = (props) => {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={12}>
-                        <h1>Login</h1>
-                    </Grid>
+                <Grid container spacing={2} p={1}>
                     <form onSubmit={onSubmit}>
                         <Grid item xs={12} md={12}>
                             <Grid container alignItems="center">
                                 <Grid item xs={12} md={6}>
                                     <img
-                                        src={Agent}
+                                        src={landingimage}
                                         alt="payment-solution"
                                         height="440"
                                         width="100%"
                                     ></img>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
-                                    {/* <Grid container > */}
+                                <Grid item xs={12} md={6} p={2}>
+                                    <h1>Login</h1>
                                     <Grid item xs={12} md={12}>
                                         <Box
                                             sx={{
@@ -175,9 +171,20 @@ const Login = (props) => {
                                                     </ActionButton>
                                                 </div>
                                             </Stack>
+                                            <h6>
+                                                Don't have your account
+                                                registered with us?{' '}
+                                                <Link
+                                                    to="/register"
+                                                    style={{
+                                                        color: `${colors.orange}`
+                                                    }}
+                                                >
+                                                    Register
+                                                </Link>
+                                            </h6>
                                         </Box>
                                     </Grid>
-                                    {/* </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 // import * as React from 'react';
 // import { styled } from "@mui/material/styles";
 import Box from '@mui/material/Box';
@@ -19,14 +19,15 @@ import agent from '../../assets/agents.jpeg';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import SnoozeIcon from '@mui/icons-material/Snooze';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 const LabelButton = styled(Button)`
     && {
         background-color: ${colors.orange};
     }
 `;
 
-const AgentDescription = () => {
+const AgentDescription = (props) => {
     let navigate = useNavigate();
     const onClickPaymentTrans = () => {
         navigate('/paymentsummary');
@@ -34,6 +35,10 @@ const AgentDescription = () => {
     const onClickNotifications = () => {
         navigate('/Notification');
     };
+    const location = useLocation();
+    console.log(location.state);
+    let agent = location.state;
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container>
@@ -56,7 +61,7 @@ const AgentDescription = () => {
                         <CardMedia
                             component="img"
                             height="190"
-                            image={agent}
+                            image={agent.photo}
                             alt="agent-pic"
                         />
                         <CardActions>
@@ -85,25 +90,25 @@ const AgentDescription = () => {
                             <h3>Name: </h3>
                         </Grid>
                         <Grid item xs={6} md={9}>
-                            Akshta
+                            {agent.name}
                         </Grid>
                         <Grid item xs={6} md={3}>
                             <h3>Address: </h3>
                         </Grid>
                         <Grid item xs={6} md={9}>
-                            R-456 A, Ghaziabad, Uttar Pradesh
+                            {agent.address}
                         </Grid>
                         <Grid item xs={6} md={3}>
                             <h3>Pan No. : </h3>
                         </Grid>
                         <Grid item xs={6} md={9}>
-                            AFJYT1354
+                            {agent.pan}
                         </Grid>
                         <Grid item xs={6} md={3}>
                             <h3>Contact No. : </h3>
                         </Grid>
                         <Grid item xs={6} md={9}>
-                            +91 4566856231
+                            {agent.contact}
                         </Grid>
                     </Grid>
                 </Grid>
@@ -117,14 +122,14 @@ const AgentDescription = () => {
                 justifyContent="space-around"
             >
                 <Grid item xs={12} md={3}>
-                    <LabelButton fullWidth="true">
+                    <LabelButton fullWidth={true}>
                         <Typography color="white" p={4}>
                             <DescriptionIcon /> Client's List
                         </Typography>
                     </LabelButton>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <LabelButton fullWidth="true" onClick={onClickPaymentTrans}>
+                    <LabelButton fullWidth={true} onClick={onClickPaymentTrans}>
                         <Typography color="white" p={4}>
                             <ReceiptIcon />
                             Payment Transactions
@@ -133,7 +138,7 @@ const AgentDescription = () => {
                 </Grid>
                 <Grid item xs={12} md={3}>
                     <LabelButton
-                        fullWidth="true"
+                        fullWidth={true}
                         onClick={onClickNotifications}
                     >
                         <Typography color="white" p={4}>

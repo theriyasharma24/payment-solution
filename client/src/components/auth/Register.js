@@ -1,24 +1,16 @@
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
-// import { Link } from "react-router-dom";
 import SubmitButton from '../containers/SubmitButton';
-// import styled from "styled-components";
-// import breakpoints from "../../essentials/screensize
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 //importing image
-import Agent from '../../assets/agent.png';
-import { LOGOUT } from '../../context/types';
+import landingimage from '../../assets/home.png';
 import styled from 'styled-components';
-import breakpoints from '../../essentials/screensize';
+import colors from '../../essentials/colors';
 
 const ActionButton = styled(SubmitButton)`
     && {
@@ -53,7 +45,7 @@ const Register = () => {
             clearErrors();
         }
         // eslint-disable-next-line
-    }, [error, isAuthenticated]);
+    }, [isAuthenticated]);
 
     const [user, setUser] = useState({
         name: '',
@@ -88,23 +80,23 @@ const Register = () => {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={12}>
-                        <h1>Register</h1>
-                    </Grid>
+                <Grid container spacing={2} p={1}>
                     <form onSubmit={onSubmit}>
                         <Grid item xs={12} md={12}>
                             <Grid container alignItems="center">
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} md={5}>
                                     <img
-                                        src={Agent}
+                                        src={landingimage}
                                         alt="The Perception Shop"
                                         className="logo"
                                         height="440"
                                         width="100%"
                                     ></img>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} md={7} p={2}>
+                                    <Grid item xs={12} md={12}>
+                                        <h1>Register</h1>
+                                    </Grid>
                                     {/* <Grid container > */}
                                     <Grid item xs={12} md={12}>
                                         <Box
@@ -213,6 +205,17 @@ const Register = () => {
                                                     </ActionButton>
                                                 </div>
                                             </Stack>
+                                            <h6>
+                                                Already have an account ?{' '}
+                                                <Link
+                                                    to="/"
+                                                    style={{
+                                                        color: `${colors.orange}`
+                                                    }}
+                                                >
+                                                    Login
+                                                </Link>
+                                            </h6>
                                         </Box>
                                     </Grid>
                                 </Grid>

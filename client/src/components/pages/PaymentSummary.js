@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -13,7 +13,7 @@ import colors from '../../essentials/colors';
 import styled from 'styled-components';
 import AuthContext from '../../context/auth/authContext';
 import ClientrdContext from '../../context/clientrd/clientrdContext';
-
+import { useNavigate } from 'react-router-dom';
 const TableSummary = styled(TableContainer)`
     background: ${colors.lightblue};
 `;
@@ -76,19 +76,21 @@ const PaymentSummary = () => {
     const clientrdContext = useContext(ClientrdContext);
     const { clientrds, getClientrds } = clientrdContext;
     const [netincome, setNetincome] = useState();
-
+    let navigate = useNavigate();
     let noc = 0;
     let value = 0;
     noc = clientrds?.length;
     useEffect(() => {
         getClientrds();
-
         clientrds?.map((amt) => {
             value = value + amt.amount;
             setNetincome(value);
         });
         setNetincome(value);
-    }, [clientrds]);
+    }, [netincome]);
+    const toClientDetails = () => {
+        navigate('/agentdescription');
+    };
 
     return (
         <>
@@ -136,7 +138,10 @@ const PaymentSummary = () => {
                     </Grid>
 
                     <Grid item style={{ textAlign: 'center' }} xs={12} md={3}>
-                        <TotalClients elevation={2} style={{ padding: 15 }}>
+                        <TotalClients
+                            elevation={2}
+                            style={{ padding: 23.5, alignItems: 'center' }}
+                        >
                             <p>
                                 <b>Total No. of Clients on the Platform</b>
                             </p>
@@ -178,6 +183,12 @@ const PaymentSummary = () => {
                                         border: 0
                                     }
                                 }}
+                                onClick={() => {
+                                    navigate('/agentdescription', {
+                                        state: row
+                                    });
+                                }}
+                                style={{ cursor: 'pointer' }}
                             >
                                 <PaymentBodyTableCell scope="row">
                                     <p style={{ color: 'white' }}>

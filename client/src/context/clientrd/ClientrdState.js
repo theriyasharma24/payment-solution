@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from 'react';
+import { useReducer, useContext } from 'react';
 import axios from 'axios';
 import ClientrdContext from './clientrdContext';
 import clientrdReducer from './clientrdReducer';

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
@@ -21,7 +21,7 @@ import MenuItem from '@mui/material/MenuItem';
 import styled from 'styled-components';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import breakpoints from '../../essentials/screensize';
-
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 //importing image
 import Logo from '../../assets/logo.png';
 
@@ -64,16 +64,18 @@ const Navbar = ({ icon }) => {
                     </Typography>
                 </IconButton>
             </Link>
-            <IconButton
-                size="large"
-                aria-label="Notes"
-                style={{ color: 'grey' }}
-            >
-                <DescriptionIcon />
-                <Typography variant="body2" align="center">
-                    Notes
-                </Typography>
-            </IconButton>
+            <Link to="/clientform">
+                <IconButton
+                    size="large"
+                    aria-label="Clientform"
+                    style={{ color: 'grey' }}
+                >
+                    <DescriptionIcon />
+                    <Typography variant="body2" align="center">
+                        Client Form
+                    </Typography>
+                </IconButton>
+            </Link>
             <IconButton
                 size="large"
                 onClick={onLogout}
@@ -90,7 +92,19 @@ const Navbar = ({ icon }) => {
 
     const guestLinks = (
         <>
-            <Link to="/login">
+            <Link to="/">
+                <IconButton
+                    size="large"
+                    aria-label="aboutus"
+                    style={{ color: 'grey' }}
+                >
+                    <BusinessCenterIcon />
+                    <Typography variant="body2" align="center">
+                        About Us
+                    </Typography>
+                </IconButton>
+            </Link>
+            <Link to="/">
                 <IconButton
                     size="large"
                     aria-label="login"
