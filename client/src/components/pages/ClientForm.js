@@ -99,7 +99,6 @@ const ClientForm = () => {
 
             // Clear percentage
             setTimeout(() => setUploadPercentage(0), 10000);
-            console.log('data:', res.data);
             const { secure_url } = res.data;
             await setClientrd({ ...clientrd, signature: secure_url });
         } catch (err) {
@@ -146,7 +145,6 @@ const ClientForm = () => {
 
             // Clear percentage
             setTimeout(() => setUploadPercentage(0), 10000);
-            console.log('data:', res.data);
             const { secure_url } = res.data;
             await setClientrd({ ...clientrd, photo: secure_url });
         } catch (err) {

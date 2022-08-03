@@ -92,7 +92,7 @@ const Navbar = ({ icon }) => {
 
     const guestLinks = (
         <>
-            <Link to="/">
+            {/* <Link to="/">
                 <IconButton
                     size="large"
                     aria-label="aboutus"
@@ -103,7 +103,7 @@ const Navbar = ({ icon }) => {
                         About Us
                     </Typography>
                 </IconButton>
-            </Link>
+            </Link> */}
             <Link to="/">
                 <IconButton
                     size="large"
