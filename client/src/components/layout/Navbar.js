@@ -166,7 +166,7 @@ const Navbar = ({ icon }) => {
                                     }}
                                 >
                                     <MenuItem onClick={handleCloseNavMenu}>
-                                        <Link to="/aboutus">
+                                        {/* <Link to="/aboutus">
                                             <IconButton
                                                 size="large"
                                                 aria-label="register"
@@ -181,7 +181,7 @@ const Navbar = ({ icon }) => {
                                                     About Us
                                                 </Typography>
                                             </IconButton>
-                                        </Link>
+                                        </Link> */}
                                         <Link to="/shop">
                                             <IconButton
                                                 size="large"
