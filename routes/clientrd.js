@@ -73,6 +73,7 @@ router.post(
 // @phone      Update clientrd
 // @access    Private
 router.put('/:id', auth, async (req, res) => {
+    console.log('request:', req.body);
     const {
         name,
         contact,
@@ -105,9 +106,9 @@ router.put('/:id', auth, async (req, res) => {
                 .json({ msg: 'No Clientrd details info found' });
 
         // Make sure user owns contact
-        if (clientrd.user.toString() !== req.user.id) {
-            return res.status(401).json({ msg: 'Not authorized' });
-        }
+        // if (clientrd.user.toString() !== req.user.id) {
+        //     return res.status(401).json({ msg: 'Not authorized' });
+        // }
 
         clientrd = await Clientrd.findByIdAndUpdate(
             req.params.id,
@@ -117,7 +118,7 @@ router.put('/:id', auth, async (req, res) => {
 
         res.json(clientrd);
     } catch (err) {
-        console.error(er.message);
+        console.error(err.message);
         res.status(500).send('Server Error');
     }
 });
