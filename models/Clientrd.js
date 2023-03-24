@@ -9,18 +9,20 @@ const ClientrdSchema = mongoose.Schema(
             type: String,
             required: true
         },
+        email: {
+            type: String,
+            required: true
+        },
         contact: {
             type: Number
         },
         aadhaar: {
             type: Number,
-            required: true,
-            unique: true
+            required: true
         },
         pan: {
             type: String,
-            required: true,
-            unique: true
+            required: true
         },
         address: {
             type: String
